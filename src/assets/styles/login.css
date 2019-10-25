@@ -1,0 +1,188 @@
+/* Login Page CSS - Layout */
+body.login {
+    height: 100vh;
+    margin: 0;
+    display: block;
+}
+
+body.login main {
+    height: 100%;
+    display: flex;
+}
+
+body.login aside {
+    width: 600px;
+    background-color: #FFFFFF;
+    height: 100%;
+    max-width: 100%;
+}
+
+body.login.ui-tabs aside.ui-tab-panel {
+    display: flex;
+}
+
+body.login figure {
+    width: calc(100% - 600px);
+    height: 100%;
+    position: relative;
+}
+/* Login Page CSS - Layout */
+/* Login Fields - Left Side */
+body.login aside img.sms8-logo {
+    height: 7.938em; /* 127px */
+    width: 16.875em; /* 270px */
+    background-image: url( /images/sms8-logo.png );
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+}
+
+body.login aside fieldset {
+    width: 100%;
+}
+
+body.login aside header {
+    text-align: center;
+}
+
+body.login aside header svg {
+    color: rgb(12,106,254);
+}
+
+body.login aside .btn {
+    display: block;
+    width: 8.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.login aside.reset-password .btn,
+body.login aside.reset .btn {
+    width: 12.5em;
+}
+
+body.login aside .text-btn {
+    display: block;
+    width: 12.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Login Fields - Left Side */
+
+/* Incompatible Browser */
+body.login aside.browser {
+
+}
+
+body.login aside.browser .sm-select-list {
+
+}
+
+body.login aside.browser .sm-select-list > li > a {
+    border: none;
+    background-color: transparent;
+    color: #677580;
+}
+
+body.login aside.browser .sm-select-list > li > a:hover {
+    background-color: #0084ff;
+    color: #FFFFFF;
+}
+
+body.login aside.browser .sm-select-list > li > a small {
+    font-size: .875rem;
+}
+
+/* Incompatible Browser */
+
+/* Title Images - Right Side */
+body.login figure img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body.login figure img[style$="Space.jpg')"] {
+    background-position: 50% 82%;
+}
+
+body.login.bg-0 figure img { background-image: url( /images/login/Space.jpg ); }
+body.login.bg-1 figure img { background-image: url( /images/login/Ocean.jpg ); }
+body.login.bg-2 figure img { background-image: url( /images/login/Farm.jpg ); }
+
+/* Title Images - Right Side */
+/* Input text */
+body.login .input-text input {
+    font-size: 16px;
+}
+
+/* Input text */
+
+/* Compatibility for Incompatible Page */
+
+/* IE9 */
+.no-flexbox body.login > figure {
+    float: right;
+}
+.no-flexbox body.login aside.browser .sm-select-list li a {
+    display: block;
+    text-align: left;
+}
+
+.no-flexbox body.login aside.browser .sm-select-list li a:after {
+    content:'';
+    display: block;
+    clear: both;
+}
+
+.no-flexbox body.login aside.browser .sm-select-list li a img {
+    float:left;
+}
+
+.no-flexbox body.login aside.browser .sm-select-list li a div {
+    padding: 12px 12px 12px 70px;
+}
+
+.no-flexbox body.login aside {
+    text-align: center;
+}
+
+/* Restricted */
+
+body.login aside.restricted .btn {
+    display: inline-block;
+    width: auto;
+}
+
+/* IE8 */
+.no-rgba body.login aside.browser {
+    padding: 40px;
+    display: block;
+}
+.no-rgba body.login aside.browser .sm-select-list {
+    margin-top: 40px;
+}
+
+.no-rgba body.login aside.browser .sm-select-list li {
+    margin-top: 10px;
+}
+
+/* Compatibility for Incompatible Page */
+
+/* Responsive Height @ 800 */
+@media (max-height: 800px) {
+    html {
+        font-size: 2vh;
+    }
+    body {
+        font-size: 1rem;
+    }
+}
+/* Responsive Height @ 800 */

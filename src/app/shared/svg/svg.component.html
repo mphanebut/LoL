@@ -1,0 +1,6 @@
+<ng-container *ngIf="svgViewBox; else elseTemplate">
+    <svg [attr.viewBox]="svgViewBox" class="e-24" [innerHTML]="svgPath" [title]="svgTitle"></svg>
+</ng-container>
+<ng-template #elseTemplate>
+    <svg viewBox="0 0 24 24" class="e-24" [innerHTML]="svgPath" [title]="svgTitle"></svg>
+</ng-template>

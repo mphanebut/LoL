@@ -24,7 +24,29 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/styles/styles.css",
+              "src/assets/styles/sms8-shell.css",
+              "src/assets/styles/cms-elements.css",
+              "src/assets/styles/datalist-elements.css",
+              "src/assets/styles/chart-elements.css",
+              "src/assets/styles/form-elements.css",
+              "src/assets/styles/layout.css",
+              "src/assets/styles/map-elements.css",
+              "src/assets/styles/tool-elements.css",
+              "src/assets/styles/table-elements.css",
+              "src/assets/styles/platform-nlf.css",
+              "src/assets/styles/platform-shared.css",
+              "src/assets/styles/datalist-elements-extended.css",
+              "src/assets/styles/dialog-popups.css",
+              "src/assets/styles/chart-elements-extended.css",
+              "src/assets/styles/form-elements-extended.css",
+              "src/assets/styles/layout-extended.css",
+              "src/assets/styles/map-elements-extended.css",
+              "src/assets/styles/tool-elements-extended.css",
+              "src/assets/styles/table-elements-extended.css",
+              "src/assets/styles/splash-headers.css",
+              "src/assets/styles/font.css",
+              "src/assets/styles/above-the-fold.css"
             ],
             "scripts": []
           },
@@ -89,7 +111,29 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/styles/styles.css",
+              "src/assets/styles/sms8-shell.css",
+              "src/assets/styles/cms-elements.css",
+              "src/assets/styles/datalist-elements.css",
+              "src/assets/styles/chart-elements.css",
+              "src/assets/styles/form-elements.css",
+              "src/assets/styles/layout.css",
+              "src/assets/styles/map-elements.css",
+              "src/assets/styles/tool-elements.css",
+              "src/assets/styles/table-elements.css",
+              "src/assets/styles/platform-nlf.css",
+              "src/assets/styles/platform-shared.css",
+              "src/assets/styles/datalist-elements-extended.css",
+              "src/assets/styles/dialog-popups.css",
+              "src/assets/styles/chart-elements-extended.css",
+              "src/assets/styles/form-elements-extended.css",
+              "src/assets/styles/layout-extended.css",
+              "src/assets/styles/map-elements-extended.css",
+              "src/assets/styles/tool-elements-extended.css",
+              "src/assets/styles/table-elements-extended.css",
+              "src/assets/styles/splash-headers.css",
+              "src/assets/styles/font.css",
+              "src/assets/styles/above-the-fold.css"
             ],
             "scripts": []
           }

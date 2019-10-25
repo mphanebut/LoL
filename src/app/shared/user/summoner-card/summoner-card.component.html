@@ -1,0 +1,12 @@
+<li>
+    <a href="javascript:void(0)" class="ui-tab ui-toggle date-range flex-middle-center" data-tab="Account">
+        <ng-container *ngIf="currentSummoner; else elseTemplate">
+            <img [src]='["assets/dragontail-9.20.1/9.20.1/img/profileicon/" + currentSummoner.profileIconId + ".png"]' [alt]=currentSummoner.profileIconId style="width:2.5em; height: 2.5em; margin-right: 8px; display:block; margin-top: -.2em;">
+            <span>{{ currentSummoner.name }}</span>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <app-svg icon="user" title="user icon"></app-svg>
+            <span style="margin-left: .75em;">Login</span>
+        </ng-template>
+    </a>
+</li>

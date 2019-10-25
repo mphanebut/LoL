@@ -1,0 +1,1220 @@
+/* Chart - Basic */
+.sm-chart {
+}
+
+.ichart:not([class*="ctrl-"]) {	position: relative; }
+
+.chart-group {
+	position: relative;
+}
+
+.chart-group .ichart ~ .ichart {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+[class*="flex-"][class*="-column"] .ichart.auto {
+	height: auto;
+}
+
+.ichart [data-name] {
+	display: none;
+}
+
+.ichart.bar-chart [aria-role='foreground'],
+.ichart.line-chart [aria-role='foreground'] {
+	-webkit-transform-origin: 50% 100%;
+	-ms-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	opacity: 0;
+    -webkit-animation: load-chart-foreground .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+	animation: load-chart-foreground .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+}
+
+.ichart.bar-chart [aria-role='background'],
+.ichart.line-chart [aria-role='background'] {
+	opacity: 0;
+	animation: load-chart-background .4s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+}
+
+.ichart.bar-chart:not([class*="size-"]):before,
+.ichart.line-chart:not([class*="size-"]):before {
+	content: '';
+	display: block;
+	padding-bottom: 21.38%;
+}
+
+section.half .ichart.bar-chart:not([class*="size-"]):before,
+section.half .ichart.line-chart:not([class*="size-"]):before,
+form.half .ichart.bar-chart:not([class*="size-"]):before,
+form.half .ichart.line-chart:not([class*="size-"]):before {
+	padding-bottom: 48%;
+}
+
+section.third figure.two-thirds .ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.two-thirds .ichart.line-chart:not([class*="size-"]):before,
+form.third figure.two-thirds.ichart.bar-chart:not([class*="size-"]):before,
+form.third figure.two-thirds.ichart.line-chart:not([class*="size-"]):before,
+
+section .two-thirds > figure.ichart:not([class*="size-"]):before,
+section figure.two-thirds.sm-chart .ichart.bar-chart:not([class*="size-"]):before,
+section figure.two-thirds.sm-chart .ichart.line-chart:not([class*="size-"]):before,
+
+form.two-thirds figure.sm-chart .ichart.bar-chart.ui-tab-panel:not([class*="size-"]):before,
+form.two-thirds figure.sm-chart .ichart.line-chart.ui-tab-panel:not([class*="size-"]):before,
+section.two-thirds figure.sm-chart .ichart.bar-chart.ui-tab-panel:not([class*="size-"]):before,
+section.two-thirds figure.sm-chart .ichart.line-chart.ui-tab-panel:not([class*="size-"]):before {
+	padding-bottom: 35%;
+}
+
+section.third figure.half .ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.half .ichart.line-chart:not([class*="size-"]):before {
+	padding-bottom: 46.7%;
+}
+
+section.third figure.h-two-thirds .ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.h-two-thirds .ichart.line-chart:not([class*="size-"]):before,
+form.third figure.h-two-thirds .ichart.bar-chart:not([class*="size-"]):before,
+form.third figure.h-two-thirds .ichart.line-chart:not([class*="size-"]):before,
+
+section.third figure.h-two-thirds.ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.h-two-thirds.ichart.line-chart:not([class*="size-"]):before,
+form.third figure.h-two-thirds.ichart.bar-chart:not([class*="size-"]):before,
+form.third figure.h-two-thirds.ichart.line-chart:not([class*="size-"]):before {
+	padding-bottom: 70%;
+}
+
+section.third figure.h-three-fifths .ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.h-three-fifths .ichart.line-chart:not([class*="size-"]):before,
+section.third figure.h-three-fifths.ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.h-three-fifths.ichart.line-chart:not([class*="size-"]):before,
+form.third figure.h-three-fifths.ichart.bar-chart:not([class*="size-"]):before,
+form.third figure.h-three-fifths.ichart.line-chart:not([class*="size-"]):before {
+	padding-bottom: 65%;
+}
+
+section.third figure.auto.ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.auto.ichart.line-chart:not([class*="size-"]):before,
+form.third figure.auto.ichart.bar-chart:not([class*="size-"]):before,
+form.third figure.auto.ichart.line-chart:not([class*="size-"]):before,
+section.third figure.auto .ichart.bar-chart:not([class*="size-"]):before,
+section.third figure.auto .ichart.line-chart:not([class*="size-"]):before,
+form.third figure.auto .ichart.bar-chart:not([class*="size-"]):before,
+form.third figure.auto .ichart.line-chart:not([class*="size-"]):before {	
+	padding-bottom: 84.5035%; /* This matches day/hour table graph height not logged in. */
+}
+
+section.third .h-two-thirds figure.auto.ichart.bar-chart:not([class*="size-"]):before,
+section.third .h-two-thirds figure.auto.ichart.line-chart:not([class*="size-"]):before,
+form.third .h-two-thirds figure.auto.ichart.bar-chart:not([class*="size-"]):before,
+form.third .h-two-thirds figure.auto.ichart.line-chart:not([class*="size-"]):before {
+	padding-bottom: 65%;
+}
+
+.bar-chart .line-chart-marker,
+.line-chart .line-chart-marker {
+	position: absolute;
+	bottom: 0;
+	width: 2px;
+	background-color: rgb(202,211,217);
+	opacity: 0;
+	margin-left: -1px;
+}
+
+.bar-chart .line-chart-marker.active,
+.line-chart .line-chart-marker.active {
+	opacity: 1;
+	transition: .3s ease .2s;
+}
+
+section.third > figure.ichart.circle,
+section.third > figure.ichart.pie-chart,
+section.third .h-two-thirds.sm-chart .ichart.circle,
+section.third .h-two-thirds.sm-chart .ichart.pie-chart,
+form.third section .h-two-thirds.sm-chart .ichart.circle,
+form.third section .h-two-thirds.sm-chart .ichart.pie-chart,
+section.third > figure.ichart.circle,
+section.third > figure.ichart.pie-chart,
+figure.ichart.pie-chart.solo,
+figure.ichart.circle.solo {
+	width: 15.625rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+section.third figure.h-two-thirds.sm-chart {
+	width: 100%;
+}
+/* End Chart - Basic */
+
+/* Chart Sizing v2 */
+
+.ichart.bar-chart::before,
+.ichart.line-chart::before {
+	content: '';
+	display: block;
+	padding-bottom: 21.38%;
+}
+
+figure.line-chart.size-1::before,
+figure.bar-chart.size-1::before {
+	padding-bottom: 35%;
+}
+
+figure.line-chart.size-2::before,
+figure.bar-chart.size-2::before {
+	padding-bottom: 46.7%;
+}
+
+figure.line-chart.size-3::before,
+figure.bar-chart.size-3::before {
+	padding-bottom: 48%;
+}
+
+figure.line-chart.size-4::before,
+figure.bar-chart.size-4::before {
+	padding-bottom: 65%;
+}
+
+figure.line-chart.size-5::before,
+figure.bar-chart.size-5::before {
+	padding-bottom: 70%;
+}
+
+figure.line-chart.size-6::before,
+figure.bar-chart.size-6::before {
+	padding-bottom: 84.5035%; /* This matches day/hour table graph height not logged in. */
+}
+
+figure.ichart.pie-chart.solo,
+figure.ichart.circle.solo {
+	width: 15.625rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Chart Sizing v2 */
+
+/* Chart Tip */
+.ichart .cms-tooltip2 {
+	--light-blue: 93,184,253;
+}
+
+.ichart .cms-tooltip2 {
+	display: none;
+	visibility: hidden;
+	position: absolute;
+	background-color: rgb(63,160,255);
+	padding: .625em 1.25em;
+	z-index: 10;
+	pointer-events: none;
+	white-space: nowrap;
+	color: rgb(255,255,255);
+	font-size: .875rem;
+	line-height: 1.4;
+	border-radius: 4px;
+	box-shadow: 0 0 1.429em -.25em rgba(0,0,0,0.2), inset 0 -4px 0 0 rgb(138,231,255);
+}
+
+.ichart.line-chart .cms-tooltip2 {
+	margin-top: -7px;
+}
+
+.ichart .cms-tooltip2.active {
+	display: block;
+	visibility: visible;
+	transition: visibility 0s linear .2s;
+	-webkit-animation: chart-tip .3s cubic-bezier(.3, 1, .6, 1) .2s 1 normal;
+	animation: chart-tip .3s cubic-bezier(.3, 1, .6, 1) .2s 1 normal;
+}
+
+.ichart .cms-tooltip2:before {
+	content: '';
+	border-style: solid solid none solid;
+	border-color: rgb(138,231,255) transparent;
+	border-width: 5px;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+}
+
+.sm-chart .color-def {
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: flex-start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+}
+
+.sm-chart .color-def:before {
+	content: '';
+	display: block;
+	height: 1em;
+	width: 1em;
+}
+
+.ichart .cms-tooltip2 strong.title {
+    color: rgb(255,255,255);
+}
+
+.cms-tooltip2 ul {
+	text-align: left;
+}
+
+.sm-limit-tip .cms-tooltip2 {
+	width: 20em;
+}
+
+.sm-limit-tip .cms-tooltip2 > span {
+	white-space: normal;
+}
+
+.sm-limit-tip [data-tip]:before {
+	width: 20em;
+	white-space: normal;
+}
+
+/* End Chart Tip */
+
+/* Line/Bar Chart Theme */
+.line-chart span[data-name]:not([class*="fill-"]),
+.bar-chart span[data-name]:not([class*="fill-"]) {
+	background-color: var(--seq-color, var(--chart-color, rgb(var(--dark-cyan, 45,210,223))));
+	_background-image: linear-gradient(to bottom, var(--seq-color, var(--chart-color, rgb(var(--dark-cyan, 45,210,223)))), var(--seq-color, var(--chart-color, rgb(var(--dark-cyan, 45,210,223)))));
+	color: transparent;
+}
+
+.bar-chart span[data-name].saturday,
+.bar-chart span[data-name].sunday {
+	--chart-color: #96e8ef;
+}
+
+.bar-chart.purple span[data-name] {
+	--chart-color: rgb(132,101,255);
+}
+
+.bar-chart.purple span[data-name].saturday,
+.bar-chart.purple span[data-name].sunday {
+	--chart-color: #c5c0fd; 
+}
+
+.bar-chart.green span[data-name],
+.bar-chart.excellent span[data-name] {
+	--chart-color: rgb(63,195,91);
+}
+
+.bar-chart.green span[data-name].saturday,
+.bar-chart.green span[data-name].sunday,
+.bar-chart.excellent span[data-name].saturday,
+.bar-chart.excellent span[data-name].sunday {
+	--chart-color: #c5edcd;
+}
+
+.line-chart.green span[data-name] {
+	--chart-color: rgb(63,195,91);
+}
+
+.ichart .chart-dot-container {
+	position: absolute;
+}
+
+.ichart .line-chart-dot {
+	height: 18px;
+	width: 18px;
+	margin: -9px 0 0 -9px;
+	border: solid 4px var(--seq-color, rgb(45,210,223));
+	box-shadow: 0 0 0 9px rgba(250,250,250, .2);
+	position: absolute;
+	border-radius: 50%;
+	background-color: rgb(255,255,255);
+	opacity: 0;
+}
+
+.ichart .chart-dot-container .line-chart-dot,
+.ichart.compare-chart .line-chart-dot {
+	height: 12px;
+	width: 12px;
+	margin: -6px 0 0 -6px;
+	border-width: 2px;
+	box-shadow: none !important;
+	position: absolute;
+	border-radius: 50%;
+	background-color: rgb(255,255,255);
+	opacity: 0;
+}
+
+.ichart .line-chart-dot.active,
+.ichart .chart-dot-container.active .line-chart-dot,
+.ichart.compare-chart .line-chart-dot.active {
+	animation: chart-dot .3s cubic-bezier(0.4, 1.4, 0.6, 1) .2s normal;
+	opacity: 1;
+	transition: opacity 0s linear .2s;
+}
+
+@keyframes chart-dot {
+	from {
+		transform: scale(.3);
+		opacity: 0;
+	}
+	to {
+		transform: none;
+		opacity: 1;
+	}
+}
+
+.line-chart span[data-name].purchased:not([class*="fill-"]),
+.bar-chart span[data-name].purchased:not([class*="fill-"]) {
+	background-color: #5bd97d;
+}
+
+/* End Line/Bar Chart Theme */
+/* Vertical Line Dots */
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n - 6) {
+    border-color: rgb(45,210,223);
+}
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n - 5) {
+    border-color: rgb(132,101,255);
+}
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n - 4) {
+    border-color: rgb(254,195,62);
+}
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n - 3) {
+    border-color: rgb(63,195,91);
+}
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n - 2) {
+    border-color: rgb(12,106,254);
+}
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n - 1) {
+    border-color: rgb(230,23,75);
+}
+
+.ichart .chart-dot-container .line-chart-dot:nth-of-type(7n) {
+    border-color: rgb(144,156,163);
+}
+
+/* Vertical Line Dots */
+
+/* Compare Chart - Vertical Line Dots */
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n - 6) .chart-dot-container .line-chart-dot:only-of-type {
+	border-color: rgb(45,210,223);
+}
+
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n - 5) .chart-dot-container .line-chart-dot:only-of-type {
+    border-color: rgb(132,101,255);
+}
+
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n - 4) .chart-dot-container .line-chart-dot:only-of-type {
+    border-color: rgb(254,195,62);
+}
+
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n - 3) .chart-dot-container .line-chart-dot:only-of-type {
+    border-color: rgb(63,195,91);
+}
+
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n - 2) .chart-dot-container .line-chart-dot:only-of-type {
+    border-color: rgb(12,106,254);
+}
+
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n - 1) .chart-dot-container .line-chart-dot:only-of-type {
+    border-color: rgb(230,23,75);
+}
+
+.compare-chart.ui-tabs .ichart.ui-tab-panel:nth-of-type(7n) .chart-dot-container .line-chart-dot:only-of-type {
+    border-color: rgb(144,156,163);
+}
+
+/* Compare Chart - Vertical Line Dots */
+
+
+/* Circle/Pie Chart */
+.ichart.circle,
+.ichart.pie-chart {
+	position: relative;
+	height: auto;
+}
+
+.ichart.circle[class^="e-"],
+.ichart.circle[class*=" e-"],
+.ichart.circle[class^="r-"],
+.ichart.circle[class*=" r-"],
+.ichart.pie-chart[class^="e-"],
+.ichart.pie-chart[class*=" e-"],
+.ichart.pie-chart[class^="r-"],
+.ichart.pie-chart[class*=" r-"] {
+    width: 2.75em;
+}
+
+figure.h-two-thirds.ichart.circle[class^="e-"],
+figure.h-two-thirds.ichart.circle[class*=" e-"],
+figure.h-two-thirds.ichart.circle[class^="r-"],
+figure.h-two-thirds.ichart.circle[class*=" r-"],
+figure.h-two-thirds.ichart.pie-chart[class^="e-"],
+figure.h-two-thirds.ichart.pie-chart[class*=" e-"],
+figure.h-two-thirds.ichart.pie-chart[class^="r-"],
+figure.h-two-thirds.ichart.pie-chart[class*=" r-"] {
+	width: 3.5em;
+	flex-basis: auto;
+}
+
+.ichart.circle canvas,
+.ichart.pie-chart canvas {
+	opacity: 0;
+	-webkit-transform-origin: 50% 80%;
+	-ms-transform-origin: 50% 80%;
+	transform-origin: 50% 80%;
+}
+
+.ichart.circle canvas {
+    -webkit-animation: load-circle-chart .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+	animation: load-circle-chart .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+}
+
+.ichart.pie-chart.start canvas {
+    -webkit-animation: load-circle-chart .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+	animation: load-circle-chart .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+}
+
+.ichart.circle:before,
+.ichart.pie-chart:before {
+	content: '';
+	display: block;
+	padding-bottom: 100%;
+}
+
+.ichart .center {
+	position: absolute;
+	border-radius: 50%;
+	background-color: rgb(255,255,255);
+	opacity: 0;
+	-webkit-transform-origin: 50% 80%;
+	-ms-transform-origin: 50% 80%;
+	transform-origin: 50% 80%;
+	padding: .875rem;
+}
+
+.ichart .center:not([class*="flex-"]) {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.ichart.pie-chart.start canvas ~ .center,
+.ichart.circle canvas ~ .center {
+	-webkit-animation: load-circle-chart .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+	animation: load-circle-chart .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+}
+
+.ichart .center,
+.ichart .center:before {
+	top: .875rem;
+	right: .875rem;
+	bottom: .875rem;
+	left: .875rem;
+}
+
+.ichart[class^="e-"] .center,
+.ichart[class*=" e-"] .center,
+.ichart[class^="r-"] .center,
+.ichart[class*=" r-"] .center,
+.ichart[class^="e-"] .center:before,
+.ichart[class*=" e-"] .center:before,
+.ichart[class^="r-"] .center:before,
+.ichart[class*=" r-"] .center:before {
+    top: .225em;
+    right: .225em;
+    bottom: .225em;
+    left: .225em;
+}
+
+.ichart .center:before {
+	position: absolute;
+	content: '';
+	box-shadow: 0 0 7px rgba(0,0,0,0.2), 0 7px 7px -5px rgba(0,0,0,0.2);
+	pointer-events: none;
+	border-radius: 50%;
+}
+
+.pie-chart span[data-name] {
+	color: var(--status-color, var(--seq-color, var(--chart-color, rgb(var(--dark-cyan, 45,210,223)))));
+}
+
+.pie-chart span[data-name].dull {
+	--seq-color: rgb(239,243,248);
+}
+
+.ichart.circle span[data-name] {
+	color: #2dd2df;
+	background-color: var(--background, rgb(var(--wash-grey, 246,249,253)));
+	color: var(--status-color, var(--seq-color, var(--stroke, rgb(var(--dark-cyan, 45,210,223)))));
+}
+
+/* End Circle/Pie Chart */
+
+/* Colorize - Line/Bar */
+
+.sm-seq > *:nth-of-type(7n - 6) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n - 6) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n - 6),
+.sm-seq > *:nth-of-type(7n - 6) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n - 6) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n - 6) {
+    background-color: rgb(45,210,223);
+}
+
+.sm-seq > *:nth-of-type(7n - 5) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n - 5) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n - 5),
+.sm-seq > *:nth-of-type(7n - 5) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n - 5) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n - 5) {
+    background-color: rgb(132,101,255);
+}
+
+.sm-seq > *:nth-of-type(7n - 4) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n - 4) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n - 4),
+.sm-seq > *:nth-of-type(7n - 4) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n - 4) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n - 4) {
+    background-color: rgb(254,195,62);
+}
+
+.sm-seq > *:nth-of-type(7n - 3) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n - 3) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n - 3),
+.sm-seq > *:nth-of-type(7n - 3) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n - 3) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n - 3) {
+    background-color: rgb(63,195,91);
+}
+
+.sm-seq > *:nth-of-type(7n - 2) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n - 2) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n - 2),
+.sm-seq > *:nth-of-type(7n - 2) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n - 2) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n - 2) {
+    background-color: rgb(12,106,254);
+}
+
+.sm-seq > *:nth-of-type(7n - 1) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n - 1) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n - 1),
+.sm-seq > *:nth-of-type(7n - 1) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n - 1) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n - 1) {
+    background-color: rgb(230,23,75);
+}
+
+.sm-seq > *:nth-of-type(7n) .ichart.bar-chart span[data-name],
+.sm-seq > .ichart.bar-chart:nth-of-type(7n) span[data-name],
+.sm-seq.ichart.bar-chart > span[data-name]:nth-of-type(7n),
+.sm-seq > *:nth-of-type(7n) .ichart.line-chart span[data-name],
+.sm-seq > .ichart.line-chart:nth-of-type(7n) span[data-name],
+.sm-seq.ichart.line-chart > span[data-name]:nth-of-type(7n) {
+    background-color: rgb(144,156,163);
+}
+
+/* Colorize - Line/Bar */
+
+/* Colorize - Circle */
+.sm-seq > *:nth-of-type(7n - 6) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n - 6) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n - 6) {
+    color: rgb(45,210,223);
+}
+
+.sm-seq > *:nth-of-type(7n - 5) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n - 5) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n - 5) {
+    color: rgb(132,101,255);
+}
+
+.sm-seq > *:nth-of-type(7n - 4) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n - 4) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n - 4) {
+    color: rgb(254,195,62);
+}
+
+.sm-seq > *:nth-of-type(7n - 3) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n - 3) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n - 3) {
+    color: rgb(63,195,91);
+}
+
+.sm-seq > *:nth-of-type(7n - 2) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n - 2) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n - 2) {
+    color: rgb(12,106,254);
+}
+
+.sm-seq > *:nth-of-type(7n - 1) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n - 1) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n - 1) {
+    color: rgb(230,23,75);
+}
+
+.sm-seq > *:nth-of-type(7n) .ichart.circle span[data-name],
+.sm-seq > .ichart.circle:nth-of-type(7n) span[data-name],
+.sm-seq.ichart.circle > span[data-name]:nth-of-type(7n) {
+    color: rgb(144,156,163);
+}
+/* Colorize - Circle */
+
+/* Colorize - Pie */
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n - 6) {
+    color: rgb(45,210,223);
+}
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n - 5) {
+    color: rgb(132,101,255);
+}
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n - 4) {
+    color: rgb(254,195,62);
+}
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n - 3) {
+    color: rgb(63,195,91);
+}
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n - 2) {
+    color: rgb(12,106,254);
+}
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n - 1) {
+    color: rgb(230,23,75);
+}
+
+.sm-seq.ichart.pie-chart > span[data-name]:nth-of-type(7n) {
+    color: rgb(144,156,163);
+}
+/* Colorize - Pie */
+
+/* Non-Var Theme - 1 Bar + Lines + Multidot */
+.ichart.bar-line-seq-theme {
+
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 6) {
+	background-color: rgb(45,210,223); /* Expectation is a line chart */
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 6) {
+	border-color: rgb(45,210,223); /* dot to match line, so are the preceeding .line-chart-dot:nths  */
+	box-shadow: 0 0 0 9px rgba(45,210,223,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(1) {
+	background-color: rgba(45,210,223,.2); /* Expectation is first will be only bar chart */
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(1) {
+	border-color: rgb(45,210,223); /* dot to match line, so are the preceeding .line-chart-dot:nths  */
+	box-shadow: 0 0 0 9px rgba(45,210,223,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 5) {
+	background-color: rgb( 132,101,255 ); 
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 5) {
+	border-color: rgb(132,101,255);
+	box-shadow: 0 0 0 9px rgba(132,101,255,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 4) {
+	background-color: rgb( 254,195,62 );
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 4) {
+	border-color: rgb(254,195,62);
+	box-shadow: 0 0 0 9px rgba(254,195,62,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 3) {
+	background-color: rgb( 63,195,91 ); 
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 3) {
+	border-color: rgb(63,195,91); 
+	box-shadow: 0 0 0 9px rgba(63,195,91,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 2) {
+	background-color: rgb( 12,106,254 ); 
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 2) {
+	border-color: rgb(12,106,254); 
+	box-shadow: 0 0 0 9px rgba(12,106,254,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 1) {
+	background-color: rgb( 230,23,75 ); 
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 1) {
+	border-color: rgb(230,23,75); 
+	box-shadow: 0 0 0 9px rgba(230,23,75,.2);
+}
+
+.ichart.bar-line-seq-theme span[data-name]:nth-of-type(7n - 1) {
+	background-color: rgb( 144,156,163 ); 
+}
+
+.ichart.bar-line-seq-theme .line-chart-dot:nth-of-type(7n - 1) {
+	border-color: rgb(144,156,163); 
+	box-shadow: 0 0 0 9px rgba(144,156,163,.2);
+}
+
+/* Non-Var Theme - 1 Bar + Lines + Multidot */
+
+/* Bar Line Purchase Theme */
+
+
+.ichart.bar-line-purchase-theme span[data-name]:nth-of-type(1) {
+    background-color: rgba(45,210,223,.2);
+}
+
+.ichart.bar-line-purchase-theme .line-chart-dot:nth-of-type(1) {
+    border-color: rgb(45,210,223);
+	box-shadow: 0 0 0 9px rgba(45,210,223,.2);
+}
+
+.ichart.bar-line-purchase-theme span[data-name]:nth-of-type(2) {
+	background-color: rgb( 63,195,91 ); 
+}
+
+.ichart.bar-line-purchase-theme .line-chart-dot:nth-of-type(2) {
+    border-color: transparent; 
+	box-shadow: none;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.ichart.bar-line-purchase-theme span[data-name]:nth-of-type(3) {
+    background-color: rgb( 132,101,255 ); 
+}
+
+.ichart.bar-line-purchase-theme .line-chart-dot:nth-of-type(3) {
+    border-color: rgb(132,101,255);
+	box-shadow: 0 0 0 9px rgba(132,101,255,.2);
+}
+
+.ichart.bar-line-purchase-theme span[data-name]:nth-of-type(4) {
+    background-color: rgb( 254,195,62 );
+}
+
+.ichart.bar-line-purchase-theme .line-chart-dot:nth-of-type(4) {
+    border-color: rgb(254,195,62);
+	box-shadow: 0 0 0 9px rgba(254,195,62,.2);
+}
+
+/* Bar Line Purchase Theme */
+
+/* Standard chart Legend */
+.ichart [data-role="legend"] {
+	position: absolute;
+	top: 100%;
+}
+
+.ichart ul[data-role="legend"] {
+	display: table;
+	table-layout: fixed;
+}
+
+.ichart ul[data-role="legend"] li {
+	
+}
+
+
+/* Standard chart Legend */
+/* Tab/Compare Chart */
+.compare-chart.comparing .hide-on-compare {
+	visibility: hidden;
+}
+
+.compare-chart [data-legend] {
+	visibility: hidden;
+}
+
+.compare-chart.comparing [data-legend] {
+	visibility: visible;
+}
+
+.compare-chart .legend {
+	margin: 10px 0 0 -23px;
+}
+
+.compare-chart .legend li {
+	padding: 13px 15px 10px;
+	margin-left: 10px;
+	position: relative;
+	overflow: hidden;
+	border-radius: 3px;
+	background-color: transparent;
+	transition: background-color .3s ease, color .3s ease, padding .3s ease-in-out, margin .3s ease-in-out, z-index .5s;
+	line-height: 1;
+}
+
+.compare-chart .legend li:hover {
+	background-color: rgb(12,106,254);
+	color: rgb(255,255,255);
+	padding-right: 32px;
+    margin-right: -20px;
+    padding-left: 18px;
+	z-index: 1;
+	transition: background-color .3s ease, color .3s ease, padding .3s ease-in-out, margin .3s ease-in-out, z-index .3s;
+}
+
+.compare-chart .legend li .bull:before {
+	box-shadow: 0 0 0 0 rgba(255,255,255, 0);
+	transition: box-shadow .3s ease, transform .3s ease-in-out;
+}
+
+.compare-chart .legend li:hover .bull:before {
+	box-shadow: 0 0 0 3px rgba(255,255,255, .75);
+    transform: translate(-3px, 0);
+}
+
+.compare-chart .legend li [data-role='close'],
+.compare-chart .legend li .close {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	right: 0;
+	width: 30px;
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+
+.compare-chart .legend li:hover a {
+	opacity: 1;
+	transition: opacity .3s ease;
+}
+
+.compare-chart .legend li [data-role='close']:before,
+.compare-chart .legend li [data-role='close']:after,
+.compare-chart .legend li .close:before,
+.compare-chart .legend li .close:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 2px;
+	width: 60%;
+	border-radius: 2px;
+	margin: -1px 0 0 -40%;
+	background-color: rgb(90,245,255);
+}
+
+.compare-chart .legend li [data-role='close']:before,
+.compare-chart .legend li .close:before {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.compare-chart .legend li [data-role='close']:after,
+.compare-chart .legend li .close:after {
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.compare-chart figure {
+	position: relative;
+    margin-top: 10px; 
+}
+
+.compare-chart h4 + figure {
+	margin-top: 20px;
+}
+
+.compare-chart figure .ichart.ui-tab-panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.compare-chart figure .ichart.ui-tab-panel.active {
+	position: relative;
+}
+
+.compare-chart figure .ichart.ui-tab-panel.active ~ .ichart.ui-tab-panel.active {
+	position: absolute;
+	width: 100%;
+}
+
+.compare-chart figure .ichart.ui-tab-panel.active ~ .active [aria-role='background'] {
+	visibility: hidden;
+}
+
+.compare-chart figure .ichart.ui-tab-panel [aria-role='foreground'] {
+	-webkit-animation: none;
+	animation: none;
+}
+
+.compare-chart figure .ichart.ui-tab-panel.active [aria-role='foreground'],
+.compare-chart figure .ichart.ui-tab-panel.active ~ .active [aria-role='foreground'] {
+	-webkit-animation: load-chart-foreground .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+	animation: load-chart-foreground .6s cubic-bezier(.3, 1, .6, 1) .2s 1 forwards;
+}
+
+.compare-chart .sm-select-list,
+.ichart + .sm-select-list {
+	margin: 1.25em -1.25em -1.25em -1.25em;
+}
+.compare-chart .sm-select-list > li > a:not(.compare), 
+.compare-chart .sm-select-list > li > label,
+.ichart ~ .sm-select-list > li > a:not(.compare), 
+.ichart ~ .sm-select-list > li > label {
+	min-height: 8.5em;
+}
+/* End Tab/Compare Chart */
+/* Table Graph */
+.table-graph {
+	position: relative;
+}
+
+.table-graph > div {
+	width: 100%;
+	font-size: 12px;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+}
+
+.table-graph > div > ul {
+	display: flex;
+	align-items: stretch;
+	flex: 1 1 auto;
+}
+
+.table-graph > div > ul + ul {
+	margin-top: 2px;
+}
+
+.table-graph > div > ul > li {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: stretch;
+	border-radius: 3em;
+	background-color: rgb(239,243,248);
+	font-weight: 600;
+	line-height: 1;
+	color: #909ca3;
+}
+
+.table-graph > div > ul:not(.footer) > li:not(:first-child) {
+	opacity: 0;
+}
+
+.loaded .table-graph > div > ul:not(.footer) > li:not(:first-child),
+.table-graph.loaded > div > ul:not(.footer) > li:not(:first-child) {
+	animation: fade-in .3s ease 0s 1 forwards;
+}
+
+.table-graph > div > ul > li + li {
+	width: calc(14.29% - .5em - 2px);
+	margin-left: 2px;
+}
+
+.table-graph > div > ul > li:first-child {
+	width: 3.5em;
+	flex: 0 0 auto;
+	text-align: left;
+	align-self: center;
+	background-color: transparent;
+}
+
+.table-graph > div > ul > li:first-child:empty:before {
+	content: ' ';
+	height: 1em;
+	display: inline-block;
+}
+
+.table-graph > div > ul.footer > li {
+	padding-top: .3125em;
+	text-align: center;
+	display: block;
+	background-color: transparent;
+}
+
+.table-graph span {
+	display: block;
+	width: 100%;
+	background-color: var(--status-color, var(--seq-color, rgb(var(--dark-cyan, 45,210,223))));
+	border-radius: 3em;
+	opacity: 0;
+	transition: opacity 1s ease
+}
+
+/* Table Graph */
+/* Gauge Graph V2 */
+
+figure.ichart.circle.gauge {
+	overflow: hidden;
+}
+
+figure.ichart.circle.gauge:not(.solo) {
+	width: 9rem;
+}
+
+figure.ichart.circle.gauge canvas {
+	transform: rotateZ(180deg);
+	position: relative;
+	animation: none;
+	opacity: 1;
+	transform-origin: 50%;
+}
+
+figure.ichart.circle.gauge .gas {
+	position: absolute;
+	top: 71%;
+	background-color: #FFFFFF;
+	left: 50%;
+	transform: translateX(-50%) rotateZ(45deg);
+	width: 50%;
+	height: 50%;
+	opacity: 1;
+}
+
+figure.ichart.circle.gauge .gas svg {
+	transform: rotateZ(-45deg);
+	font-size: 2em;
+}
+
+figure.ichart.circle.gauge .center {
+	z-index: 1;
+	animation: none;
+	opacity: 1;
+}
+
+figure.ichart.circle.gauge .center::before {
+	display: none;
+}
+
+figure.ichart.circle.gauge .center .sm-title {
+	z-index: 1;
+}
+
+figure.ichart.circle.gauge .values {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+figure.ichart.circle.gauge .values span {
+	font-weight: 500;
+	position: absolute;
+	z-index: 1;
+	font-size: 1em;
+	color: rgb(144,156,163);
+}
+
+figure.ichart.circle.gauge .values span:first-child {
+	left: 22%;
+	bottom: 15%;
+	font-size: 1.25em;
+}
+
+figure.ichart.circle.gauge .values span:nth-child(2) {
+	left: 12%;
+	bottom: 57%;
+}
+
+figure.ichart.circle.gauge .values span:nth-child(3) {
+	left: 50%;
+	bottom: 82%;
+	transform: translate(-50%, 0);
+}
+
+figure.ichart.circle.gauge .values span:nth-child(4) {
+	left: 78%;
+	bottom: 57%;
+}
+
+figure.ichart.circle.gauge .values span:last-child {
+	left: 73%;
+	bottom: 15%;
+	font-size: 1.25em;
+}
+
+figure.ichart.circle.gauge:not(.solo) .gas {
+	top: 72%;
+}
+
+figure.ichart.circle.gauge:not(.solo) .values span {
+	font-size: .9em;
+}
+
+figure.ichart.circle.gauge:not(.solo) .values span:first-child {
+	font-size: 1em
+}
+
+figure.ichart.circle.gauge:not(.solo) .values span:nth-child(2) {
+	left: 13%;
+}
+
+figure.ichart.circle.gauge:not(.solo) .values span:nth-child(3) {
+	bottom: 78%;
+}
+
+figure.ichart.circle.gauge:not(.solo) .values span:nth-child(4) {
+	left: 73%;
+}
+
+figure.ichart.circle.gauge:not(.solo) .values span:last-child {
+	font-size: 1em
+}
+
+/* End Gauge Graph V2 */
+/* Responsive @ 1900 */
+@media (max-width:1900px) {
+    
+}
+/* Responsive @ 1900 */
+/* Responsive @ 1600 */
+@media (max-width: 1600px) {
+
+}
+/* Responsive @ 1600 */
+/* Responsive @ 1450 */
+@media (max-width: 1450px) {
+    
+}
+/* End Responsive @ 1450 */
+/* Responsive @ 1366 [End] */
+@media (max-width: 1366px) {
+
+}
+/* Responsive @ 1366 [End] */

@@ -1,0 +1,65 @@
+<div id="SMS8Shell_PrimaryNavigation">
+    <!-- <div>
+        <ul class="nav">
+            <li class="ui-tabs dashboard solo">
+                <a class="flex-middle" [routerLink]="[ '/' ]" routerLinkActive="active">Dashboard</a>
+                <ul></ul>
+            </li>
+            <li class="ui-tabs advertising">
+                <a class="flex-middle ui-tab ui-toggle" href="javascript:void(0)" (click)="toggleDropdown($event.target)">Advertising</a>
+                <ul class="ui-tab-panel" [routerLink]="[ './advertising' ]" routerLinkActive="active">
+                    <li>
+                        <a [routerLink]="[ './advertising' ]" routerLinkActive="active">Advertising Overview</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="[ './social-advertising' ]" routerLinkActive="active">Social Advertising</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="ui-tabs my-business">
+                <a class="flex-middle ui-tab ui-toggle" href="javascript:void(0)" (click)="toggleDropdown($event.target)">My Business</a>
+                <ul class="ui-tab-panel" [routerLink]="[ './my-business' ]" routerLinkActive="active">
+                    <li>
+                        <a [routerLink]="[ './my-business' ]" routerLinkActive="active">My Business Overview</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="[ './reviews' ]" routerLinkActive="active">Reviews</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div> -->
+    <div>
+        <ul class="nav">
+           <li class="ui-tabs {{ navItem.title }}" *ngFor="let navItem of mainMenuItemsTest; let i=index">
+                <a class="flex-middle ui-tab ui-toggle" [attr.data-path]="navItem.path" (click)="toggleDropdown($event.target, sib, i)">{{ navItem.title }}</a>
+                <ul class="ui-tab-panel" #sib>
+                    <li *ngFor="let child of navItem.childItems; let c=index">
+                        <a [routerLink]="navItem.path  + '/' + child.path" routerLinkActive="loaded" class="flex-middle">
+                            <app-svg [icon]="child.icon" [title]="child.title"></app-svg>
+                            <span>{{ child.title }}</span>
+                        </a>
+                        <ul *ngIf="child.childItems">
+                            <li *ngFor="let grandChild of child.childItems; let g=index">
+                                <a [routerLink]="navItem.path + '/' + child.path + '/' + grandChild.path">{{ grandChild.title }} {{ grandChild.childItems }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+           </li>
+        </ul>
+    </div>
+    <div>
+        <!-- <ul>
+            <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: mainMenuItemsTest }"></ng-container>
+        </ul>
+        <ng-template #recursiveListTmpl let-list>
+            <li *ngFor="let item of mainMenuItemsTest">
+                {{item.title}}
+                <ul *ngIf="item.childItems.length > 0">
+                    <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: item.childItems }"></ng-container>
+                </ul>
+            </li>
+        </ng-template> -->
+    </div>
+</div>

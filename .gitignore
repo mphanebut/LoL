@@ -13,6 +13,11 @@
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
+assets/dragontail-9.20.1
+assets/datadragon-set1-lite-en_us
+assets/datadragon-set1-en_us
+assets/ranked-emblems
+assets/ranked-positions
 
 # IDEs and editors
 /.idea

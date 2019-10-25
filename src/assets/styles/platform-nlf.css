@@ -1,0 +1,1458 @@
+/*  Title: NLF 2018 
+    Owner: Pez, PM for updates
+    Platform initialized: SMS8, CMS8, CS8
+    Dev Notes:
+    * USE AT YOUR OWN RISK - FOR PLATFORM USE ONLY 
+    * supports CSS variables & has fallbacks 
+    * CSS variable defaults can be updated independantly per platform in local stylesheets
+    * Support parameters: 
+	*** 5px, 10px, 20px, 30px, 40px
+	*** Partial Support for 80px
+	*** works for .full through .seventh (updated 5/22/19)
+    *** px values assume root font-size 16px @ 1920px
+*/
+
+/*  Next Level Flex Variables
+    Dev Notes:
+    * Copy and paste this section to local CSS file 
+    * update the values as desired!
+    * ??? 
+    * profit.
+*/
+:root {
+    --NLF-border-color: #f1e6d0; /* r, g, b, a */
+    --NLF-dialog-border-color: #f1e6d0; /* r, g, b, a */
+}
+/* Next Level Flex Variables */
+
+/* Next Level Flexible */
+
+[class*='flex-'] { display: flex; }
+
+[class*='flex-'] .fit { flex: 0 0 auto; }
+[class*='flex-'] .auto { flex: 1 1 auto; }
+[class*='flex-'] .fit-auto { flex: 0 1 auto; }
+[class*='flex-'] .auto.fit,
+[class*='flex-'] .auto-fit {
+	flex: 1 0 auto;
+}
+
+.ui-tabs [class*='flex-'].ui-tab-panel,
+.ui-tabs [class*='flex-'].ui-conditional-panel {
+	display: none;
+}
+
+.ui-tabs [class*='flex-'].ui-tab-panel.active,
+.ui-tabs [class*='flex-'].ui-conditional-panel.active,
+.cms-edit-layout .ui-tabs [class*='flex-'].ui-tab-panel,
+.cms-edit-layout .ui-tabs [class*='flex-'].ui-conditional-panel {
+	display: flex;
+}
+
+[class*='flex-'][class*='-inline'] { display: inline-flex; }
+
+[class*='flex-'][class*='-center'] { justify-content: center; }
+[class*='flex-'][class*='-end'] { justify-content: flex-end; }
+[class*='flex-'][class*='-start'] { justify-content: flex-start; }
+[class*='flex-'][class*='-between'] { justify-content: space-between; }
+[class*='flex-'][class*='-around'] { justify-content: space-around; }
+[class*='flex-'][class*='-evenly'] { justify-content: space-evenly; }
+
+[class*='flex-'][class*='-middle'] { align-items: center; }
+[class*='flex-'][class*='-top'] { align-items: flex-start; }
+[class*='flex-'][class*='-baseline'] { align-items: baseline; }
+[class*='flex-'][class*='-bottom'] { align-items: flex-end; }
+
+[class*='flex-'][class*='-wrap'] { flex-wrap: wrap; }
+
+[class*='flex-'][class*='-row'] { flex-direction: row; }
+[class*='flex-'][class*='-reverse'] { flex-direction: row-reverse; }
+[class*='flex-'][class*='-column'] { flex-direction: column; }
+[class*='flex-'][class*='-reverse'][class*='-column'] { flex-direction: column-reverse; }
+
+/* Other flex styles affect children while this is affects self */
+[class*="flex-"][class*="-stretch"],
+[class*="flex-"] > .stretch-self { align-self: stretch; }
+
+/* End Next Level Flexible */
+
+/* Next Level Flexible - Sizing & Spacing */
+
+[class*='flex-']:not([class*='-column']).space-5 > * + * {
+	margin-left: .3125rem; /* 5px */
+}
+
+[class*='flex-'][class*='-column'].space-5 > * + * {
+	margin-top: .3125rem; /* 5px */
+}
+
+[class*='flex-']:not([class*='-column']).space-10 > * + * {
+	margin-left: .625rem; /* 10px */
+}
+
+[class*='flex-'][class*='-column'].space-10 > * + * {
+	margin-top: .625rem; /* 10px */
+}
+
+[class*='flex-']:not([class*='-column']).space-20 > * + * {
+	margin-left: 1.25rem; /* 20px */
+}
+
+[class*='flex-'][class*='-column'].space-20 > * + * {
+	margin-top: 1.25rem; /* 20px */
+}
+
+[class*='flex-']:not([class*='-column']).space-30 > * + * {
+	margin-left: 1.875rem; /* 30px */
+}
+
+[class*='flex-'][class*='-column'].space-30 > * + * {
+	margin-top: 1.875rem; /* 30px */
+}
+
+[class*='flex-']:not([class*='-column']).space-40 > * + * {
+	margin-left: 2.5rem; /* 40px */
+}
+
+[class*='flex-'][class*='-column'].space-40 > * + * {
+	margin-top: 2.5rem; /* 40px */
+}
+
+[class*='flex-']:not([class*='-column'])[class*='space-'][class*='-reverse'] > *:last-child {
+	margin-left: 0;
+}
+
+[class*='flex-'][class*='-column'][class*='space-'][class*='-reverse'] > *:last-child {
+	margin-top: 0;
+}
+
+[class*='flex-']:not([class*='-column']).space-5[class*='-reverse'] > *:first-child {
+	margin-left: .3125rem; /* 5px */
+}
+
+[class*='flex-'][class*='-column'].space-5[class*='-reverse'] > *:first-child {
+	margin-top: .3125rem; /* 5px */
+}
+
+[class*='flex-']:not([class*='-column']).space-10[class*='-reverse'] > *:first-child {
+	margin-left: .625rem; /* 10px */
+}
+
+[class*='flex-'][class*='-column'].space-10[class*='-reverse'] > *:first-child {
+	margin-top: .625rem; /* 10px */
+}
+
+[class*='flex-']:not([class*='-column']).space-20[class*='-reverse'] > *:first-child {
+	margin-left: 1.25rem; /* 20px */
+}
+
+[class*='flex-'][class*='-column'].space-20[class*='-reverse'] > *:first-child {
+	margin-top: 1.25rem; /* 20px */
+}
+
+[class*='flex-']:not([class*='-column']).space-40[class*='-reverse'] > *:first-child {
+	margin-left: 1.875rem; /* 30px */
+}
+
+[class*='flex-'][class*='-column'].space-40[class*='-reverse'] > *:first-child {
+	margin-top: 1.875rem; /* 30px */
+}
+
+[class*='flex-']:not([class*='-column']).space-40[class*='-reverse'] > *:first-child {
+	margin-left: 2.5rem; /* 40px */
+}
+
+[class*='flex-'][class*='-column'].space-40[class*='-reverse'] > *:first-child {
+	margin-top: 2.5rem; /* 40px */
+}
+
+
+[class*='flex-'][class*='-wrap'].space-40,
+[class*='flex-'][class*='-wrap'].pad-40 {
+	margin: -1.25rem; /* -20px // every child gets space all around it, so this negates the extra space around the edges */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.half,
+[class*='flex-'][class*='-wrap'].pad-40.half {
+    width: calc(50% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.third,
+[class*='flex-'][class*='-wrap'].pad-40.third {
+    width: calc(33.33% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-40.two-thirds {
+    width: calc(66.67% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-40.two-thirds {
+    width: calc(66.67% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.fourth,
+[class*='flex-'][class*='-wrap'].pad-40.fourth {
+    width: calc(25% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.three-fourths,
+[class*='flex-'][class*='-wrap'].pad-40.three-fourths {
+    width: calc(75% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.sixth,
+[class*='flex-'][class*='-wrap'].pad-40.sixth {
+    width: calc(16.66% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.five-sixths,
+[class*='flex-'][class*='-wrap'].pad-40.five-sixths {
+    width: calc(83.33% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.seventh,
+[class*='flex-'][class*='-wrap'].pad-40.seventh {
+    width: calc(14.29% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-40.six-sevenths,
+[class*='flex-'][class*='-wrap'].pad-40.six-sevenths {
+    width: calc(86.71% + 2.5rem); /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30,
+[class*='flex-'][class*='-wrap'].pad-30 {
+	margin: -.938rem; /* -15px // every child gets space all around it, so this negates the extra space around the edges */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.half,
+[class*='flex-'][class*='-wrap'].pad-30.half {
+    width: calc(50% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.third,
+[class*='flex-'][class*='-wrap'].pad-30.third {
+    width: calc(33.33% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-30.two-thirds {
+    width: calc(66.67% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-30.two-thirds {
+    width: calc(66.67% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.fourth,
+[class*='flex-'][class*='-wrap'].pad-30.fourth {
+    width: calc(25% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.three-fourths,
+[class*='flex-'][class*='-wrap'].pad-30.three-fourths {
+    width: calc(75% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.sixth,
+[class*='flex-'][class*='-wrap'].pad-30.sixth {
+    width: calc(16.66% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.five-sixths,
+[class*='flex-'][class*='-wrap'].pad-30.five-sixths {
+    width: calc(83.33% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.seventh,
+[class*='flex-'][class*='-wrap'].pad-30.seventh {
+    width: calc(14.29% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-30.six-sevenths,
+[class*='flex-'][class*='-wrap'].pad-30.six-sevenths {
+    width: calc(86.71% + 1.875rem); /* 30px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20,
+[class*='flex-'][class*='-wrap'].pad-20 {
+	margin: -.625rem; /* -10px // every child gets space all around it, so this negates the extra space around the edges */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.half,
+[class*='flex-'][class*='-wrap'].pad-20.half {
+    width: calc(50% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.third,
+[class*='flex-'][class*='-wrap'].pad-20.third {
+    width: calc(33.33% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-20.two-thirds {
+    width: calc(66.67% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-20.two-thirds {
+    width: calc(66.67% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.fourth,
+[class*='flex-'][class*='-wrap'].pad-20.fourth {
+    width: calc(25% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.three-fourths,
+[class*='flex-'][class*='-wrap'].pad-20.three-fourths {
+    width: calc(75% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.sixth,
+[class*='flex-'][class*='-wrap'].pad-20.sixth {
+    width: calc(16.66% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.five-sixths,
+[class*='flex-'][class*='-wrap'].pad-20.five-sixths {
+    width: calc(83.33% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.seventh,
+[class*='flex-'][class*='-wrap'].pad-20.seventh {
+    width: calc(14.29% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-20.six-sevenths,
+[class*='flex-'][class*='-wrap'].pad-20.six-sevenths {
+    width: calc(86.71% + 1.25rem); /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10,
+[class*='flex-'][class*='-wrap'].pad-10 {
+	margin: -.3125rem; /* -5px // every child gets space all around it, so this negates the extra space around the edges */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.half,
+[class*='flex-'][class*='-wrap'].pad-10.half {
+    width: calc(50% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.third,
+[class*='flex-'][class*='-wrap'].pad-10.third {
+    width: calc(33.33% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-10.two-thirds {
+    width: calc(66.67% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-10.two-thirds {
+    width: calc(66.67% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.fourth,
+[class*='flex-'][class*='-wrap'].pad-10.fourth {
+    width: calc(25% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.three-fourths,
+[class*='flex-'][class*='-wrap'].pad-10.three-fourths {
+    width: calc(75% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.sixth,
+[class*='flex-'][class*='-wrap'].pad-10.sixth {
+    width: calc(16.66% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.five-sixths,
+[class*='flex-'][class*='-wrap'].pad-10.five-sixths {
+    width: calc(83.33% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.seventh,
+[class*='flex-'][class*='-wrap'].pad-10.seventh {
+    width: calc(14.29% + .625rem); /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].space-10.six-sevenths,
+[class*='flex-'][class*='-wrap'].pad-10.six-sevenths {
+    width: calc(86.71% + .625rem); /* 10px */
+}
+
+
+[class*='flex-'][class*='-wrap'].space-5,
+[class*='flex-'][class*='-wrap'].pad-5 {
+	margin: -.156rem; /* -2.5px // every child gets space all around it, so this negates the extra space around the edges */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.half,
+[class*='flex-'][class*='-wrap'].pad-5.half {
+    width: calc(50% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.third,
+[class*='flex-'][class*='-wrap'].pad-5.third {
+    width: calc(33.33% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-5.two-thirds {
+    width: calc(66.67% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.two-thirds,
+[class*='flex-'][class*='-wrap'].pad-5.two-thirds {
+    width: calc(66.67% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.fourth,
+[class*='flex-'][class*='-wrap'].pad-5.fourth {
+    width: calc(25% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.three-fourths,
+[class*='flex-'][class*='-wrap'].pad-5.three-fourths {
+    width: calc(75% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.sixth,
+[class*='flex-'][class*='-wrap'].pad-5.sixth {
+    width: calc(16.66% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.five-sixths,
+[class*='flex-'][class*='-wrap'].pad-5.five-sixths {
+    width: calc(83.33% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.seventh,
+[class*='flex-'][class*='-wrap'].pad-5.seventh {
+    width: calc(14.29% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5.six-sevenths,
+[class*='flex-'][class*='-wrap'].pad-5.six-sevenths {
+    width: calc(86.71% + .3125rem); /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].space-5 > *,
+[class*='flex-'][class*='-wrap'].space-5 > * + * {
+	margin: .156rem; /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].pad-5 > *,
+[class*='flex-']:not([class*='-wrap']).pad-5.divide > * {
+	padding: .156rem; /* 5px */
+}
+
+[class*='flex-']:not([class*='-wrap']).pad-5 {
+    padding: .156rem; /* 10px / pad container if children arent wrapping */
+}
+
+[class*='flex-'][class*='-wrap'].space-10 > *,
+[class*='flex-'][class*='-wrap'].space-10 > * + * {
+	margin: .3125rem; /* 5px */
+}
+
+[class*='flex-'][class*='-wrap'].pad-10 > *,
+[class*='flex-']:not([class*='-wrap']).pad-10.divide > * {
+	padding: .3125rem; /* 5px */
+}
+
+[class*='flex-']:not([class*='-wrap']).pad-10 {
+    padding: .625rem; /* 10px / pad container if children arent wrapping */
+}
+
+[class*='flex-'][class*='-wrap'].space-20 > *,
+[class*='flex-'][class*='-wrap'].space-20 > * + * {
+	margin: .625rem; /* 10px */
+}
+
+[class*='flex-'][class*='-wrap'].pad-20 > *,
+[class*='flex-']:not([class*='-wrap']).pad-20.divide > * {
+	padding: .625rem; /* 10px */
+}
+
+[class*='flex-']:not([class*='-wrap']).pad-20 {
+    padding: 1.25rem; /* 20px / pad container if children arent wrapping */
+}
+
+[class*='flex-'][class*='-wrap'].space-30 > *,
+[class*='flex-'][class*='-wrap'].space-30 > * + * {
+	margin: 0.938rem; /* 15px */
+}
+
+[class*='flex-'][class*='-wrap'].pad-30 > *,
+[class*='flex-']:not([class*='-wrap']).pad-30.divide > * {
+	padding: 0.938rem; /* 15px */
+}
+
+[class*='flex-']:not([class*='-wrap']).pad-30 {
+    padding: 1.875rem; /* 30px / pad container if children arent wrapping */
+}
+
+[class*='flex-'][class*='-wrap'].space-40 > *,
+[class*='flex-'][class*='-wrap'].space-40 > * + * {
+	margin: 1.25rem; /* 20px */
+}
+
+[class*='flex-'][class*='-wrap'].pad-40 > *,
+[class*='flex-']:not([class*='-wrap']).pad-40.divide > * {
+	padding: 1.25rem; /* 20px */
+}
+
+[class*='flex-']:not([class*='-wrap']).pad-40 {
+    padding: 2.5rem; /* 40px / pad container if children arent wrapping */
+}
+
+[class*='flex-'][class*='pad-']:not([class*='-wrap']).divide {
+	padding: 0; /* for borders and dividers the children recieve padding treatment */
+}
+
+.pad-5:not([class*='flex-']) {
+    padding: .3125rem; /* 5px */
+}
+
+.pad-10:not([class*='flex-']) {
+    padding: .625rem; /* 10px */
+}
+
+.pad-20:not([class*='flex-']) {
+    padding: 1.25rem; /* 20px */
+}
+
+.pad-30:not([class*='flex-']) {
+    padding: 1.875rem; /* 30px */
+}
+
+.pad-40:not([class*='flex-']) {
+    padding: 2.5rem; /* 40px */
+}
+
+/* added 6/21
+
+Shrink: minimize right/left padding
+Squish: minimize top/bot padding
+
+Chop: remove left/right padding
+Slice: remove top/bot padding
+
+*/
+
+.pad-80 { padding: 5rem; /* 80px */ }
+.pad-80.shrink[class*='flex-']:not([class*="-wrap"]),
+.pad-80.shrink:not([class*="-wrap"]) { padding: 5rem 2.5rem; /* 80px 40px */ }
+.pad-80.squish[class*='flex-']:not([class*="-wrap"]),
+.pad-80.squish:not([class*="-wrap"]) { padding: 2.5rem 5rem; /* 40px 80px */ }
+
+.pad-40.shrink:not([class*="-wrap"]) { padding: 2.5rem 1.25rem; /* 40px 20px */ }
+.pad-40.squish:not([class*="-wrap"]) { padding: 1.25rem 2.5rem; /* 20px 40px */ }
+
+.pad-30.shrink:not([class*="-wrap"]) { padding: 1.875rem .938rem; /* 30px 15px */ }
+.pad-30.squish:not([class*="-wrap"]) { padding: .938rem 1.875rem; /* 15px 30px */ }
+
+.pad-20.shrink:not([class*="-wrap"]) { padding: 1.25rem .625rem; /* 20px 10px */ }
+.pad-20.squish:not([class*="-wrap"]) { padding: .625rem 1.25rem; /* 10px 20px */ }
+
+.pad-10.shrink:not([class*="-wrap"]) { padding: .625rem .3125rem; /* 10px 5px */ }
+.pad-10.squish:not([class*="-wrap"]) { padding: .3125rem .625rem; /* 5px 10px */ }
+
+.pad-80.chop[class*='flex-']:not([class*="-wrap"]),
+.pad-80.chop:not([class*="-wrap"]) { padding: 5rem 0; /* 80px 0 */ }
+.pad-80.slice[class*='flex-']:not([class*="-wrap"]),
+.pad-80.slice:not([class*="-wrap"]) { padding: 0 5rem; /* 0 80px */ }
+
+.pad-40.chop:not([class*="-wrap"]) { padding: 2.5rem 0; /* 40px 0 */ }
+.pad-40.slice:not([class*="-wrap"]) { padding: 0 2.5rem; /* 0 40px */ }
+
+.pad-30.chop:not([class*="-wrap"]) { padding: 1.875rem 0; /* 30px 0 */ }
+.pad-30.slice:not([class*="-wrap"]) { padding: 0 1.875rem; /* 0 30px */ }
+
+.pad-20.chop:not([class*="-wrap"]) { padding: 1.25rem 0; /* 20px 0 */ }
+.pad-20.slice:not([class*="-wrap"]) { padding: 0 1.25rem; /* 0 20px */ }
+
+.pad-10.chop:not([class*="-wrap"]) { padding: .625rem 0; /* 10px 0 */ }
+.pad-10.slice:not([class*="-wrap"]) { padding: 0 .625rem; /* 0 10px */ }
+
+.pad-5.chop:not([class*="-wrap"]) { padding: .3125rem 0; /* 5px 0 */ }
+.pad-5.slice:not([class*="-wrap"]) { padding: 0 .3125rem; /* 0 5px */ }
+
+/* Platform NLF Adjustments */
+
+.space-5:not([class*='flex-']) > * + * {
+    margin-top: .3125rem; /* 5px */
+}
+
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].pad-10,
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].space-10,
+.space-5[class*='-column'] > * + [class*='-wrap'].pad-10,
+.space-5[class*='-column'] > * + [class*='-wrap'].space-10 {
+	margin-top: 0; /* 5px from children, need no extra */
+}
+
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].pad-20,
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].space-20,
+.space-5[class*='-column'] > * + [class*='-wrap'].pad-20,
+.space-5[class*='-column'] > * + [class*='-wrap'].space-20 {
+	margin-top: -.3125em; /* 10px from children, -5px from parent */
+}
+
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].pad-30,
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].space-30,
+.space-5[class*='-column'] > * + [class*='-wrap'].pad-30,
+.space-5[class*='-column'] > * + [class*='-wrap'].space-30 {
+	margin-top: -.625rem; /* 15px from children, - 10px from parent */
+}
+
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].pad-40,
+.space-5:not([class*='flex-']) > * + [class*='-wrap'].space-40,
+.space-5[class*='-column'] > * + [class*='-wrap'].pad-40,
+.space-5[class*='-column'] > * + [class*='-wrap'].space-40 {
+	margin-top: -.938rem; /* 20px from children, - 15px from parent */
+}
+
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-10,
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-10 {
+	margin-left: 0; /* 5px from children + need nothing from parent */
+}
+
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-20,
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-20 {
+	margin-left: -.3125em; /* 10px from parent, -5px from parent */
+}
+
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-20,
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-20 {
+	margin-left: -.625rem; /* 15px from parent, -10px from parent */
+}
+
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-40,
+.space-5[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-40 {
+	margin-left: -.938rem; /* 20px from children, - 15px from parent */
+}
+
+.space-10:not([class*='flex-']) > * + * {
+    margin-top: .625rem; /* 10px */
+}
+
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].pad-5,
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].space-5,
+.space-10[class*='-column'] > * + [class*='-wrap'].pad-5,
+.space-10[class*='-column'] > * + [class*='-wrap'].space-5 {
+	margin-top: .4687rem; /* 2.5px from children + 7.5px from parent */
+}
+
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].pad-10,
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].space-10,
+.space-10[class*='-column'] > * + [class*='-wrap'].pad-10,
+.space-10[class*='-column'] > * + [class*='-wrap'].space-10 {
+	margin-top: .3125em; /* 5px from children + 5px from parent */
+}
+
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].pad-20,
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].space-20,
+.space-10[class*='-column'] > * + [class*='-wrap'].pad-20,
+.space-10[class*='-column'] > * + [class*='-wrap'].space-20 {
+	margin-top: 0; /* 10px from parent, need no extra */
+}
+
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].pad-30,
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].space-30,
+.space-10[class*='-column'] > * + [class*='-wrap'].pad-30,
+.space-10[class*='-column'] > * + [class*='-wrap'].space-30 {
+	margin-top: -.3125rem; /* 15px from children, - 5px from parent */
+}
+
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].pad-40,
+.space-10:not([class*='flex-']) > * + [class*='-wrap'].space-40,
+.space-10[class*='-column'] > * + [class*='-wrap'].pad-40,
+.space-10[class*='-column'] > * + [class*='-wrap'].space-40 {
+	margin-top: -.625rem; /* 20px from children, - 10px from parent */
+}
+
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-10,
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-10 {
+	margin-left: .3125em; /* 5px from children + 5px from parent */
+}
+
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-20,
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-20 {
+	margin-left: 0; /* 10px from parent, need no extra */
+}
+
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-20,
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-20 {
+	margin-left: -.3125rem; /* 15px from parent, -5 from parent */
+}
+
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].pad-40,
+.space-10[class*='flex-']:not([class*="-column"]) > * + [class*='-wrap'].space-40 {
+	margin-left: -.625rem; /* 20px from children, - 10px from parent */
+}
+
+.space-20:not([class*='flex-']) > * + * {
+    margin-top: 1.25rem; /* 20px */
+}
+
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].pad-5,
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].space-5,
+.space-20[class*='-column'] > * + [class*='-wrap'].pad-5,
+.space-20[class*='-column'] > * + [class*='-wrap'].space-5 {
+	margin-top: 1.094em; /* 2.5px from children + 17.5px from parent */
+}
+
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].pad-10,
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].space-10,
+.space-20[class*='-column'] > * + [class*='-wrap'].pad-10,
+.space-20[class*='-column'] > * + [class*='-wrap'].space-10 {
+	margin-top: .938em; /* 5px from children + 15px from parent */
+}
+
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].pad-20,
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].space-20,
+.space-20[class*='-column'] > * + [class*='-wrap'].pad-20,
+.space-20[class*='-column'] > * + [class*='-wrap'].space-20 {
+	margin-top: .625em; /* 10px from parent, 10px from parent */
+}
+
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].pad-30,
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].space-30,
+.space-20[class*='-column'] > * + [class*='-wrap'].pad-30,
+.space-20[class*='-column'] > * + [class*='-wrap'].space-30 {
+	margin-top: .3125rem; /* 15px from children, +5 from parent */
+}
+
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].pad-40,
+.space-20:not([class*='flex-']) > * + [class*='-wrap'].space-40,
+.space-20[class*='-column'] > * + [class*='-wrap'].pad-40,
+.space-20[class*='-column'] > * + [class*='-wrap'].space-40 {
+	margin-top: 0; /* 20px from children, need no extra */
+}
+
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-10,
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-10 {
+	margin-left: .938em; /* 5px from children + 15px from parent */
+}
+
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-20,
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-20 {
+	margin-left: .625em; /* 10px from parent, 10px from parent */
+}
+
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-30,
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-30 {
+	margin-left: .3125em; /* 15px from parent, 5px from parent */
+}
+
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-40,
+.space-20[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-40 {
+	margin-left: 0; /* 20px from children, need no extra */
+}
+
+.space-30:not([class*='flex-']) > * + * {
+    margin-top: 1.875rem; /* 30px */
+}
+
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].pad-5,
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].space-5,
+.space-30[class*='-column'] > * + [class*='-wrap'].pad-5,
+.space-30[class*='-column'] > * + [class*='-wrap'].space-5 {
+	margin-top: 1.719rem; /* 2.5px from children + 27.5px from parent */
+}
+
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].pad-10,
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].space-10,
+.space-30[class*='-column'] > * + [class*='-wrap'].pad-10,
+.space-30[class*='-column'] > * + [class*='-wrap'].space-10 {
+	margin-top: 1.563rem; /* 5px from children + 25px from parent */
+}
+
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].pad-20,
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].space-20,
+.space-30[class*='-column'] > * + [class*='-wrap'].pad-20,
+.space-30[class*='-column'] > * + [class*='-wrap'].space-20 {
+	margin-top: 1.25rem; /* 10px from child, 20px from parent */
+}
+
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].pad-30,
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].space-30,
+.space-30[class*='-column'] > * + [class*='-wrap'].pad-30,
+.space-30[class*='-column'] > * + [class*='-wrap'].space-30 {
+	margin-top: 0.938rem; /* 15px from child, 15px from parent */
+}
+
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].pad-40,
+.space-30:not([class*='flex-']) > * + [class*='-wrap'].space-40,
+.space-30[class*='-column'] > * + [class*='-wrap'].pad-40,
+.space-30[class*='-column'] > * + [class*='-wrap'].space-40 {
+	margin-top: .625rem; /* 20px from children + 10px from parent */
+}
+
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-10,
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-10 {
+	margin-left: 2.188rem; /* 5px from children + 35px from parent */
+}
+
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-20,
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-20 {
+	margin-left: 1.875rem; /* 10px from child, 30px from parent */
+}
+
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-30,
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-30 {
+	margin-left: 1.563rem; /* 15px from child, 25px from parent */
+}
+
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-40,
+.space-30[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-40 {
+	margin-left: .625rem; /* 20px from children + 10px from parent */
+}
+
+.space-40:not([class*='flex-']) > * + * {
+    margin-top: 2.5rem; /* 40px */
+}
+
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].pad-5,
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].space-5,
+.space-40[class*='-column'] > * + [class*='-wrap'].pad-5,
+.space-40[class*='-column'] > * + [class*='-wrap'].space-5 {
+	margin-top: 2.344em; /* 2.5px from children + 37.5px from parent */
+}
+
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].pad-10,
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].space-10,
+.space-40[class*='-column'] > * + [class*='-wrap'].pad-10,
+.space-40[class*='-column'] > * + [class*='-wrap'].space-10 {
+	margin-top: 2.188em; /* 5px from children + 35px from parent */
+}
+
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].pad-20,
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].space-20,
+.space-40[class*='-column'] > * + [class*='-wrap'].pad-20,
+.space-40[class*='-column'] > * + [class*='-wrap'].space-20 {
+	margin-top: 1.875em; /* 10px from child, 30px from parent */
+}
+
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].pad-30,
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].space-30,
+.space-40[class*='-column'] > * + [class*='-wrap'].pad-30,
+.space-40[class*='-column'] > * + [class*='-wrap'].space-30 {
+	margin-top: 1.563rem; /* 15px from child, 25px from parent */
+}
+
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].pad-40,
+.space-40:not([class*='flex-']) > * + [class*='-wrap'].space-40,
+.space-40[class*='-column'] > * + [class*='-wrap'].pad-40,
+.space-40[class*='-column'] > * + [class*='-wrap'].space-40 {
+	margin-top: 1.25rem; /* 20px from children + 20 from parent */
+}
+
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-10,
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-10 {
+	margin-left: 2.188rem; /* 5px from children + 35px from parent */
+}
+
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-20,
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-20 {
+	margin-left: 1.875rem; /* 10px from child, 30px from parent */
+}
+
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-30,
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-30 {
+	margin-left: 1.563rem; /* 15px from child, 25px from parent */
+}
+
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].pad-40,
+.space-40[class*='flex-']:not([class*='-column']) > * + [class*='-wrap'].space-40 {
+	margin-left: 1.25rem; /* 20px from children + 20 from parent */
+}
+
+[class*='flex-'][class*='-wrap'].space-5 > .half { width: calc(50% - .3125rem); /* 5px / the expectation is these are going to be LIs */ }
+[class*='flex-'][class*='-wrap'].space-5 > .third { width: calc(33.33% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .two-thirds { width: calc(66.67% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .fourth { width: calc(25% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .three-fourths { width: calc(75% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .fifth { width: calc(20% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .two-fifth { width: calc(40% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .three-fifth { width: calc(60% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .four-fifth { width: calc(80% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .sixth { width: calc(16.66% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .five-sixths { width: calc(83.33% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .seventh { width: calc(14.29% - .3125rem); /* 5px */ }
+[class*='flex-'][class*='-wrap'].space-5 > .six-sevenths { width: calc(86.71% - .3125rem); /* 5px */ }
+
+[class*='flex-'][class*='-wrap'].space-10 > .half { width: calc(50% - .625rem); /* 10px / the expectation is these are going to be LIs */ }
+[class*='flex-'][class*='-wrap'].space-10 > .third { width: calc(33.33% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .two-thirds { width: calc(66.67% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .fourth { width: calc(25% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .three-fourths { width: calc(75% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .fifth { width: calc(20% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .two-fifth { width: calc(40% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .three-fifth { width: calc(60% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .four-fifths { width: calc(80% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .sixth { width: calc(16.66% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .five-sixths { width: calc(83.33% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .seventh { width: calc(14.29% - .625rem); /* 10px */ }
+[class*='flex-'][class*='-wrap'].space-10 > .six-sevenths { width: calc(86.71% - .625rem); /* 10px */ }
+
+[class*='flex-'][class*='-wrap'].space-20 > .half { width: calc(50% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .third { width: calc(33.33% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .two-thirds { width: calc(66.67% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .fourth { width: calc(25% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .three-fourths { width: calc(75% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .fifth { width: calc(20% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .two-fifths { width: calc(40% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .three-fifths { width: calc(60% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .four-fifths { width: calc(80% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .sixth { width: calc(16.66% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .five-sixths { width: calc(83.33% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .seventh { width: calc(14.29% - 1.25rem); /* 20px */ }
+[class*='flex-'][class*='-wrap'].space-20 > .six-sevenths { width: calc(86.71% - 1.25rem); /* 20px */ }
+
+[class*='flex-'][class*='-wrap'].space-30 > .half { width: calc(50% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .third { width: calc(33.33% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .two-thirds { width: calc(66.67% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .fourth { width: calc(25% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .three-fourths { width: calc(75% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .fifth { width: calc(20% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .two-fifths { width: calc(40% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .three-fifths { width: calc(60% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .four-fifths { width: calc(80% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .sixth { width: calc(16.66% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .five-sixths { width: calc(83.33% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .seventh { width: calc(14.29% - 1.875rem); /* 30px */ }
+[class*='flex-'][class*='-wrap'].space-30 > .six-sevenths { width: calc(86.71% - 1.875rem); /* 30px */ }
+
+[class*='flex-'][class*='-wrap'].space-40 > .half { width: calc(50% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .third { width: calc(33.33% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .two-thirds { width: calc(66.67% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .fourth { width: calc(25% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .three-fourths { width: calc(75% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .fifth { width: calc(20% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .two-fifths { width: calc(40% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .three-fifths { width: calc(60% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .four-fifths { width: calc(80% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .sixth { width: calc(16.66% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .five-sixths { width: calc(83.33% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .seventh { width: calc(14.29% - 2.5rem); /* 40px */ }
+[class*='flex-'][class*='-wrap'].space-40 > .six-sevenths { width: calc(86.71% - 2.5rem); /* 40px */ }
+
+/* End Next Level Flexible - Sizing & Spacing */
+
+/* Next level Flexible - Borders & Border Spacing */
+
+.border-self {
+	border: solid 1px #f1e6d0;
+	border: solid 1px rgba(var(--NLF-border-color));
+}
+
+.border > * {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #f1e6d0; 
+	border-color: rgba(var(--NLF-border-color)); 
+}
+
+.ui-dialog .border > * {
+    border-color: #eaedf1; /* Dialog / Modal Popup */
+}
+
+[class*='flex-'].border:not([class*='space-']) > * + *, /* not wrapping & not spacing should be done with border-self & divide */
+[class*='flex-'][class*='-wrap'].border:not([class*="space-"]) > .half:nth-child(even),
+[class*='flex-'][class*='-wrap'].border:not([class*="space-"]) > .third:not(:nth-child(3n - 2)),
+[class*='flex-'][class*='-wrap'].border:not([class*="space-"]) > .fourth:not(:nth-child(4n - 3)) {
+	border-left: none;
+}
+
+[class*='flex-'][class*='-column'].border:not([class*="space-"]) > * + *,
+[class*='flex-'][class*='-wrap'].border:not([class*="space-"]) > .half:not(:nth-child(-n + 2)),
+[class*='flex-'][class*='-wrap'].border:not([class*="space-"]) > .third:not(:nth-child(-n + 3)),
+[class*='flex-'][class*='-wrap'].border:not([class*="space-"]) > .fourth:not(:nth-child(-n + 4)) {
+	border-top: none;
+}
+
+/* Next level Flexible - Borders & Border Spacing */
+
+/* Next level Flexible - Dividers
+** divide modifies NLF pad- 
+** subdivide retains NLF defaults
+*/
+
+.divide > *,
+.subdivide > * {
+	border-color: #f1e6d0; 
+}
+
+@supports ( --variable-support: #000 ) {
+	.divide > *,
+	.subdivide > * {
+        border-color: rgba(var(--NLF-border-color)); 
+    }
+}
+
+.ui-dialog .divide > *,
+.ui-dialog .subdivide > * {
+	border-color: rgb(234, 237, 241); /* Dialog / Modal Popup */
+}
+
+@supports ( --variable-support2: #000 ) {
+	.ui-dialog .divide > *,
+	.ui-dialog .subdivide > * {
+	    border-color: rgba(var(--NLF-dialog-border-color)); /* Dialog / Modal Popup */
+    }
+}
+
+[class*='flex-'].divide > * + *,
+[class*='flex-'].subdivide > * + * {
+	border-left-style: solid;
+	border-left-width: 1px;
+}
+
+.divide:not([class*='flex-']) > * + *,
+.subdivide:not([class*='flex-']) > * + * {
+	border-top-style: solid;
+	border-top-width: 1px;
+}
+
+[class*='flex-'][class*='-column'].divide > * + *,
+[class*='flex-'][class*='-column'].subdivide > * + * {
+	border-top-style: solid;
+	border-top-width: 1px;
+    border-left: none;
+}
+
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).divide.space-5 > * + *,
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).subdivide.space-5 > * + * {
+    padding-left: .3125rem; /* 5px */
+}
+
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).divide.space-10 > * + *,
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).subdivide.space-10 > * + * {
+    padding-left: .625rem; /* 10px */
+}
+
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).divide.space-20 > * + *,
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).subdivide.space-20 > * + * {
+    padding-left: 1.25rem; /* 20px */
+}
+
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).divide.space-30 > * + *,
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).subdivide.space-30 > * + * {
+    padding-left: 1.875rem; /* 30px */
+}
+
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).divide.space-40 > * + *,
+[class*='flex-']:not([class*='-wrap']):not([class*="-column"]).subdivide.space-40 > * + * {
+    padding-left: 2.5rem; /* 40px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.space-5 > * + *:not([class*="pad-"]),
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.space-5 > * + *:not([class*="pad-"]) {
+	padding-left: 0;
+	padding-top: .3125rem; /* 5px */
+}
+
+[class*='flex-'][class*='-column'].divide.separate.space-5:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].divide.separate.space-5:not([class*='-wrap']) > *:first-child:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-5:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-5:not([class*='-wrap']) > *:first-child:last-child {
+	padding-bottom: .3125rem; /* 5px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.separate.space-5 > *:first-child,
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.separate.space-5 > *:first-child {
+	padding-top: .3125rem; /* 5px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.space-10 > * + *:not([class*="pad-"]),
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.space-10 > * + *:not([class*="pad-"]) {
+	padding-left: 0;
+	padding-top: .625rem; /* 10px */
+}
+
+[class*='flex-'][class*='-column'].divide.separate.space-10:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].divide.separate.space-10:not([class*='-wrap']) > *:first-child:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-10:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-10:not([class*='-wrap']) > *:first-child:last-child {
+	padding-bottom: .625rem; /* 10px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.separate.space-10 > *:first-child,
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.separate.space-10 > *:first-child  {
+	padding-top: .625rem; /* 10px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.space-20 > * + *:not([class*="pad-"]),
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.space-20 > * + *:not([class*="pad-"]) {
+	padding-left: 0;
+	padding-top: 1.25rem; /* 20px */
+}
+
+[class*='flex-'][class*='-column'].divide.separate.space-20:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].divide.separate.space-20:not([class*='-wrap']) > *:first-child:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-20:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-20:not([class*='-wrap']) > *:first-child:last-child {
+	padding-bottom: 1.25rem; /* 20px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.separate.space-20 > *:first-child,
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.separate.space-20 > *:first-child {
+	padding-top: 1.25rem; /* 20px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.space-30 > * + *:not([class*="pad-"]),
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.space-30 > * + *:not([class*="pad-"]) {
+	padding-left: 0; 
+	padding-top: 1.875rem; /* 30px */
+}
+
+[class*='flex-'][class*='-column'].divide.separate.space-30:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].divide.separate.space-30:not([class*='-wrap']) > *:first-child:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-30:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-30:not([class*='-wrap']) > *:first-child:last-child {
+	padding-bottom: 1.875rem; /* 30px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.separate.space-30 > *:first-child,
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.separate.space-30 > *:first-child {
+	padding-top: 1.875rem; /* 30px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.space-40 > * + *:not([class*="pad-"]),
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.space-40 > * + *:not([class*="pad-"]) {
+	padding-left: 0; /* 40px */
+	padding-top: 2.5rem; /* 40px */
+}
+
+[class*='flex-'][class*='-column'].divide.separate.space-40:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].divide.separate.space-40:not([class*='-wrap']) > *:first-child:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-40:not([class*='-wrap']) > * + *:last-child,
+[class*='flex-'][class*='-column'].subdivide.separate.space-40:not([class*='-wrap']) > *:first-child:last-child {
+	padding-bottom: 2.5rem; /* 40px */
+}
+
+[class*='flex-'][class*='-column']:not([class*='-wrap']).divide.separate.space-40 > *:first-child,
+[class*='flex-'][class*='-column']:not([class*='-wrap']).subdivide.separate.space-40 > *:first-child {
+	padding-top: 2.5rem; /* 40px */
+}
+
+[class*='flex-'][class*='-wrap'].divide > *,
+[class*='flex-'][class*='-wrap'].subdivide > * {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+[class*='flex-'][class*='-wrap'].divide > .half:nth-child(odd),
+[class*='flex-'][class*='-wrap'].divide > .third:nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .half:nth-child(odd),
+[class*='flex-'][class*='-wrap'].subdivide > .third:nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-child(7n - 6) {
+    border-left: none;
+}
+
+[class*='flex-'][class*='-wrap'].divide > .half:last-child:not(:nth-child(even)),
+[class*='flex-'][class*='-wrap'].divide > .third:last-child:not(:nth-child(3n)),
+[class*='flex-'][class*='-wrap'].divide > .fourth:last-child:not(:nth-child(4n)),
+[class*='flex-'][class*='-wrap'].divide > .fifth:last-child:not(:nth-child(5n)),
+[class*='flex-'][class*='-wrap'].divide > .sixth:last-child:not(:nth-child(6n)),
+[class*='flex-'][class*='-wrap'].divide > .seventh:last-child:not(:nth-child(7n)),
+[class*='flex-'][class*='-wrap'].subdivide > .half:last-child:not(:nth-child(even)),
+[class*='flex-'][class*='-wrap'].subdivide > .third:last-child:not(:nth-child(3n)),
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:last-child:not(:nth-child(4n)),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:last-child:not(:nth-child(5n)),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:last-child:not(:nth-child(6n)),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:last-child:not(:nth-child(7n)) {
+    box-shadow: 1px 0 #f1e6d0;
+}
+
+@supports ( --variable-support3: #000 ) {
+    [class*='flex-'][class*='-wrap'].divide > .half:last-child:not(:nth-child(even)),
+    [class*='flex-'][class*='-wrap'].divide > .third:last-child:not(:nth-child(3n)),
+    [class*='flex-'][class*='-wrap'].divide > .fourth:last-child:not(:nth-child(4n)),
+	[class*='flex-'][class*='-wrap'].divide > .fifth:last-child:not(:nth-child(5n)),
+	[class*='flex-'][class*='-wrap'].divide > .sixth:last-child:not(:nth-child(6n)),
+	[class*='flex-'][class*='-wrap'].divide > .seventh:last-child:not(:nth-child(7n)),
+	[class*='flex-'][class*='-wrap'].subdivide > .half:last-child:not(:nth-child(even)),
+    [class*='flex-'][class*='-wrap'].subdivide > .third:last-child:not(:nth-child(3n)),
+    [class*='flex-'][class*='-wrap'].subdivide > .fourth:last-child:not(:nth-child(4n)),
+	[class*='flex-'][class*='-wrap'].subdivide > .fifth:last-child:not(:nth-child(5n)),
+	[class*='flex-'][class*='-wrap'].subdivide > .sixth:last-child:not(:nth-child(6n)) {
+        box-shadow: 1px 0 rgba(var(--NLF-border-color));
+    }
+}
+
+[class*='flex-'][class*='-wrap'].divide > .half:last-child:nth-child(odd),
+[class*='flex-'][class*='-wrap'].divide > .half:nth-last-child(2):nth-child(odd),
+[class*='flex-'][class*='-wrap'].divide > .half:nth-last-child(2):nth-child(odd) + *,
+[class*='flex-'][class*='-wrap'].divide > .third:last-child:nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].divide > .third:nth-last-child(3):nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].divide > .third:nth-last-child(3):nth-child(3n - 2) + .third,
+[class*='flex-'][class*='-wrap'].divide > .third:nth-last-child(3):nth-child(3n - 2) + .third + .third,
+[class*='flex-'][class*='-wrap'].divide > .third:nth-last-child(2):nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].divide > .third:nth-last-child(2):nth-child(3n - 2) + .third,
+[class*='flex-'][class*='-wrap'].divide > .fourth:last-child:nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(4):nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(4):nth-child(4n - 3) + .fourth,
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(4):nth-child(4n - 3) + .fourth + .fourth,
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(4):nth-child(4n - 3) + .fourth + .fourth + .fourth,
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(3):nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(3):nth-child(4n - 3) + .fourth,
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(3):nth-child(4n - 3) + .fourth + .fourth,
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(2):nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].divide > .fourth:nth-last-child(2):nth-child(4n - 3) + .fourth,
+
+[class*='flex-'][class*='-wrap'].divide > .fifth:last-child:nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(5):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth + .fifth + .fifth  + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(4):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(4):nth-child(5n - 4) + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(4):nth-child(5n - 4) + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(4):nth-child(5n - 4) + .fifth + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(3):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(3):nth-child(5n - 4) + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(3):nth-child(5n - 4) + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(2):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].divide > .fifth:nth-last-child(2):nth-child(5n - 4) + .fifth,
+
+[class*='flex-'][class*='-wrap'].divide > .sixth:last-child:nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(6):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(5):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(4):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(4):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(4):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(4):nth-child(6n - 5) + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(3):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(3):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(3):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(2):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].divide > .sixth:nth-last-child(2):nth-child(6n - 5) + .sixth,
+
+[class*='flex-'][class*='-wrap'].subdivide > .half:last-child:nth-child(odd),
+[class*='flex-'][class*='-wrap'].subdivide > .half:nth-last-child(2):nth-child(odd),
+[class*='flex-'][class*='-wrap'].subdivide > .half:nth-last-child(2):nth-child(odd) + *,
+[class*='flex-'][class*='-wrap'].subdivide > .third:last-child:nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].subdivide > .third:nth-last-child(3):nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].subdivide > .third:nth-last-child(3):nth-child(3n - 2) + .third,
+[class*='flex-'][class*='-wrap'].subdivide > .third:nth-last-child(3):nth-child(3n - 2) + .third + .third,
+[class*='flex-'][class*='-wrap'].subdivide > .third:nth-last-child(2):nth-child(3n - 2),
+[class*='flex-'][class*='-wrap'].subdivide > .third:nth-last-child(2):nth-child(3n - 2) + .third,
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:last-child:nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(4):nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(4):nth-child(4n - 3) + .fourth,
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(4):nth-child(4n - 3) + .fourth + .fourth,
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(4):nth-child(4n - 3) + .fourth + .fourth + .fourth,
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(3):nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(3):nth-child(4n - 3) + .fourth,
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(3):nth-child(4n - 3) + .fourth + .fourth,
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(2):nth-child(4n - 3),
+[class*='flex-'][class*='-wrap'].subdivide > .fourth:nth-last-child(2):nth-child(4n - 3) + .fourth,
+
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:last-child:nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(5):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(5):nth-child(5n - 4) + .fifth + .fifth + .fifth  + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(4):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(4):nth-child(5n - 4) + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(4):nth-child(5n - 4) + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(4):nth-child(5n - 4) + .fifth + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(3):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(3):nth-child(5n - 4) + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(3):nth-child(5n - 4) + .fifth + .fifth,
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(2):nth-child(5n - 4),
+[class*='flex-'][class*='-wrap'].subdivide > .fifth:nth-last-child(2):nth-child(5n - 4) + .fifth,
+
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:last-child:nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(6):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(6):nth-child(6n - 5) + .sixth + .sixth + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(5):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(5):nth-child(6n - 5) + .sixth + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(4):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(4):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(4):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(4):nth-child(6n - 5) + .sixth + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(3):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(3):nth-child(6n - 5) + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(3):nth-child(6n - 5) + .sixth + .sixth,
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(2):nth-child(6n - 5),
+[class*='flex-'][class*='-wrap'].subdivide > .sixth:nth-last-child(2):nth-child(6n - 5) + .sixth
+
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:last-child:nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6) + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6) + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6) + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6) + .seventh + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6) + .seventh + .seventh + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(7):nth-child(7n - 6) + .seventh + .seventh + .seventh + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(6):nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(6):nth-child(7n - 6) + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(6):nth-child(7n - 6) + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(6):nth-child(7n - 6) + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(6):nth-child(7n - 6) + .seventh + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(6):nth-child(7n - 6) + .seventh + .seventh + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(5):nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(5):nth-child(7n - 6) + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(5):nth-child(7n - 6) + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(5):nth-child(7n - 6) + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(5):nth-child(7n - 6) + .seventh + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(4):nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(4):nth-child(7n - 6) + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(4):nth-child(7n - 6) + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(4):nth-child(7n - 6) + .seventh + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(3):nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(3):nth-child(7n - 6) + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(3):nth-child(7n - 6) + .seventh + .seventh,
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(2):nth-child(7n - 6),
+[class*='flex-'][class*='-wrap'].subdivide > .seventh:nth-last-child(2):nth-child(7n - 6) + .seventh{
+	border-bottom: none; /* assumption is all sublings are the same width */
+}
+
+/* Next level Flexible - Dividers */
+
+/* Next level Flexible - Independent */
+
+*:not([class*="flex-"]) > .separate,
+[class*="flex-"][class*="-column"] > .separate {
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+[class*="flex-"]:not([class*="-column"]) > .separate {
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+
+*:not([class*="flex-"]) > .separate,
+[class*="flex-"][class*="-column"] > .separate,
+[class*="flex-"]:not([class*="-column"]) > .separate {
+    border-color: #f1e6d0;
+}
+
+@supports ( --variable-support4: #000 ) {
+    *:not([class*="flex-"]) > .separate,
+    [class*="flex-"][class*="-column"] > .separate,
+    [class*="flex-"]:not([class*="-column"]) > .separate {
+        border-color: rgba(var(--NLF-border-color));
+    }
+}
+
+table > tbody.separate {
+	box-shadow: 0 1px #f1e6d0, 0 -1px #f1e6d0;
+}
+
+@supports ( --variable-support5: #000 ) {
+    table > tbody.separate {
+        box-shadow: 0 1px rgba(var(--NLF-border-color)), 0 -1px rgba(var(--NLF-border-color));
+    }
+}
+
+table > thead + tbody.separate {
+    box-shadow: 0 1px #f1e6d0;
+}
+
+@supports ( --variable-support6: #000 ) {
+    table > thead + tbody.separate {
+        box-shadow: 0 1px rgba(var(--NLF-border-color));
+    }
+}
+
+.ui-dialog *:not([class*="flex-"]) > .separate,
+.ui-dialog [class*="flex-"][class*="-column"] > .separate,
+.ui-dialog [class*="flex-"]:not([class*="-column"]) > .separate,
+.ui-dialog:not([class*="flex-"]) > .separate,
+.ui-dialog[class*="flex-"][class*="-column"] > .separate,
+.ui-dialog[class*="flex-"]:not([class*="-column"]) > .separate {
+	border-color: #eaedf1; /* Dialog / Modal Popup */
+}
+
+@supports ( --variable-support7: #000 ) {
+    .ui-dialog *:not([class*="flex-"]) > .separate,
+    .ui-dialog [class*="flex-"][class*="-column"] > .separate,
+    .ui-dialog [class*="flex-"]:not([class*="-column"]) > .separate,
+    .ui-dialog:not([class*="flex-"]) > .separate,
+    .ui-dialog[class*="flex-"][class*="-column"] > .separate,
+    .ui-dialog[class*="flex-"]:not([class*="-column"]) > .separate {
+        border-color: rgba(var(--NLF-dialog-border-color));
+    }
+}
+/* Next level Flexible - Independent */
+
+/* Columns */
+
+.columns-2 { column-count: 2; }
+.columns-3 { column-count: 3; }
+.columns-4 { column-count: 4; }
+.columns-5 { column-count: 5; }
+
+[class*='columns-'].rule { column-rule: solid 1px rgba(var(--NLF-border-color)); }
+
+[class*='columns-'] > * { break-inside: avoid; }
+
+[class*='columns-'].space-10 { column-gap: .625em }
+[class*='columns-'].space-20 { column-gap: 1.25em }
+[class*='columns-'].space-40 { column-gap: 2.5em }
+
+/* Testing Ground */
+[class*=" space-"]:not([class*="flex-"]) > [type="hidden"]:first-child + [type="hidden"] + *,
+[class^="space-"]:not([class*="flex-"]) > [type="hidden"]:first-child + [type="hidden"] + *,
+[class*=" space-"]:not([class*="flex-"]) > [type="hidden"]:first-child + *,
+[class^="space-"]:not([class*="flex-"]) > [type="hidden"]:first-child + *,
+[class*=" space-"][class*="flex-"][class*="-column"] > [type="hidden"]:first-child + [type="hidden"] + *,
+[class^="space-"][class*="flex-"][class*="-column"] > [type="hidden"]:first-child + [type="hidden"] + *,
+[class*=" space-"][class*="flex-"][class*="-column"] > [type="hidden"]:first-child + *,
+[class^="space-"][class*="flex-"][class*="-column"] > [type="hidden"]:first-child + * {
+	margin-top: 0;
+}
+
+[class*=" space-"][class*="flex-"]:not([class*="-wrap"]) > [type="hidden"]:first-child + [type="hidden"] + *,
+[class^="space-"][class*="flex-"]:not([class*="-wrap"]) > [type="hidden"]:first-child + [type="hidden"] + *,
+[class*=" space-"][class*="flex-"]:not([class*="-wrap"]) > [type="hidden"]:first-child + *,
+[class^="space-"][class*="flex-"]:not([class*="-wrap"]) > [type="hidden"]:first-child + * {
+	margin-left: 0;
+}
+
+.divide > [type="hidden"]:first-child + [type="hidden"] + *,
+.subdivide > [type="hidden"]:first-child + [type="hidden"] + *,
+.divide > [type="hidden"]:first-child + *,
+.subdivide > [type="hidden"]:first-child + * {
+	border-top: none;
+}

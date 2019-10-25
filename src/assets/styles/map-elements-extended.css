@@ -1,0 +1,242 @@
+/* Removes Google logo and other watermarks - added 7/30/18 */
+
+a[href^="http://maps.google.com/maps"]{display:none !important}
+a[href^="https://maps.google.com/maps"]{display:none !important}
+
+.gmnoprint a, .gmnoprint button, .gmnoprint span, .gm-style-cc { display:none !important; }
+.gmnoprint div { background:none !important; display:none !important; }
+
+/* Map Pin Styles */
+.gm-style > div > div > div { 
+    z-index: 1;
+}
+
+/* Elements Overlapping Map */
+figure.map .component[class*="ctrl-"] {
+    box-shadow: 0 2px 3px rgba(var(--black-blue), .3);
+    background-color: rgb(255,255,255);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+/* Details Map - Mini */
+.sm-detail-map aside.details.mini {
+    height: auto;
+    top: auto;
+    bottom: 10px;
+}
+
+/* Detail Target Map */
+.sm-detail-map aside.details.target-detail-list > ul {
+
+}
+
+.sm-detail-map aside.details.target-detail-list > ul > li {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.sm-detail-map aside.details.target-detail-list > ul > li a,
+.sm-detail-map aside.details.target-detail-list > ul > li label {
+    border: none;
+    border-radius: 0;
+}
+.sm-detail-map aside.details.target-detail-list > ul > li a strong.title,
+.sm-detail-map aside.details.target-detail-list > ul > li label strong.title {
+    color: #000;
+}
+.sm-detail-map aside.details.target-detail-list > ul > li a strong.color-grey,
+.sm-detail-map aside.details.target-detail-list > ul > li label strong.color-grey {
+    color: #909ca3;
+}
+
+.sm-detail-map aside.details.target-detail-list > ul > li a.active,
+.sm-detail-map aside.details.target-detail-list > ul > li input:checked ~ label {
+    color: #FFFFFF;
+    border-radius: 5px;
+}
+
+.sm-detail-map aside.details.target-detail-list > ul > li a.active strong,
+.sm-detail-map aside.details.target-detail-list > ul > li input:checked ~ label strong {
+    color: #FFFFFF;
+}
+
+.sm-detail-map aside.details.target-detail-list > ul > li + li a,
+.sm-detail-map aside.details.target-detail-list > ul > li + li label {
+    border-top: solid 1px rgb(202,211,217);
+}
+
+/* Detail Map - Legend */
+.sm-map figure.map .map-btn.legend,
+.sm-detail-map figure.map .map-btn.legend {
+    padding: 0;
+    right: 10px;
+    top: 10px;
+    width: 16em;
+    text-align: left;
+    transition: right .3s ease-in-out, color .3s ease;
+    border: solid 1px #FFFFFF;
+}
+
+.sm-map figure.map .map-btn.legend > small,
+.sm-detail-map figure.map .map-btn.legend > small {
+    padding: .25em .5em 0;
+    display: block;
+    box-shadow: 0px 3px 8px -2px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li,
+.sm-detail-map figure.map .map-btn.legend > ul > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: .25em;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li:first-child,
+.sm-detail-map figure.map .map-btn.legend > ul > li:first-child {
+    background-color: #e6dfff;
+    color: #021d3d;
+    border-radius: 0 0 0 5px;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li:nth-child(2),
+.sm-detail-map figure.map .map-btn.legend > ul > li:nth-child(2) {
+    background-color: #c6baff;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li:nth-child(3),
+.sm-detail-map figure.map .map-btn.legend > ul > li:nth-child(3) {
+    background-color: #ae9aff;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li:nth-child(4),
+.sm-detail-map figure.map .map-btn.legend > ul > li:nth-child(4) {
+    background-color: #938ef9;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li:nth-child(5),
+.sm-detail-map figure.map .map-btn.legend > ul > li:nth-child(5) {
+    background-color: #6f6ae6;
+}
+
+.sm-map figure.map .map-btn.legend > ul > li:last-child,
+.sm-detail-map figure.map .map-btn.legend > ul > li:last-child {
+    background-color: #4c47c4;
+    color: #ffffff;
+    border-radius: 0 0 5px 0;
+}
+
+.sm-map figure.map .map-btn.legend.warm > ul > li:first-child,
+.sm-detail-map figure.map .map-btn.legend.warm > ul > li:first-child {
+    background-color: #ffefb9;
+    color: #031e3c;
+    border-radius: 0 0 0 5px;
+}
+
+.sm-map figure.map .map-btn.legend.warm > ul > li:nth-child(2),
+.sm-detail-map figure.map .map-btn.legend.warm > ul > li:nth-child(2) {
+    background-color: #fdd39b;
+}
+
+.sm-map figure.map .map-btn.legend.warm > ul > li:nth-child(3),
+.sm-detail-map figure.map .map-btn.legend.warm > ul > li:nth-child(3) {
+    background-color: #fb8e58;
+}
+
+.sm-map figure.map .map-btn.legend.warm > ul > li:nth-child(4),
+.sm-detail-map figure.map .map-btn.legend.warm > ul > li:nth-child(4) {
+    background-color: #fa5b58;
+}
+
+.sm-map figure.map .map-btn.legend.warm > ul > li:nth-child(5),
+.sm-detail-map figure.map .map-btn.legend.warm > ul > li:nth-child(5) {
+    background-color: #ee2d56;
+}
+
+.sm-map figure.map .map-btn.legend.warm > ul > li:last-child,
+.sm-detail-map figure.map .map-btn.legend.warm > ul > li:last-child {
+    background-color: #a21739;
+    color: #ffffff;
+    border-radius: 0 0 5px 0;
+}
+
+.sm-map figure.map .map-btn.legend.cool > ul > li:first-child,
+.sm-detail-map figure.map .map-btn.legend.cool > ul > li:first-child {
+    background-color: #e2edfe;
+    color: #031e3c;
+    border-radius: 0 0 0 5px;
+}
+
+.sm-map figure.map .map-btn.legend.cool > ul > li:nth-child(2),
+.sm-detail-map figure.map .map-btn.legend.cool > ul > li:nth-child(2) {
+    background-color: #c8d7fd;
+}
+
+.sm-map figure.map .map-btn.legend.cool > ul > li:nth-child(3),
+.sm-detail-map figure.map .map-btn.legend.cool > ul > li:nth-child(3) {
+    background-color: #9bb7fc;
+}
+
+.sm-map figure.map .map-btn.legend.cool > ul > li:nth-child(4),
+.sm-detail-map figure.map .map-btn.legend.cool > ul > li:nth-child(4) {
+    background-color: #7194ed;
+}
+
+.sm-map figure.map .map-btn.legend.cool > ul > li:nth-child(5),
+.sm-detail-map figure.map .map-btn.legend.cool > ul > li:nth-child(5) {
+    background-color: #5677d1;
+}
+
+.sm-map figure.map .map-btn.legend.cool > ul > li:last-child,
+.sm-detail-map figure.map .map-btn.legend.cool > ul > li:last-child {
+    background-color: #335198;
+    color: #ffffff;
+    border-radius: 0 0 5px 0;
+}
+
+.sm-map figure.map aside.details.active ~ .imap .map-btn.legend,
+.sm-detail-map figure.map aside.details.active ~ .imap .map-btn.legend {
+    right: 405px;
+}
+
+.sm-map figure.map .map-btn.legend small,
+.sm-detail-map figure.map .map-btn.legend small {
+    text-transform: uppercase;
+}
+
+.sm-detail-map figure.map.active aside.details + [class*='ctrl-20'] {
+    right: 405px;
+}
+
+/* Elements Hiding from Popinto */
+.cms-popinto-active figure.map .popinto-ninja { display: none; }
+.cms-popinto-active figure.map .popinto-cloak { visibility: hidden; }
+
+.popover,
+[data-role="popover"] {
+    position: absolute;
+    background-color: #FFFFFF;
+    opacity: .9;
+    border-radius: 0.5em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px 1px;
+    margin-top: -1em;
+}
+
+.popover::after,
+[data-role="popover"]::after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: '';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #FFFFFF;
+    border-width: 10px;
+    margin-left: -10px;
+}

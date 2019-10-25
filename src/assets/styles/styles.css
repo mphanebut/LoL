@@ -1,0 +1,157 @@
+/* You can add global styles to this file, and also import other style files */
+.LolAtlasForm {
+    position: relative;
+}
+
+.LolAtlasForm input[type="text"] {
+    width: 100%;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 1em 0;
+    outline: none;
+    padding: 0.5em 0;
+    box-sizing: border-box;
+    transition: 0.3s;
+  }
+  
+  .LolAtlasForm input[type="text"]:focus {
+    border-color: #c9aa71;
+    box-shadow: 0 0 8px 0 #c9aa71;
+  }
+  
+  .LolAtlasForm .inputWithIcon input[type="text"] {
+    padding-left: 3em;
+    font-size: 1.5em;
+    font-style: 'BeaufortLoL', sans-serif;
+  }
+  
+  .LolAtlasForm .inputWithIcon {
+    position: relative;
+  }
+  
+  .LolAtlasForm .inputWithIcon svg {
+    position: absolute;
+    left: 0;
+    padding: 0.4em;
+    color: #aaa;
+    transition: 0.3s;
+    width: 1.5em;
+    height: 1.5em;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  
+  .LolAtlasForm .inputWithIcon input[type="text"]:focus + svg {
+    color: #c9aa71;
+  }
+  
+  .LolAtlasForm .inputWithIcon.inputIconBg svg {
+    background-color: #aaa;
+    color: #fff;
+    padding: 9px 4px;
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .LolAtlasForm .inputWithIcon.inputIconBg input[type="text"]:focus + svg {
+    color: #fff;
+    background-color: #c9aa71;
+  }
+
+
+  .box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border: 2px solid #c9aa71;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: auto;
+    padding: 20px;
+    background: #e8e8e8;
+    border-radius: 5px;
+    width: 40rem;
+    position: relative;
+    transition: all 5s ease-in-out;
+    top: 20rem;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-size: 30px;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: #c9aa71;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .popup{
+      width: 70%;
+    }
+  }
+
+  h1.MainTitle {
+    text-align: center;
+    margin: 80px 0;
+    text-transform: uppercase;
+  }
+
+  app-auth { 
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: #1a1a1a;
+    z-index: 999;
+  }
+
+  app-auth .auth-container {
+      position: relative;
+      top: 6vh;
+  }
+  
+    .action:hover svg {
+        color: #FFF;
+    }

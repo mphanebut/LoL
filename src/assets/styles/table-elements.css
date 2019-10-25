@@ -1,0 +1,1534 @@
+/** Table
+* Everything is direct child, so we can control cascading tables
+* Supports:
+* .cs-table > table
+* .cs-table > .ui-tab-panel > table
+* .cs-table > .cs-popinto > table && .cs-table > .cs-popinto > * > table (requires both)
+*/
+
+td, th {
+    text-align: left;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.sm-table {
+    position: relative;
+}
+
+.sm-table .limit {
+    display: inline-block;
+}
+
+.sm-table > table,
+.sm-table > .ui-tab-panel > table,
+.sm-table > .cs-popinto > * > table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    position: relative;
+    border-radius: 5px;
+}
+
+.sm-table:not(.thin) > table,
+.sm-table:not(.thin) > .ui-tab-panel > table,
+.sm-table:not(.thin) > .cs-popinto {
+    transition: box-shadow .3s ease;
+    background-color: rgb(255,255,255);
+    box-shadow: 0px 1px 3px 0px rgba(0, 56, 105, 0.3);
+}
+
+.sm-table.tbody-tables > table > tbody {
+    box-shadow: 0px 1px 3px 0px rgba(0, 56, 105, 0.3);
+    border-radius: 5px;
+}
+
+.sm-table.tbody-tables > table > tbody.divider > tr > td {
+    height: 2.5em;
+}
+
+.sm-table.tbody-tables > table,
+.sm-table.tbody-tables > table > tbody.divider {
+    box-shadow: none;
+}
+
+.sm-table.tbody-tables > table > tbody.divider {
+    opacity: 0;
+}
+
+.sm-table:not(.thin) > .cs-popinto {
+    border-radius: 5px;
+}
+
+.section-panel .sm-table > table,
+.sm-table > table.shadowless,
+table.sm-table.shadowless {
+    box-shadow: none;
+}
+
+.sm-table.sub table:before {
+    height: 60px;
+}
+
+.sm-table thead {
+	box-shadow: inset 0 -1px 0 0 #bdc9d7;
+}
+
+.sm-table > table > tbody > tr,
+.sm-table.tbody-groups > table > tbody,
+.sm-table > .ui-tab-panel > table > tbody > tr,
+.sm-table > .ui-scroll > table > tbody > tr,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody,
+.sm-table > .cs-popinto > * > table > tbody:not([data-tab="Grid View"]) > tr,
+.sm-table > .cs-popinto > table > tbody:not([data-tab="Grid View"]) > tr {
+    box-shadow:  0 .5rem 1.25rem rgba(0,68,128,0), inset 0 -1px 0 0 #bdc9d7;
+	transition: box-shadow .2s, background-color .3s;
+}
+
+.sm-table:not(.thin) > table > tbody > tr:last-child,
+.sm-table.tbody-groups:not(.thin) > table > tbody:last-child,
+.sm-table:not(.thin) > .ui-tab-panel > table > tbody > tr:last-child,
+.sm-table:not(.thin) > .ui-scroll > table > tbody > tr:last-child,
+.sm-table.tbody-groups:not(.thin) > .ui-tab-panel > table > tbody:last-child,
+.sm-table:not(.thin) > .cs-popinto > .popinto + .ui-scroll > table > tbody > tr:last-child /* no left-locked grid */ {
+    border-radius: 0 0 5px 5px;
+}
+
+.sm-table > .cs-popinto > * > table > tbody > tr:last-child { border-radius: 0 0 5px 0; }
+.sm-table > .cs-popinto > table > tbody > tr:last-child { border-radius: 0 0 0 5px; }
+
+.sm-table.tbody-groups > table > tbody > tr:not(.no-hover),
+.sm-table.tbody-groups > table > tbody > tr.active:not(.no-hover),
+.sm-table.tbody-groups > table > tbody > tr:not(.no-hover):hover,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody > tr,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody > tr.active,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody > tr:hover,
+.sm-table.tbody-groups > .ui-scroll > table > tbody > tr,
+.sm-table.tbody-groups > .ui-scroll > table > tbody > tr.active,
+.sm-table.tbody-groups > .ui-scroll > table > tbody > tr:hover {
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.sm-table > table > tfoot + tbody > tr:last-child { border-radius: 0; }
+
+.sm-table > table > tbody > tr:not(.no-hover):hover,
+.sm-table > table > tbody > tr.ui-tab-panel.active,
+.sm-table.tbody-groups > table > tbody:hover,
+.sm-table.tbody-groups > table > tbody.ui-tab-panel.active,
+.sm-table > .cs-popinto > table > tbody > tr:not(.no-hover):hover,
+.sm-table > .cs-popinto > table > tbody > tr.hover:not(.no-hover),
+.sm-table > .ui-scroll > table > tbody > tr:not(.no-hover):hover,
+.sm-table > .ui-scroll > table > tbody > tr.hover:not(.no-hover),
+.sm-table > .cs-popinto > * > table > tbody > tr:not(.no-hover):hover,
+.sm-table > .cs-popinto > * > table > tbody > tr.hover:not(.no-hover) {
+    box-shadow: 0 8px 20px rgba(0,68,128,.2), inset 0 -2px 0 0 #0c6afe;
+    _transform: translateZ(1px); /* because indexing doesnt work, this is my attempt to bring it forwards */
+}
+
+.sm-table > table > tbody > tr.selected,
+.sm-table > .cs-popinto > table > tbody > tr.selected,
+.sm-table > .cs-popinto > * > table > tbody > tr.selected {
+    background-color: #edf7ff;
+}
+
+.sm-table > table > tbody > tr.ui-tab.active,
+.sm-table > table > tbody > tr.ui-tab.active:hover {
+    box-shadow: 0 8px 20px rgba(0,68,128,.2), inset 0 -2px 0 0 transparent;
+}
+
+/* Expects inner table as ui-tab-panel child */
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active,
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active:hover,
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active + tr.ui-tab-panel.active,
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active + tr.ui-tab-panel.active:hover {
+    box-shadow: 0 8px 20px rgba(0,68,128,0), inset 0 -2px 0 0 transparent;
+}
+
+.sm-table > table > tbody > tr.active,
+.sm-table.tbody-groups > table > tbody.active,
+.sm-table > .cs-popinto > * > table > tbody > tr.active {
+    background-color: #f8f9fb;
+}
+
+.sm-table > table > tbody > tr.promo,
+.sm-table.tbody-groups > table > tbody.promo,
+.sm-table > .ui-tab-panel > table > tbody > tr.promo,
+.sm-table > .ui-scroll > table > tbody > tr.promo,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody.promo,
+.sm-table > .cs-popinto > * > table > tbody > tr.promo {
+    box-shadow:  0 8px 20px rgba(0,68,128,0), inset 0 -1px 0 0 #bdc9d7, inset .625em 0 0 rgb(63,195,91);
+}
+
+.sm-table > table > tbody > tr.promo:hover,
+.sm-table > table > tbody > tr.promo.ui-tab-panel.active,
+.sm-table > .cs-popinto > * > table > tbody > tr.promo:hover,
+.sm-table > .cs-popinto > * > table > tbody > tr.promo.active,
+.sm-table.tbody-groups > table > tbody.promo:hover,
+.sm-table.tbody-groups > table > tbody.promo.ui-tab-panel.active,
+.sm-table > .ui-tab-panel > table > tbody > tr.promo:hover,
+.sm-table > .ui-tab-panel > table > tbody > tr.promo.ui-tab-panel.active,
+.sm-table > .ui-scroll > table > tbody > tr.promo:hover,
+.sm-table > .ui-scroll > table > tbody > tr.promo.ui-tab-panel.active,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody.promo:hover,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody.promo.ui-tab-panel.active {
+    box-shadow: 0 8px 20px rgba(0,68,128,.2), inset 0 -2px 0 0 #0c6afe, inset .625em 0 0 rgb(63,195,91);
+}
+
+.sm-table > table > tbody > tr.divider,
+.sm-table > .ui-tab-panel > table > tbody > tr.divider,
+.sm-table > .ui-scroll > table > tbody > tr.divider,
+.sm-table > .cs-popinto > * > table > tbody > tr.divider,
+.sm-table > .cs-popinto > table > tbody > tr.divider {
+    box-shadow: none;
+    background-color: #f8f9fb;
+}
+
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active {
+    background-color: transparent;
+}
+
+.sm-table > table > tbody > tr.ui-tab.ui-toggle .twirl:empty::before {
+    content: '';
+    display: block;
+    height: 1em;
+    width: 1em;
+    background-image: url(/cms/svg/admin/icon_caret.16.2dd2df.svg );
+    transform: rotate(-90deg);
+    transition: transform .3s ease;
+}
+
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active .twirl:empty::before { transform: none; }
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active[data-tab=""] .twirl:empty::before { visibility: hidden; }
+
+.sm-table > table > tbody > tr.ui-tab.ui-toggle.active + .ui-tab-panel td[colspan] {
+    box-shadow: inset 0 1.25em 1.25em -1.25em rgba(3,30,60,0.3),
+                inset 0 -1px 0 0 rgb(202,211,217);
+}
+
+.sm-table > table > tbody > tr.divider h4,
+.sm-table > .ui-tab-panel > table > tbody > tr.divider h4,
+.sm-table > .ui-scroll > table > tbody > tr.divider h4,
+.sm-table > .cs-popinto > * > table > tbody > tr.divider h4,
+.sm-table > .cs-popinto > table > tbody > tr.divider h4 {
+    font-weight: 700;
+}
+
+.sm-table > table > tbody > tr.thead,
+.sm-table > .ui-tab-panel > table > tbody > tr.thead,
+.sm-table > .ui-scroll > table > tbody > tr.thead,
+.sm-table > .cs-popinto > * > table > tbody > tr.thead,
+.sm-table > .cs-popinto > table > tbody > tr.thead {
+    box-shadow: inset 0 -1px 0 0 #bdc9d7;
+}
+
+.sm-table tbody tr.ui-tab-panel.active,
+.sm-table.tbody-groups > table > tbody.ui-tab-panel.active {
+    background-color: rgb(255,255,255);
+    border-radius: 0 0 5px 5px;
+}
+
+.sm-table table > tbody > tr.con {
+    box-shadow: none;
+}
+
+.sm-table tbody tr.ui-tab-panel td[colspan]:not([class*="pad-"]) {
+    padding: 0;
+}
+
+.sm-table thead th[colspan].con,
+.sm-table thead tr.con th[colspan] {
+    padding: 0 1.25rem;
+}
+
+.sm-table thead th[colspan].con > [class*="pad-"],
+.sm-table thead tr.con th[colspan] > [class*="pad-"] {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sm-table th,
+.sm-table > table > tbody > tr.thead td,
+.sm-table > .ui-tab-panel > table > tbody > tr.thead td,
+.sm-table > .ui-scroll > table > tbody > tr.thead td,
+.sm-table > .cs-popinto > * > table > tbody > tr.thead td,
+.sm-table > .cs-popinto > table > tbody > tr.thead td {
+    font-weight: 600;
+    color: rgb(144,156,163);
+    line-height: 1;
+    padding: .625rem; /* 10px */
+    height: 2.5em; /* 40px */
+}
+
+.sm-table th:not([class*=" e-"]):not([class*=" r-"]):not([class^="e-"]):not([class^="r-"]),
+.sm-table > table > tbody > tr.thead td,
+.sm-table > .ui-tab-panel > table > tbody > tr.thead td,
+.sm-table > .ui-scroll > table > tbody > tr.thead td,
+.sm-table > .cs-popinto > * > table > tbody > tr.thead td,
+.sm-table > .cs-popinto > table > tbody > tr.thead td {
+    font-size: .875em;
+}
+
+.sm-table > table > tbody > tr > td,
+.sm-table > .ui-tab-panel > table > tbody > tr > td,
+.sm-table > .ui-scroll > table > tbody > tr > td,
+.sm-table > table > tfoot > tr > td,
+.sm-table > .ui-tab-panel > table > tfoot > tr > td,
+.sm-table > .cs-popinto > * > table > tbody > tr > td,
+.sm-table > .cs-popinto > table > tbody > tr > td,
+.sm-table > .cs-popinto > * > table > tfoot > tr > td,
+.sm-table > .cs-popinto > table > tfoot > tr > td {
+    height: 3.75rem; /* 60px */
+    position: relative;
+    line-height: 1.3;
+    padding: .625rem; /* 10px */
+}
+
+.sm-table.thin > table > tbody > .edit-conditional {
+    box-shadow: none; /* used for add btns floating under girds */
+}
+
+.sm-table.thin > table > tbody > tr[p-template="EditItem"] ~ .edit-conditional,
+.sm-table.thin > .ui-tab-panel > table > tbody > tr[p-template="EditItem"] ~ .edit-conditional {
+    display: none;
+}
+
+.sm-table.tbody-groups > table > tbody > tr > td,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody > tr > td {
+    height: auto;
+}
+
+.sm-table.tbody-groups > table > tbody > tr:first-child > td,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody > tr:first-child > td,
+.sm-table.tbody-groups > table > tfoot > tr:first-child > td,
+.sm-table.tbody-groups > .ui-tab-panel > table > tfoot > tr:first-child > td {
+    padding-top: 1.25rem; /* 20px */
+}
+
+.sm-table.tbody-groups > table > tbody > tr:last-child > td,
+.sm-table.tbody-groups > .ui-tab-panel > table > tbody > tr:last-child > td,
+.sm-table.tbody-groups > table > tfoot > tr:last-child > td,
+.sm-table.tbody-groups > .ui-tab-panel > table > tfoot > tr:last-child > td {
+    padding-bottom: 1.25rem; /* 20px */
+}
+
+.sm-table.thicc > table > tbody > tr > td,
+.sm-table.thicc > .ui-tab-panel > table > tbody > tr > td,
+.sm-table.thicc > table > tfoot > tr > td,
+.sm-table.thicc > .ui-tab-panel > table > tfoot > tr > td,
+.sm-table.thicc > .ui-scroll > table > tfoot > tr > td,
+.sm-table.thicc > .cs-popinto > * > table > tbody > tr > td,
+.sm-table.thicc > .cs-popinto > table > tbody > tr > td,
+.sm-table.thicc > .cs-popinto > * > table > tfoot > tr > td,
+.sm-table.thicc > .cs-popinto > table > tfoot > tr > td {
+    height: 5rem; /* 80px */
+}
+
+.sm-table > table > tbody > tr.divider td, 
+.sm-table > .ui-tab-panel > table > tbody > tr.divider td,
+.sm-table > .ui-scroll > table > tbody > tr.divider td,
+.sm-table > .cs-popinto > * > table > tbody > tr.divider td,
+.sm-table > .cs-popinto > table > tbody > tr.divider td {
+    height: 3.75rem; /* 60px */
+}
+
+.sm-table > table > tbody > tr.thead td, 
+.sm-table > .ui-tab-panel > table > tbody > tr.thead td,
+.sm-table > .ui-scroll > table > tbody > tr.thead td,
+.sm-table > .ui-popinto > .ui-scroll > table > tbody > tr.thead td,
+.sm-table > .ui-popinto > table > tbody > tr.thead td {
+    height: 2.5rem; /* 40px */
+}
+
+.sm-table.thin > table > tbody > tr > td,
+.sm-table.thin > .ui-tab-panel > table > tbody > tr > td,
+.sm-table.thin > .ui-scroll > table > tbody > tr > td,
+.sm-table.thin > table > tfoot > tr > td,
+.sm-table.thin > .ui-tab-panel > table > tfoot > tr > td,
+.sm-table.thin > .cs-popinto > * > table > tbody > tr > td,
+.sm-table.thin > .cs-popinto > table > tbody > tr > td,
+.sm-table.thin > .cs-popinto > * > table > tfoot > tr > td,
+.sm-table.thin > .cs-popinto > table > tfoot > tr > td {
+    height: 3.125rem; /* 50px */
+    padding: .625em .3125rem; /* 10px 5px */
+}
+
+.sm-table:not(.thin) > table > tbody > tr > td:first-of-type:not([colspan]):not([class*="level-"]),
+.sm-table:not(.thin) > table > thead > tr > th:first-of-type,
+.sm-table:not(.thin) > table > tfoot > tr > td:first-of-type,
+.sm-table:not(.thin) > .ui-tab-panel > table > tbody > tr > td:first-of-type,
+.sm-table:not(.thin) > .ui-tab-panel > table > tfoot > tr > td:first-of-type,
+.sm-table:not(.thin) > .ui-tab-panel > table > thead > tr > th:first-of-type,
+.sm-table:not(.thin) > .ui-scroll > table > tbody > tr > td:first-of-type,
+.sm-table:not(.thin) > .ui-scroll > table > thead > tr > th:first-of-type,
+.sm-table:not(.thin) > .cs-popinto > table > tbody > tr > td:first-of-type,
+.sm-table:not(.thin) > .cs-popinto > table > tfoot > tr > td:first-of-type,
+.sm-table:not(.thin) > .cs-popinto > table > thead > tr > th:first-of-type,
+.sm-table:not(.thin) > .cs-popinto > * > table > tbody > tr > td:first-of-type,
+.sm-table:not(.thin) > .cs-popinto > * > table > tfoot > tr > td:first-of-type,
+.sm-table:not(.thin) > .cs-popinto > * > table > thead > tr > th:first-of-type {
+    padding-left: 1.25rem; /* 20px */
+}
+
+.sm-table:not(.thin) > table > tbody > tr > td:last-of-type:not([colspan]),
+.sm-table:not(.thin) > table > thead > tr > th:last-of-type,
+.sm-table:not(.thin) > table > tfoot > tr > td:last-of-type,
+.sm-table:not(.thin) > .ui-tab-panel > table > tbody > tr > td:last-of-type,
+.sm-table:not(.thin) > .ui-tab-panel > table > tfoot > tr > td:last-of-type,
+.sm-table:not(.thin) > .ui-tab-panel > table > thead > tr > th:last-of-type,
+.sm-table:not(.thin) > .ui-scroll > table > tbody > tr > td:last-of-type,
+.sm-table:not(.thin) > .ui-scroll > table > thead > tr > th:last-of-type,
+.sm-table:not(.thin) > .cs-popinto > * > table > tbody > tr > td:last-of-type,
+.sm-table:not(.thin) > .cs-popinto > * > table > tfoot > tr > td:last-of-type,
+.sm-table:not(.thin) > .cs-popinto > * > table > thead > tr > th:last-of-type {
+    padding-right: 1.25rem; /* 20px */
+}
+
+.sm-table:not(.thin) > table > tbody > tr > td.level-1 { padding-left: 3.125em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-2 { padding-left: 5em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-3 { padding-left: 6.875em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-4 { padding-left: 8.75em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-5 { padding-left: 10.625em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-6 { padding-left: 12.5em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-7 { padding-left: 14.375em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-8 { padding-left: 16.25em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-9 { padding-left: 18.125em; }
+.sm-table:not(.thin) > table > tbody > tr > td.level-10 { padding-left: 20em; }
+
+.sm-table td > strong
+.sm-table td strong.title {
+    color: var(--status-color, rgb(3,30,60));
+}
+
+.sm-table td small { font-size: .875em; }
+.sm-table td small:not([class*="color-"]) { color: rgb(144,156,163); }
+
+
+.sm-table td em { font-weight: 600; }
+.sm-table td em:not([class*="color-"]) { color: rgb(144,156,163); }
+
+.sm-table td a > em:not([class*="color-"]) { color: inherit; }
+
+.sm-table tr > [class*="r-"],
+.sm-table tr > [class*="e-"] { 
+    width: 2em; 
+    _box-sizing: content-box;
+}
+
+.sm-table tr > [class*="r-"].thin,
+.sm-table tr > [class*="e-"].thin {
+    width: 1em;
+}
+
+.sm-table tr > [class*="r-"] > svg,
+.sm-table tr > [class*="e-"] > svg { display: block; }
+
+.sm-table tr > td[class*="r-"],
+.sm-table tr > td[class*="e-"],
+.sm-table .ui-tab-panel tr > td[class*="r-"],
+.sm-table .ui-tab-panel tr > td[class*="e-"],
+.sm-table .popinto + * tr > td[class*="r-"],
+.sm-table .popinto + * tr > td[class*="e-"] {
+    padding-right: .3125rem;
+}
+
+.sm-table tr > td[class*="r-"] + td,
+.sm-table tr > td[class*="e-"] + td,
+.sm-table .ui-tab-panel tr > td[class*="r-"] + td,
+.sm-table .ui-tab-panel tr > td[class*="e-"] + td,
+.sm-table .popinto + * tr > td[class*="r-"] + td,
+.sm-table .popinto + * tr > td[class*="e-"] + td {
+    padding-left: .3125rem;
+}
+/* should be depricated w/ the use of box-sizing: content-box;@:415
+.sm-table.thin tr > [class*="r-"]:first-of-type,
+.sm-table.thin tr > [class*="e-"]:first-of-type,
+.sm-table.thin tr > [class*="r-"]:last-of-type,
+.sm-table.thin tr > [class*="e-"]:last-of-type {
+    width:  calc(2em + .625rem); /* 5 + 5 padding for either sides default padding for thin /
+}
+
+.sm-table tr > [class*="r-"].thin:first-of-type,
+.sm-table tr > [class*="e-"].thin:first-of-type,
+.sm-table tr > [class*="r-"].thin:last-of-type,
+.sm-table tr > [class*="e-"].thin:last-of-type {
+    width: calc(1em + 1.563rem); /* 20 + 5 padding for either sides default padding /
+}
+
+.sm-table.thin tr > [class*="r-"].thin:first-of-type,
+.sm-table.thin tr > [class*="e-"].thin:first-of-type,
+.sm-table.thin tr > [class*="r-"].thin:last-of-type,
+.sm-table.thin tr > [class*="e-"].thin:last-of-type {
+    width: calc(1em + .625rem); /* 5 + 5 padding for either sides default padding for thin /
+} */
+
+.sm-table tr > [class*="r-"]:first-of-type icon,
+.sm-table tr > [class*="e-"]:first-of-type icon,
+.sm-table tr > [class*="r-"]:last-of-type icon,
+.sm-table tr > [class*="e-"]:last-of-type icon {
+    display: block;
+}
+
+.sm-table tr > [class*="r-"]:first-of-type icon.invert,
+.sm-table tr > [class*="e-"]:first-of-type icon.invert,
+.sm-table tr > [class*="r-"]:last-of-type icon.invert,
+.sm-table tr > [class*="e-"]:last-of-type icon.invert {
+    display: flex;
+}
+
+/* td.bull support */
+.sm-table > table > tbody > tr > td.bull,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull,
+.sm-table > .ui-scroll > table > tbody > tr > td.bull,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull {
+    width: 1.5em;
+    padding-right: .3125em;
+}
+
+.sm-table > table > tbody > tr > td.bull + td,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull + td,
+.sm-table > .ui-scroll > table > tbody > tr > td.bull + td,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull + td,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull + td {
+    padding-left: .3125em;
+}
+
+.sm-table > table > tbody > tr > td.bull:first-child,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull:first-child,
+.sm-table > .ui-scroll > table > tbody > tr > td.bull:first-child,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull:first-child {
+    width: 2.75em;
+}
+
+.sm-table > table > tbody > tr > td.bull::before,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull::before,
+.sm-table > .ui-scroll > table > tbody > tr > td.bull::before,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull::before,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull::before {
+    margin: 0;
+    background-color: var(--status-color, var(--seq-color, rgba(255,255,255,0)));
+}
+
+.sm-table > table > tbody > tr > td.bull.has-tip > .tip, 
+.sm-table > table > tbody > tr > td.bull.has-tip.tip-top > .tip,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull.has-tip > .tip, 
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull.has-tip.tip-top > .tip,
+.sm-table > .ui-scroll > table > tbody > tr > td.bull.has-tip > .tip, 
+.sm-table > .ui-scroll > table > tbody > tr > td.bull.has-tip.tip-top > .tip,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull.has-tip > .tip,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull.has-tip > .tip,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull.has-tip.tip-top > .tip,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull.has-tip.tip-top > .tip {
+    bottom: calc(50% + 7px + .46em); /* aligns the tooltip horizontally with the bullet */
+}
+
+.sm-table > table > tbody > tr > td.bull.has-tip:first-child > .tip, 
+.sm-table > table > tbody > tr > td.bull.has-tip.tip-top:first-child > .tip,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull.has-tip:first-child > .tip, 
+.sm-table > .ui-tab-panel > table > tbody > tr > td.bull.has-tip.tip-top:first-child > .tip,
+.sm-table > .ui-scroll > table > tbody > tr > td.bull.has-tip:first-child > .tip, 
+.sm-table > .ui-scroll > table > tbody > tr > td.bull.has-tip.tip-top:first-child > .tip,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull.has-tip:first-child > .tip,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull.has-tip:first-child > .tip,
+.sm-table > .cs-popinto > table > tbody > tr > td.bull.has-tip.tip-top:first-child > .tip,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.bull.has-tip.tip-top:first-child > .tip {
+    margin-left: .35em; /* aligns the tooltip vertically with the bullet */
+}
+
+/* td.input-mark support
+** expects:
+** td.input-mark > input + .replace ONLY
+*/
+.sm-table > table > tbody > tr > td.input-mark,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.input-mark,
+.sm-table > .ui-scroll > table > tbody > tr > td.input-mark,
+.sm-table > .cs-popinto > table > tbody > tr > td.input-mark,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.input-mark {
+    display: table-cell;
+    width: 1.5em;
+    box-sizing: content-box; /* make sure inner width is enough */
+}
+
+.sm-table > table > tbody > tr > td.input-mark > .replace,
+.sm-table > .ui-tab-panel > table > tbody > tr > td.input-mark > .replace,
+.sm-table > .ui-scroll > table > tbody > tr > td.input-mark > .replace,
+.sm-table > .cs-popinto > table > tbody > tr > td.input-mark > .replace,
+.sm-table > .cs-popinto > * > table > tbody > tr > td.input-mark > .replace {
+    display: block;
+}
+
+/* Table Sequencing */
+.ui-ajax-draggable table {
+    position: relative;
+}
+
+.ui-ajax-draggable tr.ui-draggable-dragging,
+.ui-ajax-draggable tr.ui-draggable-dragging:hover,
+.ui-ajax-draggable tr.ui-draggable-dragging:not(.no-hover):hover {
+    background-color: #FFFFFF;
+    width: 100%;
+    border-radius: 0;
+    display: table;
+    width: 100%;
+    box-shadow: 0 0.2em .625em rgba(0,0,0,0.1), 0 0 .3125em rgba(0,0,0,0.1);
+    opacity: .7;
+    z-index: 10; /* over everything */
+}
+
+.ui-ajax-draggable tbody.dragging tr:nth-last-of-type(2) { border-radius: 0 0 5px 5px; }
+.ui-ajax-draggable tr.blank { background-color: #cad3d9; }
+.ui-ajax-draggable tr.blank td { opacity: 0; }
+
+.ui-ajax-draggable tr.droppable {
+    box-shadow: 0 0.5rem 1.25rem rgba(0,68,128,0),
+                inset 0 -1px 0 0 #bdc9d7,
+                inset 0 2px 0 0 #0c6afe;
+}
+
+
+.ui-ajax-draggable tr.droppable.end {
+    box-shadow: 0 0.5rem 1.25rem rgba(0,68,128,0),
+                inset 0 -2px 0 0 #0c6afe,
+                inset 0 -1px 0 0 #bdc9d7;
+}
+
+.ui-ajax-draggable tr.droppable.blank {
+    box-shadow: 0 0.5rem 1.25rem rgba(0,68,128,0),
+                inset 0 -1px 0 0 #bdc9d7,
+                inset 0 0 0 2px #0c6afe;
+}
+
+/* Table Sequencing */
+
+/* Basic Table - Legacy */
+table.basic {
+    width: 100%;
+}
+
+table.basic thead tr {
+    box-shadow: 0 8px 20px rgba(0,68,128,0), inset 0 -1px 0 0 #bdc9d7;
+}
+
+tbody.divide > tr + tr {
+	box-shadow: inset 0 1px 0 0 rgb(202,211,217); /* default */
+}
+
+[class*="ui-scroll"]:not(.ui-scroll-x) tbody.divide > tr:last-of-type:not(:only-child) {
+    box-shadow: inset 0 1px 0 0 rgb(202,211,217),
+                inset 0 -1px 0 0 rgb(202,211,217)
+}
+
+[class*="ui-scroll"] thead + tbody.divide > tr:last-of-type:only-child {
+    box-shadow: inset 0 -1px 0 0 rgb(202,211,217);
+}
+
+tr.ui-tab.ui-toggle + tr.ui-tab-panel table tbody.divide > tr + tr:last-of-type {
+    box-shadow: inset 0 1px 0 0 rgb(202,211,217),
+                inset 0 -1px 0 0 rgb(202,211,217)
+}
+
+.ui-dialog tbody.divide > tr + tr {
+	box-shadow: inset 0 1px 0 0 #eaedf1; /* Dialog / Modal Popup */
+}
+
+.ui-dialog .light-fill tbody.divide > tr + tr {
+	box-shadow: inset 0 1px 0 0 rgb(209, 218, 224); /* Dialog / Modal Popup in a light fill element */
+}
+
+table.basic th {
+    font-size: .875em;
+    font-weight: 600;
+    color: rgb(144,156,163);
+    line-height: 1;
+    padding: 5px 5px 10px 5px;
+}
+
+table.basic > tbody > tr > td {
+    position: relative;
+    line-height: 1;
+    padding: 5px;
+}
+
+table.basic > tbody > tr > td.flat {
+    padding: 0;
+}
+
+table.basic th:first-of-type,
+table.basic td:first-of-type {
+    padding-left: 0;
+}
+
+table.basic th:last-of-type,
+table.basic td:last-of-type {
+    padding-right: 0;
+}
+
+table.basic:not([class*="pad-"]) tbody tr:first-of-type td {
+    padding-top: .625rem;
+}
+
+/* depricated w/ use of box-sizing: content box :769
+table.basic td[class*="f-"]:first-of-type,
+table.basic td[class*="r-"]:first-of-type,
+table.basic td[class*="e-"]:first-of-type,
+table.basic td[class*="f-"]:last-of-type,
+table.basic td[class*="r-"]:last-of-type,
+table.basic td[class*="e-"]:last-of-type {
+    width: calc(2em + 1.563rem); /* 20 + 5 padding for either sides default padding
+}
+
+table.basic td[class*="f-"].thin:first-of-type,
+table.basic td[class*="r-"].thin:first-of-type,
+table.basic td[class*="e-"].thin:first-of-type,
+table.basic td[class*="f-"].thin:last-of-type,
+table.basic td[class*="r-"].thin:last-of-type,
+table.basic td[class*="e-"].thin:last-of-type {
+    width: calc(1em + 1.563rem); /* 20 + 5 padding for either sides default padding
+}
+*/
+table.basic td[class*="f-"]:first-of-type icon,
+table.basic td[class*="r-"]:first-of-type icon,
+table.basic td[class*="e-"]:first-of-type icon,
+table.basic td[class*="f-"]:last-of-type icon,
+table.basic td[class*="r-"]:last-of-type icon,
+table.basic td[class*="e-"]:last-of-type icon {
+    display: block;
+}
+
+table.basic td[class*="f-"]:first-of-type icon.invert,
+table.basic td[class*="r-"]:first-of-type icon.invert,
+table.basic td[class*="e-"]:first-of-type icon.invert,
+table.basic td[class*="f-"]:last-of-type icon.invert,
+table.basic td[class*="r-"]:last-of-type icon.invert,
+table.basic td[class*="e-"]:last-of-type icon.invert {
+    display: flex;
+}
+/* Basic Table */
+
+/* Basic Table - New
+** Expects: 
+**** table.basic > thead > tr > th
+**** table.basic > thead > tr > td
+** Options:
+**** pad: 10, 20, 30, 40, squish, shrink and chop
+**** space: 5, 10, 20, 30, 40
+**** divide (but cannot combo w/ space)
+*/
+table.basic thead tr {
+	box-shadow: 0 8px 20px rgba(0,68,128,0), inset 0 -1px 0 0 #bdc9d7;
+}
+
+table.basic[class*="space-"] {
+	border-collapse: collapse;
+}
+
+table.basic.divide > tbody > tr + tr,
+table.basic > tbody > tr + tr {
+	box-shadow: inset 0 1px 0 0 rgb(202,211,217); /* default */
+}
+
+table.basic th {
+    font-size: .875em;
+    font-weight: 600;
+    color: rgb(144,156,163);
+    line-height: 1;
+}
+
+table.basic th:not(.tac):not(.tar):not(.tal) {
+    text-align: left;
+}
+
+table.basic:not([class*="pad-"]) th:not([class*="pad-"]) { padding: .625em; }
+
+table.basic > tbody > tr > td {
+    position: relative;
+    line-height: 1;
+}
+
+table.basic:not([class*="pad-"]) > tbody > tr > td:not([class*="pad-"]) { padding: .625em; }
+
+table.basic.chop th:first-of-type,
+table.basic.chop td:first-of-type { padding-left: 0; }
+
+table.basic.chop th:last-of-type,
+table.basic.chop td:last-of-type { padding-right: 0; }
+
+table.basic > tbody > tr > td[class*=" e-"],
+table.basic > tbody > tr > td[class^="e-"],
+table.basic > tbody > tr > td[class*=" r-"],
+table.basic > tbody > tr > td[class^="r-"] { 
+    width: 2em; 
+    box-sizing: content-box;
+}
+
+table.basic > tbody > tr > td[class*=" e-"].input-mark,
+table.basic > tbody > tr > td[class^="e-"].input-mark,
+table.basic > tbody > tr > td[class*=" r-"].input-mark,
+table.basic > tbody > tr > td[class^="r-"].input-mark {
+    width: 1.5em;
+}
+
+table.basic > tbody > tr > td.thin[class*=" e-"],
+table.basic > tbody > tr > td.thin[class^="e-"],
+table.basic > tbody > tr > td.thin[class*=" r-"],
+table.basic > tbody > tr > td.thin[class^="r-"] { 
+    width: 1em;
+}
+
+table.basic td.preview { 
+    width: 5em; 
+    box-sizing: content-box;
+}
+
+table.basic > tbody > tr > td.level-1,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-1:not([class*="pad-"]):first-of-type { padding-left: 3.125em; }
+
+table.basic > tbody > tr > td.level-2,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-2:not([class*="pad-"]):first-of-type { padding-left: 5em; }
+
+table.basic > tbody > tr > td.level-3,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-3:not([class*="pad-"]):first-of-type { padding-left: 6.875em; }
+
+table.basic > tbody > tr > td.level-4,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-4:not([class*="pad-"]):first-of-type { padding-left: 8.75em; }
+
+table.basic > tbody > tr > td.level-5,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-5:not([class*="pad-"]):first-of-type { padding-left: 10.625em; }
+
+table.basic > tbody > tr > td.level-6,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-6:not([class*="pad-"]):first-of-type { padding-left: 12.5em; }
+
+table.basic > tbody > tr > td.level-7,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-7:not([class*="pad-"]):first-of-type { padding-left: 14.375em; }
+
+table.basic > tbody > tr > td.level-8,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-8:not([class*="pad-"]):first-of-type { padding-left: 16.25em; }
+
+table.basic > tbody > tr > td.level-9,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-9:not([class*="pad-"]):first-of-type { padding-left: 18.125em; }
+
+table.basic > tbody > tr > td.level-10,
+table.basic[class*="pad-"]:not(.chop) > tbody > tr > td.level-10:not([class*="pad-"]):first-of-type { padding-left: 20em; }
+
+table.basic.size-0 tr > *,
+table.basic thead.size-0 tr > *,
+table.basic tbody.size-0 tr > *,
+table.basic tr.size-0 > *,
+table.basic tbody.size-0 + tfoot tr > * {
+    height: 1.75rem; /* 28px */
+}
+
+table.basic.size-1 tr > *,
+table.basic thead.size-1 tr > *,
+table.basic tbody.size-1 tr > *,
+table.basic tr.size-1 > *,
+table.basic tbody.size-1 + tfoot tr > * {
+    height: 2.5rem; /* 40px */
+}
+
+table.basic.size-2 tr > *,
+table.basic thead.size-2 tr > *,
+table.basic tbody.size-2 tr > *,
+table.basic tr.size-2 > *,
+table.basic tbody.size-2 + tfoot tr > * {
+    height: 3.125rem; /* 50px */
+}
+
+table.basic.size-3 tr > *,
+table.basic thead.size-3 tr > *,
+table.basic tbody.size-3 tr > *,
+table.basic tr.size-3 > *,
+table.basic tbody.size-3 + tfoot tr > * {
+    height: 3.75rem; /* 60px */
+}
+
+table.basic.size-4 tr > *,
+table.basic thead.size-4 tr > *,
+table.basic tbody.size-4 tr > *,
+table.basic tr.size-4 > *,
+table.basic tbody.size-4 + tfoot tr > * {
+    height: 5rem; /* 80px */
+}
+
+/* Pad 10 */
+table.basic.pad-10,
+table.basic.pad-10.shrink,
+table.basic.pad-10.squish,
+table.basic.pad-10.slice,
+table.basic.pad-10.chop {
+    padding: 0;
+}
+
+table.basic.pad-10 td:not([class*="pad-"]),
+table.basic.pad-10 th:not([class*="pad-"]) {
+    padding-top: .3125em;
+    padding-bottom: .3125em;
+}
+
+table.basic.pad-10.squish td:not([class*="pad-"]),
+table.basic.pad-10.squish th:not([class*="pad-"]) {
+    padding-top: .125em;
+    padding-bottom: .125em;
+}
+
+table.basic.pad-10 > tbody > tr > td:not([class*="pad-"]):not(:first-of-type):not(:last-of-type),
+table.basic.pad-10 > thead > tr > th:not([class*="pad-"]):not(:first-of-type):not(:last-of-type) {
+	padding-left: .3125em;
+    padding-right: .3125em;
+}
+
+table.basic.pad-10.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-10.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .125em;
+    padding-right: .125em;
+}
+
+table.basic.pad-10:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-10:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .325em;
+}
+
+table.basic.pad-10.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-10.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .125em;
+}
+
+table.basic.pad-10:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-10:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .3125em;
+}
+
+table.basic.pad-10.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-10.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .125em;
+}
+
+table.basic.pad-10 > tbody > tr > td[class*=" e-"]:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > td[class^="e-"]:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > td[class*=" r-"]:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > td[class^="r-"]:not([class*="pad-"]) {
+    padding-right: .125em !important;
+}
+
+table.basic.pad-10 > tbody > tr > td[class*=" e-"] + td:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > td[class^="e-"] + td:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > td[class*=" r-"] + td:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > td[class^="r-"] + td:not([class*="pad-"]) {
+    padding-left: .125em !important;
+}
+
+/* Pad 20 */
+table.basic.pad-20,
+table.basic.pad-20.shrink,
+table.basic.pad-20.squish,
+table.basic.pad-20.slice,
+table.basic.pad-20.chop {
+    padding: 0;
+}
+
+table.basic.pad-20 td:not([class*="pad-"]),
+table.basic.pad-20 th:not([class*="pad-"]) {
+    padding-top: .625em;
+    padding-bottom: .625em;
+}
+
+table.basic.pad-20.squish td:not([class*="pad-"]),
+table.basic.pad-20.squish th:not([class*="pad-"]) {
+    padding-top: .3125em;
+    padding-bottom: .3125em;
+}
+
+table.basic.pad-20 > tbody > tr > td:not([class*="pad-"]):not(:first-of-type):not(:last-of-type),
+table.basic.pad-20 > thead > tr > th:not([class*="pad-"]):not(:first-of-type):not(:last-of-type) {
+	padding-left: .625em;
+    padding-right: .625em;
+}
+
+table.basic.pad-20.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-20.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .3125em;
+    padding-right: .3125em;
+}
+
+table.basic.pad-20:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-20:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 1.25em;
+}
+
+table.basic.pad-20.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-20.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .625em;
+}
+
+table.basic.pad-20:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-20:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 1.25em;
+}
+
+table.basic.pad-20.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-20.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .625em;
+}
+
+table.basic.pad-20 > tbody > tr > td[class*=" e-"]:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > td[class^="e-"]:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > td[class*=" r-"]:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > td[class^="r-"]:not([class*="pad-"]) {
+    padding-right: .3125em !important;
+}
+
+table.basic.pad-20 > tbody > tr > td[class*=" e-"] + td:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > td[class^="e-"] + td:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > td[class*=" r-"] + td:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > td[class^="r-"] + td:not([class*="pad-"]) {
+    padding-left: .3125em !important;
+}
+
+/* Pad 30 */
+table.basic.pad-30,
+table.basic.pad-30.shrink,
+table.basic.pad-30.squish,
+table.basic.pad-30.slice,
+table.basic.pad-30.chop {
+    padding: 0;
+}
+
+table.basic.pad-30 td:not([class*="pad-"]),
+table.basic.pad-30 th:not([class*="pad-"]) {
+    padding-top: .938em;
+    padding-bottom: .938em;
+}
+
+table.basic.pad-30.squish td:not([class*="pad-"]),
+table.basic.pad-30.squish th:not([class*="pad-"]) {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+table.basic.pad-30 > tbody > tr > td:not([class*="pad-"]):not(:first-of-type):not(:last-of-type),
+table.basic.pad-30 > thead > tr > th:not([class*="pad-"]):not(:first-of-type):not(:last-of-type) {
+	padding-left: .938em;
+    padding-right: .938em;
+}
+
+table.basic.pad-30.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-30.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+table.basic.pad-30:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-30:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 1.875em;
+}
+
+table.basic.pad-30.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-30.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .938em;
+}
+
+table.basic.pad-30:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-30:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 1.875em;
+}
+
+table.basic.pad-30.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-30.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .938em;
+}
+
+table.basic.pad-30 > tbody > tr > td[class*=" e-"]:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="e-"]:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class*=" r-"]:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="r-"]:not([class*="pad-"]) {
+    padding-right: .5em !important;
+}
+
+table.basic.pad-30 > tbody > tr > td[class*=" e-"] + td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="e-"] + td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class*=" r-"] + td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="r-"] + td:not([class*="pad-"]) {
+    padding-left: .5em !important;
+}
+
+/* Pad 40 */
+table.basic.pad-40,
+table.basic.pad-40.shrink,
+table.basic.pad-40.squish,
+table.basic.pad-40.slice,
+table.basic.pad-40.chop {
+    padding: 0;
+}
+
+table.basic.pad-40 td:not([class*="pad-"]),
+table.basic.pad-40 th:not([class*="pad-"]) {
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+}
+
+table.basic.pad-40.squish td:not([class*="pad-"]),
+table.basic.pad-40.squish th:not([class*="pad-"]) {
+    padding-top: .625em;
+    padding-bottom: .625em;
+}
+
+table.basic.pad-40 > tbody > tr > td:not([class*="pad-"]):not(:first-of-type):not(:last-of-type),
+table.basic.pad-40 > thead > tr > th:not([class*="pad-"]):not(:first-of-type):not(:last-of-type) {
+	padding-left: 1.25em;
+    padding-right: 1.25em;
+}
+
+table.basic.pad-40.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-40.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .625em;
+    padding-right: .625em;
+}
+
+table.basic.pad-40:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-40:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 2.5em;
+}
+
+table.basic.pad-40.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-40.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 1.25em;
+}
+
+table.basic.pad-40:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-40:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 2.5em;
+}
+
+table.basic.pad-40.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-40.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 1.25em;
+}
+
+table.basic.pad-30 > tbody > tr > td[class*=" e-"]:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="e-"]:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class*=" r-"]:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="r-"]:not([class*="pad-"]) {
+    padding-right: .625em;
+}
+
+table.basic.pad-30 > tbody > tr > td[class*=" e-"] + td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="e-"] + td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class*=" r-"] + td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > td[class^="r-"] + td:not([class*="pad-"]) {
+    padding-left: .625em;
+}
+
+/* Basic Table 'Spacing' */
+table.basic.space-5:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-5[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid .3125em transparent; }
+
+table.basic.space-10:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-10[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid .625em transparent; }
+
+table.basic.space-20:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-20[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid 1.25em transparent; }
+
+table.basic.space-30:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-30[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid 1.875em transparent; }
+
+table.basic.space-40:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-40[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid 2.5em transparent; }
+
+/* Column Sort */
+thead[data-sticky] {
+	box-shadow: none;
+}
+
+[data-sticky] th {
+	background: #fff;
+	box-shadow: 0 1px 0 #bdc9d7;
+	position: relative;
+	z-index: 2;
+}
+
+th .ui-sort {
+    color: #909ca3;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+th .ui-sort::after {
+	display: inline-block;
+	vertical-align: -.15em;
+	margin-left: 0.3125em;
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	background-image: url('/cms/svg/admin/icon_arrow_small.16.4db2ff.svg');
+	opacity: 0;
+	visibility: hidden;
+	transition: .2s;
+}
+
+th .ui-sort:hover {
+	color: #031e3c;
+}
+
+th .ui-sort.active {
+    color: #031e3c;
+}
+
+th .ui-sort.desc::after {
+	transform: rotate(180deg);
+}
+
+th .ui-sort.active::after {
+	opacity: 1;
+    visibility: visible;
+    content: '';
+}
+
+/* Column Sort */
+
+/* Paging */
+.sm-paging {
+    padding-top: 1.25em;
+}
+
+[class*="space-"] > .sm-paging {
+    padding-top: 0;
+}
+
+.sm-paging .input input,
+.sm-paging .input select {
+	font-size: 1em;
+	font-family: inherit;
+	margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+	padding: 3px 10px 0;
+	line-height: 1;
+	font-weight: 400;
+	height: 40px;
+	border-radius: 3px;
+	background-color: #f6f9fd;
+	box-shadow: inset 0 0 0 0 transparent;
+	border: solid 1px #d7dce0;
+	transition: border .3s ease, box-shadow .3s ease, background-color .3s ease;
+}
+
+.sm-paging.mini .input input,
+.sm-paging.mini .input select {
+    font-size: .875rem;
+    height: 32px;
+}
+
+.sm-paging .input input:hover,
+.sm-paging .input select:hover,
+.sm-paging .input input:focus,
+.sm-paging .input select:focus {
+    background-color: #FFFFFF;
+}
+
+.sm-paging .result-count + small {
+    font-size: .875em;
+    color: rgb(144,156,163);
+}
+
+@supports (-webkit-appearance: none) {
+    .sm-paging .result-count {
+        position: relative;
+    }
+
+    .sm-paging .result-count:before {
+        content: '';
+		height: .625em;
+		width: .625em;
+		position: absolute;
+		top: 50%;
+		margin-top: -.45em;
+		right: .625rem;
+		pointer-events: none;
+        border-width: 2px;
+        border-radius: 1px;
+        border-color: #d3dde4;
+        border-style: none solid solid none;
+        pointer-events: none;
+        transform: rotate(45deg);
+        transition: border-color .3s ease;
+    }
+
+    .sm-paging .result-count:hover:before {
+        border-color: #0c6afe;
+    }
+
+    .sm-paging .input select {
+        -webkit-appearance: none;
+    }
+}
+
+.sm-paging .input select {
+    padding: 5px 24px 0 10px;
+}
+
+.sm-paging .page .input input {
+    width: 50px;
+    text-align: center;
+}
+
+.sm-paging.mini .page .input input {
+    width: 40px;
+}
+
+/* Paging */
+
+/* Search Assist */
+_.ui-loader.loading .sm-filter,
+.ui-deferred:not(.loaded) .sm-filter {
+    /* moved to visibility because display causes margin collapse */
+    _display: none;
+    visibility: hidden;
+    height: 0;
+}
+
+[class*="space-"]:not([class*='flex-']) > * + .sm-filter {
+    margin-top: 0; /* removes NLF margin for css visibility control */
+}
+
+.sm-filter .count {
+    flex: 0 0 auto;
+    padding: 7px 20px 2px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-left: solid 1px rgb(202,211,217);
+    line-height: 1;
+    align-self: stretch;
+}
+
+.sm-filter .count a.clear {
+    font-size: .875em;
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+
+header .sm-filter .scope {
+    margin: -10px 0 -10px -20px;
+    min-height: 3.75em;
+}
+
+header ~ .sm-filter .scope {
+    flex: 1 1 auto;
+    margin: 10px 0 -10px -20px; 
+}
+
+.sm-filter .scope:empty + .count {
+    display: none; /* attempts to hide when there are no filters applying */
+}
+
+.sm-filter .scope li {
+	padding: 13px 15px 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+	position: relative;
+	border-radius: 3px 0 0 3px;
+	background-color: #FFFFFF;
+	transition: box-shadow .3s ease, background-color .3s ease, color .3s ease, padding .3s ease-in-out, z-index .5s;
+    line-height: 1;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    box-shadow: inset 2px 0 0 rgb(63,160,255), 
+                inset 0 2px 0 rgb(63,160,255), 
+                inset 0 -2px 0 rgb(63,160,255),
+                inset -5px 0 0 transparent;
+    color: rgb(63,160,255);
+    font-weight: 600;
+}
+
+.sm-filter .scope li.master {
+    display: none;
+}
+
+.sm-filter .scope li:hover {
+    background-color: rgb(12,106,254);
+    box-shadow: inset 2px 0 0 rgb(12,106,254), 
+                inset 0 2px 0 rgb(12,106,254), 
+                inset 0 -2px 0 rgb(12,106,254),
+                inset -12px 0 0 #FFFFFF;
+	color: rgb(255,255,255);
+	padding-right: 12px;
+    padding-left: 18px;
+	z-index: 1;
+	transition: box-shadow .3s linear, background-color .3s ease, color .3s ease, padding .3s linear, z-index .3s;
+}
+
+.sm-filter .scope li .bull:before {
+	box-shadow: 0 0 0 0 rgba(255,255,255,0);
+	transition: box-shadow .3s ease, transform .3s ease-in-out;
+}
+
+.sm-filter .scope li:hover .bull:before {
+	box-shadow: 0 0 0 3px rgba(255,255,255,1);
+    transform: translate(-3px, 0);
+}
+
+.sm-filter .scope li a {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	left: calc(100% - 12px);
+	width: 14px;
+    transition: background-color .3s ease, width .3s linear, box-shadow .3s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 3px 3px 0;
+    background-color: #FFFFFF;
+    box-shadow: inset -2px 0 0 rgb(63,160,255), 
+                inset 0 2px 0 rgb(63,160,255), 
+                inset 0 -2px 0 rgb(63,160,255);
+}
+
+.sm-filter .scope li:hover a {
+    background-color: rgb(12,106,254);
+    box-shadow: inset -2px 0 0 rgb(12,106,254), 
+                inset 0 2px 0 rgb(12,106,254), 
+                inset 0 -2px 0 rgb(12,106,254);
+    width: 30px;
+}
+
+
+.sm-filter .scope li a::before {
+    content: '';
+    height: .875em;
+    width: .875em;
+    flex: 0 0 auto;
+    transition: opacity .3s ease;
+    opacity: 0;
+    background-image: url( /cms/svg/admin/icon_cancel.16.5af5ff.svg );
+}
+
+.sm-filter .scope li:hover a::before {
+    opacity: 1;
+}
+
+/* 
+.sm-filter .scope li:hover a {
+	opacity: 1;
+	transition: opacity .3s ease;
+}
+.sm-filter .scope li a:before,
+.sm-filter .scope li a:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 2px;
+	width: 60%;
+	border-radius: 2px;
+	margin: -1px 0 0 -40%;
+	background-color: rgb(90,245,255);
+}
+
+.sm-filter .scope li a:before {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.sm-filter .scope li a:after {
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+*/
+/* Search Assist */
+
+/* Popinto */
+
+.cs-popinto {
+	position: relative;
+}
+
+.cs-popinto:not([class*="flex-"]) {
+    display: flex;
+}
+
+.cs-popinto:not([class*="flex-"]) > .ui-scroll {
+    align-self: stretch;
+}
+
+.cs-popinto .popinto {
+	position: absolute;
+	margin: 0;
+    top: 0;
+    right: 0;
+    transition: opacity .3s ease-in-out, width .3s ease-in-out;
+    opacity: 0;
+    background-color: #FFFFFF;
+	pointer-events: none;
+	box-shadow: 0 0 0 rgba(0,0,0,0);
+	z-index: 2; /* puts pver everything but flyouts */
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+input[type="hidden"][id$="__edit_"]:not([value=""]) ~ [data-popinto] .popinto,
+.cs-popinto .popinto.active {
+    width: 32.5rem;
+}
+
+.cs-popinto .popinto > *:only-child {
+    transition: transform .3s ease-in-out;
+    transform: translate(120%, 0);
+    width: 32.5rem;
+    height: 100%;
+    max-height: calc(100vh - 70px);
+}
+
+input[type="hidden"][id$="__edit_"]:not([value=""]) ~ [data-popinto] .popinto > *:only-child,
+.cs-popinto .popinto.active > *:only-child {
+    transform: none;
+}
+
+.ui-ajax-popinto .popinto {
+    opacity: 1;
+    transform: none;
+	box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
+}
+
+.popinto + * {
+	transition: width .3s ease-in-out;
+	width: 100%;
+}
+
+input[type="hidden"][id$="__edit_"][value=""] + [data-popinto] {
+    width: 100%;
+}
+
+.popinto.active + * {
+    width: calc(100% - 32.5rem);
+    transition: width .3s ease-in-out;
+} 
+
+input[type="hidden"][id$="__edit_"]:not([value=""]) + input[type="hidden"]:not([value="Delete"]) ~ [data-popinto] .popinto + * {
+    width: calc(100% - 32.5rem);
+}
+
+input[type="hidden"][id$="__edit_"]:not([value=""]) + input[type="hidden"]:not([value="Delete"]) ~ [data-popinto] .popinto-head {
+    width: calc(100% - 32.5rem);
+}
+
+.popinto > .btn:last-child {
+	align-self: center;
+}
+
+.popinto + .ui-scroll {
+    overflow: auto;
+}
+
+/* Popinto */

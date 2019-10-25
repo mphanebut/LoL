@@ -1,0 +1,8 @@
+#MainZone > app-view-box {
+    width: auto;
+    grid-column: span 12;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}

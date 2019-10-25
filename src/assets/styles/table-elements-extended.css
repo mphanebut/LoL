@@ -1,0 +1,489 @@
+/* Layout Modifications */
+section.sm-table,
+form.sm-table {
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 1; /* Allows action dropdowns to be above the following section */
+}
+
+section.sm-table:before {
+    display: none;
+}
+
+.sm-table [class*="limit-"] {
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.sm-table div[class*="limit-"] { display: block; }
+.sm-table [class*="limit-"][class*="flex-"] { display: flex; }
+.sm-table td[class*="limit-"] { display: table-cell; }
+
+.sm-table .limit-small { max-width: 15em; }
+.sm-table .limit-med { max-width: 25em; }
+.sm-table .limit-large { max-width: 35em; }
+
+/* Layout Modifications */
+/* Removed & Sets shadow */
+
+.sm-table .section-panel table,
+.section-panel.sm-table table,
+.section-panel .sm-table table {
+    box-shadow: none;
+}
+
+/* Basic Table Extended
+** Expects: 
+**** table.basic > thead > tr > th
+**** table.basic > thead > tr > td
+** Options:
+**** pad: 10, 20, 30, 40, squish, shrink and chop
+**** space: 5, 10, 20, 30, 40
+**** divide (but cannot combo w/ space)
+*/
+table.basic thead tr {
+	box-shadow: 0 8px 20px rgba(0,68,128,0), inset 0 -1px 0 0 #bdc9d7;
+}
+
+table.basic[class*="space-"] {
+	border-collapse: collapse;
+}
+
+table.basic.divide > tbody > tr + tr {
+	box-shadow: inset 0 1px 0 0 rgb(202,211,217); /* default */
+}
+
+.ui-scroll table.basic.divide > tbody > tr:last-of-type {
+    box-shadow: inset 0 1px 0 0 rgb(202,211,217),
+                inset 0 -1px 0 0 rgb(202,211,217); /* default */
+}
+
+table.basic th {
+    font-size: .875em;
+    font-weight: 600;
+    color: rgb(144,156,163);
+    line-height: 1;
+}
+
+table.basic:not([class*="pad-"]) th:not([class*="pad-"]) { padding: .625em; }
+
+table.basic > tbody > tr > td {
+    position: relative;
+    line-height: 1;
+}
+
+table.basic:not([class*="pad-"]) > tbody > tr > td:not([class*="pad-"]) { padding: .625em; }
+
+table.basic.chop th:first-of-type,
+table.basic.chop td:first-of-type { padding-left: 0; }
+
+table.basic.chop th:last-of-type,
+table.basic.chop td:last-of-type { padding-right: 0; }
+
+table.basic:not([class*="pad-"]) td[class*="r-"]:first-of-type,
+table.basic:not([class*="pad-"]) td[class*="e-"]:first-of-type,
+table.basic:not([class*="pad-"]) td[class*="r-"]:last-of-type,
+table.basic:not([class*="pad-"]) td[class*="e-"]:last-of-type {
+    width: calc(2em + 1.563rem); /* 20 + 5 padding for either sides default padding */
+}
+
+table.basic:not([class*="pad-"]) td[class*="r-"].thin:first-of-type,
+table.basic:not([class*="pad-"]) td[class*="e-"].thin:first-of-type,
+table.basic:not([class*="pad-"]) td[class*="r-"].thin:last-of-type,
+table.basic:not([class*="pad-"]) td[class*="e-"].thin:last-of-type {
+    width: calc(1em + 1.563rem); /* 20 + 5 padding for either sides default padding */
+}
+
+/* Basic Table - Padding Adjustments */
+/* Pad 10 */
+table.basic.pad-10,
+table.basic.pad-10.shrink,
+table.basic.pad-10.squish,
+table.basic.pad-10.slice,
+table.basic.pad-10.chop {
+    padding: 0;
+}
+
+table.basic.pad-10 td:not([class*="pad-"]),
+table.basic.pad-10 th:not([class*="pad-"]) {
+    padding-top: .3125em;
+    padding-bottom: .3125em;
+}
+
+table.basic.pad-10.squish td:not([class*="pad-"]),
+table.basic.pad-10.squish th:not([class*="pad-"]) {
+    padding-top: .125em;
+    padding-bottom: .125em;
+}
+
+table.basic.pad-10 > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-10 > tbody > tr > th:not([class*="pad-"]) {
+	padding-left: .3125em;
+    padding-right: .3125em;
+}
+
+table.basic.pad-10.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-10.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .125em;
+    padding-right: .125em;
+}
+
+table.basic.pad-10:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-10:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .325em;
+}
+
+table.basic.pad-10.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-10.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .125em;
+}
+
+table.basic.pad-10:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-10:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .3125em;
+}
+
+table.basic.pad-10.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-10.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .125em;
+}
+
+table.basic.pad-10 > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-10 > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-10 > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-10 > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + .625em + .3125em); }
+
+table.basic.pad-10.shrink > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-10.shrink > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-10.shrink > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-10.shrink > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + .3125em + .125em); }
+
+table.basic.pad-10 > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-10 > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-10 > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-10 > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + .625em + .3125em); }
+
+table.basic.pad-10.shrink > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-10.shrink > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-10.shrink > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-10.shrink > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + .3125em + .125em); }
+
+table.basic.pad-10 td.preview { width: calc(5em + .625em + .3125em); }
+table.basic.pad-10.shrink td.preview { width: calc(5em + .3125em + .125em); }
+table.basic.pad-10.chop td.preview { width: 5em; }
+
+/* Pad 20 */
+table.basic.pad-20,
+table.basic.pad-20.shrink,
+table.basic.pad-20.squish,
+table.basic.pad-20.slice,
+table.basic.pad-20.chop {
+    padding: 0;
+}
+
+table.basic.pad-20 td:not([class*="pad-"]),
+table.basic.pad-20 th:not([class*="pad-"]) {
+    padding-top: .625em;
+    padding-bottom: .625em;
+}
+
+table.basic.pad-20.squish td:not([class*="pad-"]),
+table.basic.pad-20.squish th:not([class*="pad-"]) {
+    padding-top: .3125em;
+    padding-bottom: .3125em;
+}
+
+table.basic.pad-20 > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-20 > tbody > tr > th:not([class*="pad-"]) {
+	padding-left: .625em;
+    padding-right: .625em;
+}
+
+table.basic.pad-20.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-20.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .3125em;
+    padding-right: .3125em;
+}
+
+table.basic.pad-20:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-20:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 1.25em;
+}
+
+table.basic.pad-20.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-20.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .625em;
+}
+
+table.basic.pad-20:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-20:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 1.25em;
+}
+
+table.basic.pad-20.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-20.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .625em;
+}
+
+table.basic.pad-20 > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-20 > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-20 > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-20 > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + 1.25em + .625em); }
+
+table.basic.pad-20.shrink > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-20.shrink > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-20.shrink > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-20.shrink > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + .625em + .3125em); }
+
+table.basic.pad-20 > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-20 > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-20 > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-20 > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + 1.25em + .625em); }
+
+table.basic.pad-20.shrink > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-20.shrink > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-20.shrink > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-20.shrink > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + .625em + .3125em); }
+
+table.basic.pad-20 td.preview { width: calc(5em + 1.25em + .625em); }
+table.basic.pad-20.shrink td.preview { width: calc(5em + .625em + .3125em); }
+table.basic.pad-20.chop td.preview { width: 5em; }
+
+/* Pad 30 */
+table.basic.pad-30,
+table.basic.pad-30.shrink,
+table.basic.pad-30.squish,
+table.basic.pad-30.slice,
+table.basic.pad-30.chop {
+    padding: 0;
+}
+
+table.basic.pad-30 td:not([class*="pad-"]),
+table.basic.pad-30 th:not([class*="pad-"]) {
+    padding-top: .938em;
+    padding-bottom: .938em;
+}
+
+table.basic.pad-30.squish td:not([class*="pad-"]),
+table.basic.pad-30.squish th:not([class*="pad-"]) {
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+table.basic.pad-30 > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-30 > tbody > tr > th:not([class*="pad-"]) {
+	padding-left: .938em;
+    padding-right: .938em;
+}
+
+table.basic.pad-30.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-30.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+table.basic.pad-30:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-30:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 1.875em;
+}
+
+table.basic.pad-30.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-30.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: .938em;
+}
+
+table.basic.pad-30:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-30:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 1.875em;
+}
+
+table.basic.pad-30.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-30.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: .938em;
+}
+
+table.basic.pad-30 > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-30 > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-30 > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-30 > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + 1.875em + .938em); }
+
+table.basic.pad-30.shrink > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-30.shrink > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-30.shrink > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-30.shrink > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + .938em + .5em); }
+
+table.basic.pad-30 > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-30 > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-30 > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-30 > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + 1.875em + .938em); }
+
+table.basic.pad-30.shrink > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-30.shrink > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-30.shrink > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-30.shrink > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + .938em + .5em); }
+
+table.basic.pad-30 td.preview { width: calc(5em + 1.875em + .938em); }
+table.basic.pad-30.shrink td.preview { width: calc(5em + .938em + .5em); }
+table.basic.pad-30.chop td.preview { width: 5em; }
+
+/* Pad 40 */
+table.basic.pad-40,
+table.basic.pad-40.shrink,
+table.basic.pad-40.squish,
+table.basic.pad-40.slice,
+table.basic.pad-40.chop {
+    padding: 0;
+}
+
+table.basic.pad-40 td:not([class*="pad-"]),
+table.basic.pad-40 th:not([class*="pad-"]) {
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+}
+
+table.basic.pad-40.squish td:not([class*="pad-"]),
+table.basic.pad-40.squish th:not([class*="pad-"]) {
+    padding-top: .625em;
+    padding-bottom: .625em;
+}
+
+table.basic.pad-40 > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-40 > tbody > tr > th:not([class*="pad-"]) {
+	padding-left: 1.25em;
+    padding-right: 1.25em;
+}
+
+table.basic.pad-40.shrink > tbody > tr > td:not([class*="pad-"]),
+table.basic.pad-40.shrink > thead > tr > th:not([class*="pad-"]) {
+    padding-left: .625em;
+    padding-right: .625em;
+}
+
+table.basic.pad-40:not(.chop) > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-40:not(.chop) > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 2.5em;
+}
+
+table.basic.pad-40.shrink > tbody > tr > td:not([class*="pad-"]):first-of-type,
+table.basic.pad-40.shrink > thead > tr > th:not([class*="pad-"]):first-of-type {
+    padding-left: 1.25em;
+}
+
+table.basic.pad-40:not(.chop) > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-40:not(.chop) > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 2.5em;
+}
+
+table.basic.pad-40.shrink > tbody > tr > td:not([class*="pad-"]):last-of-type,
+table.basic.pad-40.shrink > thead > tr > th:not([class*="pad-"]):last-of-type {
+	padding-right: 1.25em;
+}
+
+table.basic.pad-40 > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-40 > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-40 > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-40 > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + 2.5em + 1.25em); }
+
+table.basic.pad-40.shrink > tbody > tr > td[class*=" e-"]:first-of-type,
+table.basic.pad-40.shrink > tbody > tr > td[class^="e-"]:first-of-type,
+table.basic.pad-40.shrink > tbody > tr > td[class*=" r-"]:first-of-type,
+table.basic.pad-40.shrink > tbody > tr > td[class^="r-"]:first-of-type { width: calc(2em + 1.25em + .625em); }
+
+table.basic.pad-40 > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-40 > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-40 > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-40 > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + 2.5em + 1.25em); }
+
+table.basic.pad-40.shrink > tbody > tr > td.thin[class*=" e-"]:first-of-type,
+table.basic.pad-40.shrink > tbody > tr > td.thin[class^="e-"]:first-of-type,
+table.basic.pad-40.shrink > tbody > tr > td.thin[class*=" r-"]:first-of-type,
+table.basic.pad-40.shrink > tbody > tr > td.thin[class^="r-"]:first-of-type { width: calc(1em + 1.25em + .625em); }
+
+table.basic.pad-40 td.preview { width: calc(5em + 2.5em + 1.25em); }
+table.basic.pad-40.shrink td.preview { width: calc(5em + 1.25em + .625em); }
+table.basic.pad-40.chop td.preview { width: 5em; }
+
+/* Basic Table 'Spacing' */
+table.basic.space-5:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-5[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid .3125em transparent; }
+
+table.basic.space-10:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-10[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid .625em transparent; }
+
+table.basic.space-20:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-20[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid 1.25em transparent; }
+
+table.basic.space-30:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-30[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid 1.875em transparent; }
+
+table.basic.space-40:not([class*="pad-"]):not([class*="divide"]) tr + tr,
+table.basic.space-40[class*="pad-"]:not([class*="divide"]) tr + tr { border-top: solid 2.5em transparent; }
+
+
+/* NLF Divide Fix for TR */
+
+.sm-table tr.divide > * + * {
+    border: none;
+    border-left: solid 1px #bdc9d7;
+}
+
+.sm-table tr.divide > * + [class*="fill-"] {
+    box-shadow: 0 -1px 0 0 #bdc9d7;
+}
+
+/* NLF Divide Fix for TR */
+
+/* Responsive @ 1900 */
+@media (max-width:1900px) {
+
+}
+
+/* Responsive @ 1600 */
+@media (max-width: 1600px) {
+
+}
+
+/* Responsive @ 1450 */
+@media (max-width: 1450px) {
+    
+}
+
+/* Responsive @ 1366 [End] */
+@media (max-width: 1366px) {
+
+}
+
+/* Browser Compatibility */
+/** Safari 10+ **/
+@supports (-webkit-marquee-repetition:infinite) and (object-fit:fill) {
+    .sm-table thead tr:last-child th {
+        box-shadow: inset 0 -1px 0 0 #bdc9d7;
+    }
+
+    .sm-table > table > tbody > tr > td,
+    .sm-table.tbody-groups > table > tbody td,
+    .sm-table > .ui-tab-panel > table > tbody > tr > td,
+    .sm-table.tbody-groups > .ui-tab-panel > table > tbody tr:last-of-type td,
+    .sm-table > .cs-popinto > * > table > tbody:not([data-tab="Grid View"]) > tr > td,
+    .sm-table > .cs-popinto > table > tbody:not([data-tab="Grid View"]) > tr > td {
+        box-shadow: inset 0 -1px 0 0 #bdc9d7;
+        transition: box-shadow .3s ease;
+    }
+
+    .sm-table > table > tbody > tr:not(.no-hover):hover > td,
+    .sm-table > table > tbody > tr.ui-tab-panel.active > td,
+    .sm-table.tbody-groups > table > tbody:hover > tr:last-of-type > td,
+    .sm-table.tbody-groups > table > tbody.ui-tab-panel.active > tr:last-of-type > td,
+    .sm-table > .cs-popinto > table > tbody > tr:not(.no-hover):hover > td,
+    .sm-table > .cs-popinto > table > tbody > tr.hover:not(.no-hover) > td,
+    .sm-table > .cs-popinto > * > table > tbody > tr:not(.no-hover):hover > td,
+    .sm-table > .cs-popinto > * > table > tbody > tr.hover:not(.no-hover) > td,
+    .sm-table > .cs-popinto > table > tbody > tr.selected > td,
+    .sm-table > .cs-popinto > * > table > tbody > tr.selected > td {
+        box-shadow: inset 0 -2px 0 0 #0c6afe;
+     }
+
+}

@@ -1,0 +1,97 @@
+.input-text.search svg[data-use$="search"] {
+    position: absolute;
+    top: 50%;
+    left: .5em;
+    transform: translateY(-50%);
+    pointer-events: none;
+    margin-top: 0;
+}
+
+.input-text.search svg[data-use$="search"] + input {
+    padding-left: 2.5em
+}
+
+.input-mark.disable {
+    opacity: .35;
+}
+
+/* Input Text Validator Text Positioning */
+
+[class*="input-"] .validation.info.toleft article {
+	right: calc(50% - 15px);
+	left: auto;
+	transform: translate(0,-10px);
+}
+
+[class*="input-"] .validation.info.toleft article:before {
+    left: 100%;
+    margin-left: -21px;
+}
+
+/* Input Text Validator Text Positioning */
+
+/* Basic Select */
+.input-select.basic select {
+    background-color: #FFFFFF;
+    border: none;
+    height: 30px;
+}
+
+.input-select.basic select:focus {
+    box-shadow: none;
+    background-color: #FFFFFF;
+}
+
+/* UI Toggle */
+.ui-toggle .input-text {
+    margin-right: .5em;
+}
+
+.ui-toggle .input-text.mini {
+    height: 1.2em;
+}
+
+.ui-toggle .input-text.mini input {
+    padding: 0 .25em;
+    height: auto;
+}
+
+.ui-toggle .input-text label,
+.ui-toggle .input-text + label {
+    cursor: pointer;
+}
+
+.ui-toggle .input-text input:not([class*="fill-"]) {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.ui-toggle .input-text input::placeholder {
+    color: rgb(3,30,60);
+}
+
+.ui-toggle .input-text.focused input {
+    box-shadow: 0 0 0 2px #0C6AFE;
+}
+
+.ui-toggle.invert .input-text input {
+    color: #FFFFFF;
+}
+
+.ui-toggle.invert .input-text.focused input {
+    box-shadow: inset 0 0 0 2px #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ui-toggle .input-text.focused + label {
+    display: none;
+}
+
+.ui-toggle.invert .input-text input::placeholder {
+    color: #FFFFFF;
+}
+
+.ui-toggle.tac .input-text input {
+    text-align: center;
+}

@@ -1,0 +1,475 @@
+/* Splash Zone */
+#SplashZone {
+	overflow: hidden;
+}
+
+#SplashZone > app-splash > section {
+	border-radius: 0;
+	-webkit-animation: none;
+	animation: none;
+	opacity: 1;
+	-webkit-transform: none;
+	-ms-transform: none;
+    transform: none;
+    padding: 3.75em 2.5em;
+	background-color: rgb(var(--black-blue));
+    color: rgb(var(--white));
+    background-size: cover;
+}
+
+#SplashZone > app-splash > section:before {
+    display: none;
+}
+
+#SplashZone h1 {
+    font-size: 4em;
+	white-space: nowrap;
+	color: rgb(var(--white));
+}
+
+#SplashZone p {
+	font-size: 1.5em;
+	font-weight: 300;
+	line-height: 1.65;
+}
+
+#SplashZone .fill .btn.outline {
+    color: rgb(var(--white));
+}
+
+/* End Splash Zone */
+/* Dashboard Splash */
+.dashboard-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/dashboard-splash-bg.jpg);
+    background-position: right center;
+}
+/* Dashboard Splash */
+/* Blog Splash */
+.blog-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/blog-splash-bg.jpg);
+    background-position: right center;
+}
+/* Blog Splash */
+/* Testimonials Splash */
+.testimonials-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/testimonial-splash-bg.jpg);
+    background-position: right center;
+}
+
+.unapproved-cta span {
+	line-height: 1;
+	background-color: rgb(var(--white));
+	color: rgb(var(--black-blue));
+	padding: 0.5em 0.75em 0.2em;
+	border-radius: 5em;
+}
+
+.unapproved-cta h3 {
+	color: rgb(var(--black-blue));
+	font-weight: 600;
+}
+/* Testimonials Splash */
+/* Online Review Splash */
+.business-reviews-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/online-review-splash.jpg);
+    background-position: right center;
+}
+/* Online Review Splash */
+/* Branded Search Splash */
+.branded-search-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/branded-splash-bg.jpg);
+    background-position: right center;
+}
+/* Branded Search Splash */
+/* Retargeting Splash */
+.retargeting-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/retargeting-splash-bg.jpg);
+    background-position: right center;
+}
+/* Retargeting Splash */
+/* Content Marketing Splash */
+.content-marketing-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/content-marketing-splash-bg.jpg);
+    background-position: right center;
+}
+/* Content Marketing Splash */
+/* Net Promo Score Splash */
+.net-score-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/nps-splash-bg.jpg);
+    background-position: right center;
+}
+/* Net Promo Score Splash */
+/* Display - Ad - Splash */
+.display-ad-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/DisAdsBG.jpg);
+    background-position: right center;
+}
+/* Display - Ad - Splash */
+/* Display - Social - Splash */
+.display-social-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/display-social-bg.jpg);
+    background-position: right center;
+}
+/* Display - Social - Splash */
+/* Display - Email - Splash */
+.display-email-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/display-email-bg.jpg);
+    background-position: right center;
+}
+/* Display - Email - Splash */
+/* Display - Video - Splash */
+.display-video-header {
+    background-image: url(https://my.scorpion.co/images/splash-bg/display-video-bg.jpg);
+    background-position: right center;
+}
+/* Display - Video - Splash */
+/* Analytics - Splash */
+.analytics-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/analytics-bg.jpg);
+    background-position: right center;
+}
+/* Analytics - Splash */
+/* Advertising - Your Advertising */
+.your-abvertising {
+    background-image: url(https://my.scorpion.co/images/splash-bg/your-abvertising-splash.jpg);
+    background-position: right center;
+}
+/* Advertising - Your Advertising */
+/* Advertising - Search Advertising */
+.abvertising-search-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/search-abvertising-splash.jpg);
+    background-position: right center;
+}
+/* Advertising - Search Advertising */
+/* My Business - Overview */
+.my-business-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/MyBusiness.jpg);
+    background-position: right center;
+}
+/* My Business - Overview */
+/* Advertising - Map */
+.advertising-map-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/map-advertising-bg.jpg);
+    background-position: right center;
+}
+/* Advertising - Map */
+/* Advertising - Directory Advertising */
+.directory-abvertising-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/directory-advertising-bg.jpg);
+    background-position: right center;
+}
+/* Advertising - Directory Advertising */
+/* Search Engine Ranking - Overview */
+.ser-splash-banner {
+    background-image: url(https://my.scorpion.co/images/splash-bg/ser-splash-bg.jpg);
+    background-position: right center;
+}
+/* Search Engine Ranking - Overview */
+/* Events - Overview */
+.events-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/events-splash.jpg);
+    background-position: right center;
+}
+/* Events - Overview */
+/* My Business - Online Listings */
+.online-listings-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/online-listings.png);
+    background-position: right center;
+}
+/* My Business - Online Listings */
+/* Analytics - Map Listings */
+.listing-map-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/analytics-listings-map-bg.jpg);
+    background-position: right center;
+}
+/* Physicians - Overview */
+.physician-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/physicians-splash-bg.jpg);
+    background-position: right center;
+}
+/* Physicians - Overview */
+/* Physicians - Overview */
+.fran-local-engagement-splash {
+    background-image: linear-gradient( to bottom, #8465ff, #6466ff);
+}
+
+#SplashZone > app-splash > section.fran-local-engagement-splash {
+    padding: 0; /* OP targeting */
+}
+
+.fran-local-engagement-splash .contents {
+    padding: 5em;
+}
+
+.fran-local-engagement-splash div.image-tiles[class*="flex-"] {
+    margin-right: -5em; /* OP targeting */
+    margin-top: -4em;
+    margin-bottom: -1.5em; 
+}
+
+.fran-local-engagement-splash figure.preview-thumb {
+    background-size: cover;
+    flex-basis: initial;
+}
+
+.fran-local-engagement-splash figure.preview-thumb img {
+    box-shadow: none;
+    background-position: left center;
+}
+
+/* Physicians - Overview */
+
+/* Coupons */
+.coupon-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/coupon-bg.jpg);
+}
+/* Coupons */
+
+/* Case Results */
+.case-results-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/case-results-splash.jpg);
+}
+/* Case Results */
+
+/* Donations */
+.donations-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/DonationSplash.jpg);
+}
+/* Donations */
+
+/* Franchise Banners */
+.sm-default-banner {
+    background-image: url(https://my.scorpion.co/images/splash-bg/dashboard-splash-bg.jpg);
+}
+
+.fran-dashboard-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/franchise-overview.jpg);
+}
+
+.fran-five-star1-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-five-star1-splash.jpg);
+}
+
+.fran-five-star2-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-five-star2-splash.jpg);
+}
+
+.fran-grounds-guys1-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-grounds-guys1-splash.jpg);
+}
+
+.fran-grounds-guys2-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-grounds-guys2-splash.jpg);
+}
+
+.fran-molly-maid1-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-molly-maid1-splash.jpg);
+}
+
+.fran-molly-maid2-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-molly-maid2-splash.jpg);
+}
+
+.fran-mosquito-squad1-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-mosquito-squad1-splash.jpg);
+}
+
+.fran-mosquito-squad2-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-mosquito-squad2-splash.jpg);
+}
+
+.fran-mr-handyman1-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-mr-handyman1-splash.jpg);
+}
+
+.fran-mr-handyman2-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/fran-mr-handyman2-splash.jpg);
+}
+/* Franchise Banners */
+
+/* Franchise Banners */
+.fran-dashboard-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/franchise-overview.jpg);
+}
+/* Franchise Banners */
+
+/* Advertising - Brand Awareness */
+.brand-awareness-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/brand-awareness.jpg);
+}
+/* Advertising - Brand Awareness */
+
+/* Articles Banner */
+.article-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/articles-splash.jpg);
+}
+/* Articles Banner */
+
+/* Press Center Banner */
+.press-center-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/press-center-splash.jpg);
+}
+/* Press Center Banner */
+
+/* Instagram Banner */
+.insta-gallery-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/insta-photo-gallery.jpg);
+}
+/* Instagram Banner */
+
+/* Coupon Banner */
+.coupon-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/coupon-splash.jpg);
+}
+/* Coupon Banner */
+
+/* Leads Banner */
+.leads-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/leads-splash.jpg);
+}
+/* Leads Banner */
+
+/* Video Vault Banner */
+.video-vault-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/video-center-splash.jpg);
+}
+/* Video Vault Banner */
+
+/* Accolades Banner */
+.accolades-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/accolades-splash.jpg);
+}
+/* Accolades Banner */
+
+/* Locations Banner */
+.locations-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/locations-splash.jpg);;
+}
+/* Locations Banner */
+
+/* Photo Gallery Banner */
+.photo-gallery-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/photo-gallery-splash.jpg);;
+}
+/* Photo Gallery Banner */
+
+/* Before and After Gallery Banner */
+.before-after-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/before-after-bg.jpg);;
+}
+/* Before and After Gallery Banner */
+
+/* Devices and Browsers Banner */
+.device-analytics-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/device-analytics-splash.jpg);;
+}
+/* Devices and Browsers Banner */
+
+/* Geo Analytics Banner */
+.geo-analytics-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/geo-analytics-splash.jpg);
+}
+/* Geo Analytics Banner */
+
+/* Organic Results Banner */
+.ser-organic-banner {
+    background-image: url(https://my.scorpion.co/images/splash-bg/organic-results-splash.jpg);
+}
+/* Organic Results Banner */
+
+/* Service Line Banner */
+.ser-line-banner {
+    background-image: url(https://my.scorpion.co/images/splash-bg/service-line-splash.jpg);
+    background-position: 100% 50%;
+}
+/* Service Line Banner */
+
+/* Landing Page Splash */
+.landing-pages-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/landing-page-bg.jpg);
+}
+/* Landing Page Splash */
+
+/* Geographic Insights Splash */
+.geographic-insights-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/geographic-insights-bg.jpg);
+}
+/* Geographic Insights Splash */
+
+/* Brand Views Splash */
+.brand-views-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/brand-views-bg.jpg);
+}
+/* Brand Views Splash */
+
+/* Search Competition Splash */
+.search-comp-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/search-competition-bg.jpg);
+}
+/* Search Competition Splash */
+
+/* Search Competition Splash */
+.lead-rating-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/RateLeadHead.jpg);
+}
+/* Search Competition Splash */
+
+/* Job Inquiries Splash */
+.job-inquiries-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/job-inqueries-splash.jpg);
+}
+/* Job Inquiries Splash */
+
+/* eCards Splash */
+.ecard-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/ecards-splash.jpg);
+}
+/* eCards Splash */
+
+/* Patient Stories Splash */
+.patient-stories-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/patient-stories-splash.jpg);
+}
+/* Patient Stories Splash */
+
+/* ROI Splash */
+.roi-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/roi-splash.jpg);
+}
+/* ROI Splash */
+
+/* Appointments Splash */
+.appointments-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/appointments-splash.jpg);
+}
+/* Appointments Splash */
+
+/* LSA Splash */
+.lsa-splash {
+    background-image: url(https://my.scorpion.co/images/splash-bg/lsa-splash.jpg);
+}
+/* LSA Splash */
+
+/* Responsive @ 1900 */
+@media (max-width:1900px) {
+    
+}
+/* Responsive @ 1900 */
+/* Responsive @ 1600 */
+@media (max-width: 1600px) {
+    .fran-local-engagement-splash .contents {
+        font-size: .75em;
+        padding: 2.5rem;
+    }
+}
+/* Responsive @ 1600 */
+/* Responsive @ 1450 */
+@media (max-width: 1450px) {
+    
+}
+/* End Responsive @ 1450 */
+/* Responsive @ 1366 [End] */
+@media (max-width: 1366px) {
+
+}
+/* Responsive @ 1366 [End] */

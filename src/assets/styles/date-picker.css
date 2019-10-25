@@ -1,0 +1,81 @@
+﻿div.ui-picker {
+	border-radius: 4px;
+    border-top: solid 4px #2a70fb;
+	box-shadow: 0 5px 30px -3px rgba(0, 41, 76, 0.3);
+	background: #fff;
+}
+
+div.ui-picker::after {
+	content: '';
+    width: 0;
+    height: 0;
+    border-top: 0;
+    border-left: solid 5px transparent;
+    border-right: solid 5px transparent;
+    border-bottom: solid 5px #2a70fb;
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    margin: auto auto auto -5px;
+}
+
+div.ui-picker.top {
+	bottom: 100%;
+	top: auto;
+	border-top: none;
+	border-bottom: solid 4px #2a70fb;
+}
+
+div.ui-picker.top::after {
+	top: auto;
+	bottom: -9px;
+	border-top: solid 5px #2a70fb;
+    border-right: solid 5px transparent;
+    border-left: solid 5px transparent;
+    border-bottom: none;
+}
+
+div.ui-picker div.date-select::after {
+	content: url('/cms/svg/admin/icon_caret.16.4db2ff.svg');
+	height: 1em;
+	width: 1em;
+	position: absolute;
+	top: 50%;
+	margin-top: -.5em;
+	right: 0;
+    pointer-events: none;
+}
+
+div.ui-picker select {
+	color: #021d3d;
+	font-weight: 600;
+}
+
+div.ui-picker ul li {
+	color: #909ca3;
+	border-radius: 3px;
+	transition: background .2s;
+}
+
+div.ui-picker ul li:hover {
+	background: #d6f7ff;
+}
+
+div.ui-picker ul li.current,
+div.time-picker ul li {
+	font-weight: 600;
+	color: #021d3d;
+}
+
+div.ui-picker ul li.active {
+	background: #389eff;
+	color: #fff;
+}
+
+div.ui-picker footer a {
+	color: #4db2ff;
+}
+
+div.time-picker ul {
+	background: #f6f9fd;
+}

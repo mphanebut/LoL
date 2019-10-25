@@ -1,0 +1,199 @@
+<section>
+    <header class="sm-header flex-between">
+        <div class="flex-middle divide space-20">
+            <h4>CARDS</h4>
+            <ul class="sm-nav flex-middle space-40">
+                <li>
+                    <a [routerLink]="['../']">All</a>
+                </li>
+                <li>
+                    <a [routerLink]="['../']" [queryParams]="{region: 'Demacia'}">Demacia</a>
+                </li>
+                <li>
+                    <a [routerLink]="['../']" [queryParams]="{region: 'Noxus'}">Noxus</a>
+                </li>
+                <li>
+                    <a [routerLink]="['../']" [queryParams]="{region: 'Freljord'}">Freljord</a>
+                </li>
+                <li>
+                    <a [routerLink]="['../']" [queryParams]="{region: 'ShadowIsles'}">Shadow Isles</a>
+                </li>
+                <li>
+                    <a [routerLink]="['../']" [queryParams]="{region: 'Ionia'}">Ionia</a>
+                </li>
+                <li>
+                    <a [routerLink]="['../']" [queryParams]="{region: 'PiltoverZaun'}">Zaun</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="flex-middle space-20">
+            <li>
+                <div class="input-text stealth">
+                    <a href="javascript:void(0)" class="close">
+                        <app-svg icon="close" title="sort" viewBox="0 0 24 24"></app-svg>
+                    </a>
+                    <input type="text" data-search="true" class="form-control" placeholder="Search By Name" [(ngModel)]="searchTerm">
+                    <a href="javascript:void(0)" class="search">
+                        <app-svg icon="search" title="sort" viewBox="0 0 24 24"></app-svg>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="sm-panel-filter dd-sort" appDdPanel data-dd="true">
+                    <div class="sm-dd-panel" data-role="panel">
+                        <header>
+                            <h4>Sort Cards</h4>
+                            <a (click)="sortReset()">Reset</a>
+                        </header>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="sort icons flex-middle-between">
+                                            <li>
+                                                <a data-sort="name" (click)="sortChanged($event)"><app-svg icon="sort-AZ" title="Sort Alphabetically" viewBox="0 0 511.626 511.627"></app-svg></a>
+                                            </li>
+                                            <li>
+                                                <a data-sort="cost" (click)="sortChanged($event)"><app-svg icon="cost" title="Cost" viewBox="0 0 512 512"></app-svg></a>
+                                            </li>
+                                            <li>
+                                                <a data-sort="attack" (click)="sortChanged($event)"><app-svg icon="power" title="Attack" viewBox="0 0 49.495 49.495"></app-svg></a>
+                                            </li>
+                                            <li>
+                                                <a data-sort="health" (click)="sortChanged($event)"><app-svg icon="heart" title="Health" viewBox="0 -28 512.001 512"></app-svg></a>
+                                            </li>
+                                            <li>
+                                                <a data-sort="rarity" (click)="sortChanged($event)"><app-svg icon="my-business_reviews" title="Rarity" viewBox="0 0 24 24"></app-svg></a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="javascript:void(0)" class="sm-dd">
+                        <app-svg icon="sort" title="sort" viewBox="-10 0 447 448"></app-svg>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div class="sm-panel-filter" appDdPanel data-dd="true">
+                    <div class="sm-dd-panel" data-role="panel">
+                        <header>
+                            <h4>Filter Cards</h4>
+                            <a (click)="filterReset()">Reset</a>
+                        </header>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><label class="title">Card Type</label></td>
+                                    <td>
+                                        <ul class="flex-middle-end space-5">
+                                            <li class="input-mark">
+                                                <input type="radio" id="type-All" name="type" value="" checked data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="type-All">All</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="type-Unit" name="type" value="Unit" data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="type-Unit">Unit</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="type-Spell" name="type" value="Spell" data-match="eq" (change)="filterChanged($event)" >
+                                                <label class="capsule" for="type-Spell">Spell</label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="title">Collectible</label></td>
+                                    <td>
+                                        <ul class="flex-middle-end space-5">
+                                            <li class="input-mark">
+                                                <input type="radio" id="collectible-All" name="collectible" value="" checked data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="collectible-All">All</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="collectible-true" name="collectible" value="true" data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="collectible-true">True</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="collectible-false" name="collectible" value="false" data-match="eq" (change)="filterChanged($event)" >
+                                                <label class="capsule" for="collectible-false">False</label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="title">Spell Speed</label></td>
+                                    <td>
+                                        <ul class="flex-middle-end space-5">
+                                            <li class="input-mark">
+                                                <input type="radio" id="spellSpeed-All" name="spellSpeed" value="" checked data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="spellSpeed-All">All</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="spellSpeed-true" name="spellSpeed" value="fast" data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="spellSpeed-true">Fast</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="spellSpeed-false" name="spellSpeed" value="slow" data-match="eq" (change)="filterChanged($event)" >
+                                                <label class="capsule" for="spellSpeed-false">Slow</label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="title">Super Type</label></td>
+                                    <td>
+                                        <ul class="flex-middle-end space-5">
+                                            <li class="input-mark">
+                                                <input type="radio" id="supertype-All" name="supertype" value="" checked data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="supertype-All">All</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="supertype-champion" name="supertype" value="Champion" data-match="eq" (change)="filterChanged($event)">
+                                                <label class="capsule" for="supertype-champion">Champion</label>
+                                            </li>
+                                            <li class="input-mark">
+                                                <input type="radio" id="supertype-other" name="supertype" value="Champion" data-match="nq" (change)="filterChanged($event)" >
+                                                <label class="capsule" for="supertype-other">Slow</label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="javascript:void(0)" class="sm-dd">
+                        <app-svg icon="filter" title="sort" viewBox="0 0 24 24"></app-svg>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </header>
+    <div class="cards-list flex-middle flex-wrap">
+        <div class="fifth" *ngFor="let card of filteredCards; let i=index">
+            <div class="card">
+                <div class="title">
+                    <h2>{{ card.name }}</h2>
+                </div>
+                <div class="cardImage">
+                    <img [attr.src]='["assets/datadragon-set1-en_us/en_us/img/cards/" + card.cardCode + ".png"]' loading="lazy" [alt]="card.name">
+                </div>
+                <div class="actions">
+                    <div class="flex-middle-around">
+                        <div class="action">
+                            <app-svg icon="plus" title="add to deck" viewBox="0 0 512 512"></app-svg>
+                        </div>
+                        <div class="action">
+                            <app-svg icon="eye" title="view details" viewBox="0 0 32 32"></app-svg>
+                        </div>
+                        <div class="action">
+                            <app-svg icon="imagebg" title="view art" viewBox="0 0 50 50"></app-svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

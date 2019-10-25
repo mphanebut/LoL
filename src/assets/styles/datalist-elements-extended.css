@@ -1,0 +1,361 @@
+/* SM Stats */
+
+.sm-stats > li icon {
+    color: var(--seq-color);
+}
+
+.sm-stats {
+    line-height: 1.3;
+}
+
+.sm-stats.tac {
+    text-align: center;
+}
+
+.sm-stats .title {
+    color: rgb(3,30,60);
+}
+
+.sm-stats small:not(.sm-title) {
+    font-size: .875em;
+    font-weight: 600;
+    color: rgb(144,156,163);
+}
+
+/* SM Stats */
+
+/* Select List */
+
+.sm-select-list > li.box {
+    border: solid 1px rgba(202,211,217, .5);
+    transition: box-shadow .3s ease, border-color .3s ease;
+}
+
+.sm-select-list > li.box:hover {
+    border-color: transparent;
+}
+
+.sm-select-list > li > a,
+.sm-select-list > li > label {
+    padding: 0;
+}
+
+.sm-select-list > li > a:not([class*="pad-"]):not(.compare),
+.sm-select-list > li > label:not([class*="pad-"]):not(.compare) {
+    padding: 20px 40px;
+}
+
+/* Select List */
+
+/* SM Nav - Overlay */
+.sm-nav2.overlay .box {
+    position: relative;
+}
+
+.sm-nav2.overlay .box:not([class*="flex-"]) {
+    display: block;
+}
+
+.sm-nav2.overlay .box .overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.sm-nav2.overlay .box .overlay:not([class*="fill-"]) {
+    background-color: rgba(63, 195, 91,.5);
+}
+
+.sm-nav2.overlay .box .overlay.bogus:not([class*="fill-"]) {
+    background-color: rgba(255, 255, 255, .85);
+}
+
+.sm-nav2.overlay .box:hover .overlay {
+    opacity: 1;
+}
+
+.sm-nav2.overlay .box .overlay:not([class*="flex-"]) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sm-nav2.overlay .box + :not([class*="flex-"]) {
+    text-align: center;
+    display: block;
+}
+
+/* Sm Nav - Dropdown */
+.sm-nav > li.selected[data-page-name] {
+    position: relative;
+}
+
+.sm-nav > li.selected > a:not(:only-child) {
+    margin-right: 1.5em;    
+}
+
+li .sm-nav > li.selected > a:not(:only-child) {
+    margin-right: 0;
+}
+
+.sm-nav > li.selected > a:not(:only-child)::before {
+    content: '';
+	border-style: none solid solid none;
+	border-width: 2px;
+	border-color: currentColor;
+	transform: rotate(45deg);
+	height: 10px;
+	width: 10px;
+	left: 100%;
+	display: block;
+	position: relative;
+	margin-left: 10px;
+    transition: border-color .3s ease, opacity .3s ease;
+    border-radius: 0;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    margin-top: -.55em;
+}
+
+li .sm-nav > li.selected > a:not(:only-child)::before {
+    display: none;
+}
+
+.sm-nav > li.selected[data-page-name]::after,
+.sm-nav > li.selected > small {
+    position: absolute;
+	content: attr(data-page-name);
+	bottom: 100%;
+	left: 0;
+	font-size: .8em;
+	color: rgb(144,156,163);
+	font-weight: 600;
+	margin-bottom: -.5em;
+}
+
+li .sm-nav > li.selected > small {
+    display: none;
+}
+
+.sm-nav > li > a + nav {
+    position: absolute;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 0.15em 1.25em -0.25em rgba(0, 41, 76, 0.5);
+    right: -1em;
+    top: calc(100% - 4px);
+    padding: .625em;
+    min-width: 10em;
+    border-top: solid 3px #0c6afe;
+    transform-origin: calc(100% - 1.6em) -.625em;
+    z-index: 10;
+    transform: scale(.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s .1s, transform .3s .1s, visibility .3s .1s;
+}
+
+.sm-nav > li:hover > a + nav {
+    transform: none;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .3s, transform .3s, visibility .3s;
+}
+
+.sm-nav > li > a + nav::after {
+    border-style: none solid solid;
+	border-color: #0c6afe transparent;
+    border-width: 8px;
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 1em;
+}
+
+.sm-nav > li > a + nav ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.sm-nav > li > a + nav ul:not([class*='-column']) li:not([class*="space-"]) {
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+.sm-nav > li > a + nav a:not(.btn) {
+    color: rgb(3,30,60);
+    display: block;
+    border-radius: 1.5em;
+    padding: .7em 1.25em .5em;
+    background-color: #FFFFFF;
+    border: solid 3px #FFFFFF;
+    transition: border-color .3s ease;
+}
+
+.sm-nav > li > a + nav a:not(.btn)::before {
+    display: none;
+}
+
+.sm-nav > li > a + nav a:not(.btn):hover {
+    border: solid 3px #8ae7ff;
+}
+
+.sm-nav > li + li:empty {
+    display: none;
+}
+
+/* SM Tiles */
+.sm-tile > li {
+	flex: 1 1 100%;
+	position: relative;
+    border-radius: 5px;
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow .3s ease;
+}
+
+.sm-tile[class*="flex-"][class*="-wrap"] > li {
+    flex: 0 0 auto;
+}
+
+.sm-tile > li:hover {
+    box-shadow: 0 4px 20px -4px rgba(3,30,60, .4);
+}
+
+.sm-tile > li > a,
+.sm-tile > li > label {
+	padding: 1.25em 2.5em;
+	display: block;
+	border: solid 1px rgba(202,211,217, .5);
+    transition: box-shadow .3s ease, background-color .3s ease, color .3s ease, border .3s ease;
+    cursor: pointer;
+}
+
+.sm-tile > li > a[class*='flex-'],
+.sm-tile > li > label[class*='flex-'] {
+    display: flex;
+}
+
+.sm-tile > li:hover > a,
+.sm-tile > li:hover > label {
+	_border-color: transparent;
+}
+
+.sm-tile > li > a.ui-tab.active,
+.sm-tile > li > input:checked ~ label {
+    border: solid 1px transparent;
+}
+
+.sm-tile > li > a::before,
+.sm-tile > li > label::before {
+    position: absolute;
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    top: -1px;
+    left: -1px;
+    content: '';
+    background-color: rgba(144,156,163,.1);
+    border: 2px solid #909ca3;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.sm-tile.green > li > a::before,
+.sm-tile.green > li > label::before {
+    background-color: rgba(75, 203, 111, 0.3);
+    border: 2px solid #62DA84;
+}
+
+.sm-tile.red > li > a::before,
+.sm-tile.red > li > label::before {
+    background-color: rgba(230, 23, 75, 0.2);
+    border: 2px solid rgb(230, 23, 75);
+}
+
+.sm-tile.blue > li > a::before,
+.sm-tile.blue > li > label::before {
+    background-color: rgba(12,106,254, 0.1);
+    border: 2px solid rgb(12,106,254);
+}
+
+
+.sm-tile > li > a.active::before,
+.sm-tile > li > input:checked ~ label::before {
+    opacity: 1;
+}
+
+.sm-tile > li > a > .check,
+.sm-tile > li > label > .check {
+    position: absolute;
+    color: #FFFFFF;
+    background-color: #62DA84;
+    border: solid 2px #FFFFFF;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.sm-tile > li > a .check svg,
+.sm-tile > li > label .check svg {
+    color: #FFFFFF;
+}
+
+.sm-tile > li > a.active > .check,
+.sm-tile > li > input:checked ~ label > .check {
+    opacity: 1;
+}
+
+img.feed-img + svg, figure.feed-img > img + svg {
+    position: absolute;
+	top: 5.125rem;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	display: block;
+    margin-top: 0 !important;
+    font-size: 3em;
+}
+
+/* SM Nav - Brick */
+.sm-nav.brick > li > a::before {
+    display: none;
+}
+
+.sm-nav.brick:not([class*="space-"]):not([class*="flex-"]) > li + li {
+    margin-top: 1px;
+}
+.sm-nav.brick > li > a {
+    padding: 0.55em .5em 0.35em .5em;
+    display: block;
+    transition: background-color .3s ease;
+    border-radius: 3px;
+    background-color: transparent;
+    font-weight: 400;
+    line-height: inherit;
+}
+
+.sm-nav.brick > li > a:hover {
+    background-color: #8ae7ff;
+}
+
+.sm-nav.brick > li > a > small:not([class*="color-"]) {
+    color: #94a0a6;
+    transition: color .3s ease;
+}
+
+.sm-nav.brick > li > a:hover > small:not([class*="color-"]) {
+    color: #FFFFFF;
+}
+/* SM Nav - Brick */
