@@ -1,26 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes,
-    RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './view-box/dashboard/dashboard.component';
-import { MyBusinessOverviewComponent } from './view-box/my-business/my-business-overview/my-business-overview.component';
-import { MyBusinessReviewsComponent } from './view-box/my-business/my-business-reviews/my-business-reviews.component';
-import { AdvertisingOverviewComponent } from './view-box/advertising/advertising-overview/advertising-overview.component';
-import { SearchAdvertisingComponent } from './view-box/advertising/search-advertising/search-advertising.component';
-import { SearchAdvertisingOverviewComponent } from './view-box/advertising/search-advertising/search-advertising-overview/search-advertising-overview.component';
-import { SearchAdvertisingPerformanceComponent } from './view-box/advertising/search-advertising/search-advertising-performance/search-advertising-performance.component';
-import { FranchiseComponent } from './view-box/franchise/franchise.component';
-import { LocationManagementComponent } from './view-box/franchise/location-management/location-management.component';
-import { ChangeLogComponent } from './view-box/franchise/location-management/change-log/change-log.component';
 import { AuthComponent } from './auth/auth.component';
-import { TopComponent } from './view-box/roles/top/top.component';
-import { JungleComponent } from './view-box/roles/jungle/jungle.component';
-import { SupportComponent } from './view-box/roles/support/support.component';
-import { CarryComponent } from './view-box/roles/carry/carry.component';
-import { MidComponent } from './view-box/roles/mid/mid.component';
 import { CurrentMatchComponent } from './view-box/match/current-match/current-match.component';
 import { MatchHistoryComponent } from './view-box/match/match-history/match-history.component';
 import { AllChampionsComponent } from './view-box/champion/all-champions/all-champions.component';
 import { AllCardsComponent } from './view-box/cards/all-cards/all-cards.component';
+import { CardDetailsComponent } from './view-box/cards/card-details/card-details.component';
 
 
 const routes: Routes = [
@@ -51,59 +37,6 @@ const routes: Routes = [
     path: 'login',
     pathMatch: 'full',
     component: AuthComponent
-  },
-  { path: 'role',
-    data: {
-      title: 'Roles',
-      HeaderPageID: '1'
-    },
-    children: [
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'top'
-      },
-      {
-        path: 'top',
-        component: TopComponent,
-        data: {
-          title: 'Top',
-          icon: 'advertising_overview'
-        }
-      },
-      {
-        path: 'jungle',
-        component: JungleComponent,
-        data: {
-          title: 'Jungle',
-          icon: 'advertising_search'
-        }
-      },
-      {
-        path: 'middle',
-        component: MidComponent,
-        data: {
-          title: 'Mid',
-          icon: 'advertising_search'
-        }
-      },
-      {
-        path: 'carry',
-        component: CarryComponent,
-        data: {
-          title: 'Carry',
-          icon: 'advertising_search'
-        }
-      },
-      {
-        path: 'support',
-        component: SupportComponent,
-        data: {
-          title: 'Support',
-          icon: 'advertising_search'
-        }
-      }
-    ]
   },
   {
     path: 'match',
@@ -176,7 +109,19 @@ const routes: Routes = [
           title: 'All Cards',
           icon: 'business_my_location'
         }
-      }
+      },
+      {
+        path: 'card/:cardCode',
+        component: CardDetailsComponent,
+      },
+      {
+        path: 'search',
+        component: AllCardsComponent,
+        data: {
+          title: 'Search',
+          icon: 'search'
+        }
+      },
     ]
   },
   {

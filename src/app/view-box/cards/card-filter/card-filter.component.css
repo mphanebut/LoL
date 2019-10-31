@@ -1,0 +1,12 @@
+ul.sort.icons {
+    font-size: 1.25em;
+}
+
+ul.sort.icons a.active {
+    color: #c9aa71;
+}
+
+
+ul.sort.icons a.active:hover {
+    color: #f1e6d0;
+}

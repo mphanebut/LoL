@@ -10,17 +10,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { ViewBoxComponent } from './view-box/view-box.component';
 import { SplashComponent } from './splash/splash.component';
 import { DashboardComponent } from './view-box/dashboard/dashboard.component';
-import { MyBusinessOverviewComponent } from './view-box/my-business/my-business-overview/my-business-overview.component';
-import { MyBusinessReviewsComponent } from './view-box/my-business/my-business-reviews/my-business-reviews.component';
-import { AdvertisingOverviewComponent } from './view-box/advertising/advertising-overview/advertising-overview.component';
-import { SearchAdvertisingComponent } from './view-box/advertising/search-advertising/search-advertising.component';
 import { NavigationPageComponent } from './navigation/navigation-page/navigation-page.component';
 import { SvgComponent } from './shared/svg/svg.component';
-import { SearchAdvertisingOverviewComponent } from './view-box/advertising/search-advertising/search-advertising-overview/search-advertising-overview.component';
-import { SearchAdvertisingPerformanceComponent } from './view-box/advertising/search-advertising/search-advertising-performance/search-advertising-performance.component';
-import { FranchiseComponent } from './view-box/franchise/franchise.component';
-import { LocationManagementComponent } from './view-box/franchise/location-management/location-management.component';
-import { ChangeLogComponent } from './view-box/franchise/location-management/change-log/change-log.component';
 import { SummonerCardComponent } from './shared/user/summoner-card/summoner-card.component';
 import { ApiInterceptor } from './shared/user/api-interceptor.service';
 import { AuthComponent } from './auth/auth.component';
@@ -35,6 +26,12 @@ import { AllChampionsComponent } from './view-box/champion/all-champions/all-cha
 import { AllCardsComponent } from './view-box/cards/all-cards/all-cards.component';
 import { ClickActiveDirective } from './shared/directives/click-active.directive';
 import { DdPanelDirective } from './shared/directives/dd-panel.directive';
+import { CardFilterComponent } from './view-box/cards/card-filter/card-filter.component';
+import { CardSearchComponent } from './view-box/cards/card-search/card-search.component';
+import { CardRegionComponent } from './view-box/cards/card-region/card-region.component';
+import { CardSortComponent } from './view-box/cards/card-sort/card-sort.component';
+import { CardArtComponent } from './view-box/cards/card-art/card-art.component';
+import { CardDetailsComponent } from './view-box/cards/card-details/card-details.component';
 
 @NgModule({
   declarations: [
@@ -44,17 +41,8 @@ import { DdPanelDirective } from './shared/directives/dd-panel.directive';
     ViewBoxComponent,
     SplashComponent,
     DashboardComponent,
-    MyBusinessOverviewComponent,
-    MyBusinessReviewsComponent,
-    AdvertisingOverviewComponent,
-    SearchAdvertisingComponent,
     NavigationPageComponent,
     SvgComponent,
-    SearchAdvertisingOverviewComponent,
-    SearchAdvertisingPerformanceComponent,
-    FranchiseComponent,
-    LocationManagementComponent,
-    ChangeLogComponent,
     SummonerCardComponent,
     AuthComponent,
     CurrentMatchComponent,
@@ -67,7 +55,13 @@ import { DdPanelDirective } from './shared/directives/dd-panel.directive';
     AllChampionsComponent,
     AllCardsComponent,
     ClickActiveDirective,
-    DdPanelDirective
+    DdPanelDirective,
+    CardFilterComponent,
+    CardSearchComponent,
+    CardRegionComponent,
+    CardSortComponent,
+    CardArtComponent,
+    CardDetailsComponent
   ],
   imports: [
     BrowserModule,

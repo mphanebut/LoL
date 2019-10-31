@@ -1,123 +1,113 @@
-import { Component, OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Card } from 'src/app/shared/card/card.model';
-import { Filter } from 'src/app/shared/Form/filter.model';
+import { Region } from 'src/app/shared/card/region.model';
+import { FilterInput } from 'src/app/shared/Form/filter.model';
 import { CardsListService } from '../cards-list.service';
+import { SortOptions } from 'src/app/shared/Form/sort.model';
 
 @Component({
   selector: 'app-all-cards',
   templateUrl: './all-cards.component.html',
   styleUrls: ['./all-cards.component.css']
 })
-export class AllCardsComponent implements OnInit, OnDestroy {
-  filteredCards: Card[];
-  regionFilter: string;
-  filtersChanged = new Subject<Filter[]>();
-  cardTypeFilter: string;
-  filterSelected: ElementRef;
-  private cards: Card[];
-  private filters: Filter[] = [];
-  private currentSearchTerm: string;
-  private subscription: Subscription;
+export class AllCardsComponent implements OnInit {
+  cards: Observable<Card[]>;
+  regions: Observable<Region[]>;
+  region: Observable<Region>;
 
-  get searchTerm(): string {
-    return this.currentSearchTerm;
-  }
-  set searchTerm(value: string) {
-    this.currentSearchTerm = value;
-    if (!this.currentSearchTerm.length) {
-      this.filteredCards = this.cards;
+  title: string;
+  regionRef: string;
+  regionIcon: string;
+
+  sortOptions: SortOptions[] = [
+      {
+        property: 'name',
+        icon: { name: 'sort-AZ', title: 'Sort Alphabetically', viewBox: '0 0 511.626 511.627'},
+        sortDirection: 'asc',
+        isActive: true
+      },
+      {
+        property: 'cost',
+        icon: { name: 'cost', title: 'Cost', viewBox: '0 0 512 512'},
+        sortDirection: 'desc',
+        isActive: false
+      },
+      {
+        property: 'attack',
+        icon: { name: 'power', title: 'Attack', viewBox: '0 0 49.495 49.495'},
+        sortDirection: 'desc',
+        isActive: false
+      },
+      {
+        property: 'health',
+        icon: { name: 'heart', title: 'Health', viewBox: '0 -28 512.001 512'},
+        sortDirection: 'desc',
+        isActive: false
+      },
+      {
+        property: 'rarity',
+        icon: { name: 'my-business_reviews', title: 'Rarity', viewBox: '0 0 24 24'},
+        sortDirection: 'desc',
+        isActive: false
+      }
+  ];
+
+  filterInputs: FilterInput[] = [
+    { title: 'Card Type',
+      property: 'type',
+      filters: [
+        { value: '', label: 'All', isChecked: true },
+        { value: 'unit', label: 'Unit' },
+        { value: 'spell', label: 'Spell' },
+      ]
+    },
+    { title: 'Collectible',
+      property: 'collectible',
+      filters: [
+        { value: '', label: 'All', isChecked: true },
+        { value: 'true', label: 'True' },
+        { value: 'false', label: 'False' },
+      ]
+    },
+    { title: 'Spell Speed',
+      property: 'spellSpeed',
+      filters: [
+        { value: '', label: 'All', isChecked: true },
+        { value: 'fast', label: 'Fast' },
+        { value: 'slow', label: 'Slow' },
+      ]
+    },
+    { title: 'Rarity',
+      property: 'rarity',
+      filters: [
+        { value: '', label: 'All', isChecked: true },
+        { value: 'common', label: 'Common' },
+        { value: 'rare', label: 'Rare' },
+        { value: 'epic', label: 'Epic' },
+        { value: 'champion', label: 'Champion' },
+      ]
     }
-    this.filteredCards = this.cardsService.searchCards(this.filteredCards, value);
-  }
+  ];
 
   constructor(private cardsService: CardsListService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.cards = this.cardsService.getCards();
-    // this.cards = this.cardsService.sortCards(this.filteredCards, 'Name', 'asc');
-
-    console.log(this.cards);
-
-    this.subscription = this.filtersChanged.subscribe((newFilters: Filter[]) => {
-      this.filteredCards = this.cards;
-      newFilters.forEach(obj => this.filteredCards = this.cardsService.filterCards(this.filteredCards, obj.property, obj.match, obj.value));
-    });
+    this.cards = this.cardsService.cards$;
+    this.regions = this.cardsService.regions$;
 
     this.route.queryParamMap.subscribe(queryParams => {
-      if (queryParams.get('region')) {
-        this.updateFilter('regionRef', 'eq', queryParams.get('region'));
-      } else {
-        this.updateFilter('regionRef', 'eq', '');
-      }
+        if (queryParams.get('region')) {
+            this.region = this.cardsService.getRegion(queryParams.get('region'));
+            if (this.region) {
+                this.cardsService.updateFilter('regionRef', 'eq', queryParams.get('region'));
+            }
+        } else {
+            this.cardsService.updateFilter('regionRef', 'eq', '');
+        }
     });
 
   }
-
-  filterCards(property: string, comparison: string, value: string) {
-    this.filteredCards = this.cardsService.filterCards(this.filteredCards, property, comparison, value);
-  }
-
-  filterChanged(e) {
-    if (e.currentTarget.name) {
-      if (e.currentTarget.dataset.match) {
-        this.updateFilter(e.currentTarget.name, e.currentTarget.dataset.match, e.currentTarget.value);
-      } else {
-        this.updateFilter(e.currentTarget.name, 'eq', e.currentTarget.value);
-      }
-    } else {
-      console.log('missing data for filter');
-    }
-  }
-
-  filterSort(property: string, comparison: string) {
-    this.filteredCards = this.cardsService.sortCards(this.filteredCards, property, comparison);
-  }
-
-  sortChanged(e) {
-    if (e.currentTarget.dataset.hasOwnProperty('sort')) {
-      document.querySelectorAll('.sort.icons a:not([data-sort=\'Name\']').forEach( (el: HTMLElement) => el.classList.remove('active') );
-      e.currentTarget.classList.toggle('active');
-      if (e.currentTarget.classList.contains('active')) {
-        this.filterSort(e.currentTarget.dataset.sort, 'desc');
-      } else {
-        this.filterSort(e.currentTarget.dataset.sort, 'desc');
-      }
-    } else {
-      console.log('missing data for sort');
-    }
-  }
-
-  updateFilter(property: string, comparison: string, value: string) {
-    const currentIndex = this.filters.findIndex(obj => obj.property === property);
-    if (value === '' || value === 'All') {
-      this.filters.splice(currentIndex, 1);
-      this.filtersChanged.next(this.filters);
-    } else {
-      if (currentIndex !== -1) {
-        // this.filters.find(obj => obj.property === 'regionRef').value = this.regionFilter;
-        this.filters[currentIndex].value = value;
-        this.filters[currentIndex].match = comparison;
-        this.filtersChanged.next(this.filters);
-      } else {
-        this.filters.push(new Filter(property, comparison, value));
-        this.filtersChanged.next(this.filters);
-      }
-    }
-  }
-
-  filterReset() {
-    this.filteredCards = this.cards;
-  }
-
-  sortReset() {
-    this.filterSort('Name', 'asc');
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
 }

@@ -1,0 +1,33 @@
+<div class="sm-panel-filter" appDdPanel data-dd="true">
+    <div class="sm-dd-panel" data-role="panel">
+        <header>
+            <h4>Filter Cards</h4>
+            <a (click)="filterReset()">Reset</a>
+        </header>
+        <table>
+            <tbody>
+                <tr *ngFor="let filterInput of filterInputs">
+                    <td><label class="title">{{ filterInput.title }}</label></td>
+                    <td>
+                        <ul class="flex-middle-end space-5">
+                            <li class="input-mark" *ngFor="let item of filterInput.filters; let i = index;">
+                                <input 
+                                    type="radio" 
+                                    [id]="filterInput.property + '_' + i" 
+                                    [name]="filterInput.property" 
+                                    [value]="item.value" 
+                                    [attr.checked]="item.isChecked" 
+                                    [attr.data-match]="item.match"  
+                                    (change)="filterChanged($event.currentTarget, i)">
+                                <label class="capsule" [for]="filterInput.property + '_' + i">{{ item.label }}</label>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="javascript:void(0)" class="sm-dd">
+        <app-svg icon="filter" title="sort" viewBox="0 0 24 24"></app-svg>
+    </a>
+</div>

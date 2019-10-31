@@ -1,20 +1,10 @@
 <section>
     <header class="sm-header flex-between">
         <div class="flex-middle divide space-20">
-            <ng-container *ngIf="region; else elseTitleTemplate">
-                <h4> {{ (region | async ).name }}</h4>
-            </ng-container>
-            <ng-template #elseTitleTemplate>
-                <h4> ALL CARDS </h4>
-            </ng-template>
+            <h4>{{ title }}</h4>
             <ul class="sm-nav flex-middle space-40">
                 <li class="flex-middle-center">
-                    <a [routerLink]="['../']"><img class="regionIcon" width="35px" src="assets/datadragon-set1-en_us/en_us/img/regions/icon-all.png" alt="All"></a>
-                </li>
-                <li class="flex-middle-center" *ngFor="let item of regions | async; let i=index">
-                    <a [routerLink]="['../']" [queryParams]="{region: item.nameRef}">
-                        <img [src]="item.iconAbsolutePath" [alt]="item.name" class="regionIcon" width="35px">
-                    </a>
+                    <img [src]="regionIcon" [alt]="title" class="regionIcon" width="35px">
                 </li>
             </ul>
         </div>
@@ -23,7 +13,7 @@
                 <app-card-search></app-card-search>
             </li>
             <li>
-                <app-card-sort [sortOptions]="sortOptions"></app-card-sort>
+                <app-card-sort></app-card-sort>
             </li>
             <li>
                 <app-card-filter [filterInputs]="filterInputs"></app-card-filter>
@@ -37,17 +27,17 @@
                     <h2>{{ card.name }}</h2>
                 </div>
                 <div class="cardImage">
-                    <img [attr.src]='["assets/datadragon-set1-en_us/en_us/img/cards/" + card.cardCode + ".png"]' loading="lazy" [alt]="card.name" style="width: 100%;height: 100%;">
+                    <img [attr.src]='["assets/datadragon-set1-en_us/en_us/img/cards/" + card.cardCode + ".png"]' loading="lazy" [alt]="card.name">
                 </div>
                 <div class="actions">
                     <div class="flex-middle-around">
                         <div class="action">
                             <app-svg icon="plus" title="add to deck" viewBox="0 0 512 512"></app-svg>
                         </div>
-                        <div class="action" [routerLink]="['../card', card.cardCode]">
+                        <div class="action">
                             <app-svg icon="eye" title="view details" viewBox="0 0 32 32"></app-svg>
                         </div>
-                        <div class="action" [routerLink]="['../card', card.cardCode]">
+                        <div class="action">
                             <app-svg icon="imagebg" title="view art" viewBox="0 0 50 50"></app-svg>
                         </div>
                     </div>

@@ -363,7 +363,7 @@ _.no-results svg > *:last-child {
 	left: 100%;
 	top: 0;
 	border-left: none;
-	box-shadow: inset 4px 0 0 0 rgb(12,106,254), 0 5px 30px -5px rgba(3,30,60, 0.4);
+	box-shadow: inset 4px 0 0 0 #e6c384, 0 5px 30px -5px rgba(3,30,60, 0.4);
 	padding-left: 4px;
 	border-radius: 5px;
 	visibility: hidden;
@@ -437,7 +437,7 @@ _.no-results svg > *:last-child {
 #SMS8Shell_PrimaryNavigation .nav svg * {
 	transition: color .3s ease;
 	fill: currentColor;
-	color: transparent;
+	color: #dee2e5;
 }
 
 #SMS8Shell_PrimaryNavigation .nav svg *[style*="stroke-width"] {

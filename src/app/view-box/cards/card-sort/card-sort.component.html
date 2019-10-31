@@ -1,0 +1,30 @@
+<div class="sm-panel-filter dd-sort" appDdPanel data-dd="true" #sortBox>
+    <div class="sm-dd-panel" data-role="panel">
+        <header>
+            <h4>Sort Cards</h4>
+            <a (click)="sortReset()">Reset</a>
+        </header>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul class="sort icons flex-middle-between">
+                            <li *ngFor="let sortOption of sortOptions; let i = index;">
+                                <a 
+                                    [attr.data-sort]="sortOption.property"
+                                    [attr.data-direction]="sortOption.sortDirection"
+                                    (click)="sortChanged($event.currentTarget, i)"
+                                    [ngClass]="{'active': sortOption.isActive}">
+                                    <app-svg [icon]="sortOption.icon.name" [title]="sortOption.icon.title" [viewBox]="sortOption.icon.viewBox"></app-svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="javascript:void(0)" class="sm-dd">
+        <app-svg icon="sort" title="sort" viewBox="-10 0 447 448"></app-svg>
+    </a>
+</div>

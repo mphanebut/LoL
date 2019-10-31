@@ -6,7 +6,8 @@
         </ng-container>
         <ng-template #elseTemplate>
             <app-svg icon="user" title="user icon"></app-svg>
-            <span style="margin-left: .75em;">Login</span>
+            <span style="margin-left: .75em;" [routerLink]="['/login']">Login</span>
+            
         </ng-template>
     </a>
 </li>

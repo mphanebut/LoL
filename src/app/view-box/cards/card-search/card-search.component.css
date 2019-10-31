@@ -1,0 +1,7 @@
+.input-text.stealth.active {
+    width: 25em;
+}
+
+.input-text.stealth input {
+    width: 20.5em;
+}
